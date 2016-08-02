@@ -34,4 +34,5 @@ Big idea
 - Everyone must share at least what you’re going to learn every week (share your goal!)
 - Everyone must share how you progress at it everyweek (share your progress!)
      - It’s great if you can output some where (code, blog, talk…)
+- When you share something, you MUST have in-depth comments of your shared articles.
 - Someone that can’t share anything for a week, leave room, and unless you found something to learn, go back 😃
