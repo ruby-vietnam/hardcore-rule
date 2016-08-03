@@ -12,6 +12,7 @@ Hardthings vary from people to people, but as long-time member of ruby-vn, I thi
 - Hardware stuffs
 - Functional programming (with deep theory, not just first class function or pure function)
 - Algorithm in depth (not just some simple and well-known like sorting..)
+- Machine learning, statistics, data science
 - Theory stuffs: distributed programming, database theory, ...
 
 #Rules
