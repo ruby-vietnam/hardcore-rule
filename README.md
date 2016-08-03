@@ -1,9 +1,10 @@
 
 #Ruby-VN hardcore rule
-![](http://gymbox.com/assets/images/slideshow/_courselImage/Hardcore-1.jpg)
+![](http://y2qhn3k1en71o0wc72ishks11tz.wpengine.netdna-cdn.com/wp-content/uploads/2016/03/Hard-Things.jpg)
 
 #Why
-To improve ourself, we need a space for everyone research/discuss about things that is hard, and not normally able to face in everyday work. Below is my list, you can make a PR for things that you think is suitable:
+To improve ourself, we need a space for everyone research/discuss about things that is hard, and not normally able to face in everyday work. As you can see in above image, hard things's value is much more than easy things. You only live once, so why bother doing things that anybody can do????
+Hardthings vary from people to people, but as long-time member of ruby-vn, I think the below list is suitable for us right now. You can make a PR for things that you think is suitable:
 - Math
 - OS/Kernel
 - Compiler/Parser
