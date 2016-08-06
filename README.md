@@ -4,6 +4,7 @@
 
 #Why
 To improve ourself, we need a space for everyone research/discuss about things that is hard, and not normally able to face in everyday work. As you can see in above image, hard things's value is much more than easy things. You only live once, so why bother doing things that anybody can do????
+
 Hardthings vary from people to people, but as long-time member of ruby-vn, I think the below list is suitable for us right now. You can make a PR for things that you think is suitable:
 - Math
 - OS/Kernel
@@ -28,6 +29,8 @@ Big idea
 
           - *NG*: is javascript functional programming?
           - *OK*: I’ve read paper about Monad and implementation of it in javascript, let’s take a look.
+- Every dicussion **MUST be in depth**. There must not conversations like: I've read an article about mysql internal and is cool!. You should write indepth that: what is cool, to prove that you read the article throughout.
+
 - No chit-chat
 - Recommended to share well-known source only (paper, well-known book)
 - If you can suprise people by things that almost of them not know about, you're truely hardcore member!!!!
