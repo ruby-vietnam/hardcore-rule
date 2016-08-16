@@ -31,7 +31,7 @@ Big idea
           - *OK*: I’ve read paper about Monad and implementation of it in javascript, let’s take a look.
 - Every dicussion **MUST be in depth**. There must not conversations like: I've read an article about mysql internal and is cool!. You should write indepth that: what is cool, to prove that you read the article throughout.
 
-- No chit-chat
+- No chit-chat, no <img src="laclac.png" width="32"/>
 - Recommended to share well-known source only (paper, well-known book)
 - If you can suprise people by things that almost of them not know about, you're truely hardcore member!!!!
 
