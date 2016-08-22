@@ -5,4 +5,4 @@
  - **hieuk09**:
  - **anhduy**:
  - **unrealhoang**:
- - **rhacker**:
+ - **rhacker**: [Notes on 7 concurrency model in 7 weeks - Updated](https://gist.github.com/rhacker/a8f71f6e3a64e15526e6533b55b42512)
