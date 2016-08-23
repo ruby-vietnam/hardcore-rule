@@ -2,3 +2,5 @@
 
 - **huydx**: Parsing Technique
 - **huytd**: Neural Network
+- **unrealhoang**: Implement Multiplexing model
+- **anhduy**: Vault (cont)
