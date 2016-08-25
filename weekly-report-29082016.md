@@ -5,3 +5,4 @@
 - **unrealhoang**: Implement Multiplexing model
 - **anhduy**: Vault (cont)
 - **rhacker**: Continue with concurrency
+- **nguyenquangminh**: Introduction to Interval Tree
