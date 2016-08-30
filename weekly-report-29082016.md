@@ -6,4 +6,4 @@
 - **anhduy**: Vault (cont)
 - **rhacker**: Continue with concurrency
 - **nguyenquangminh**: [Introduction to Interval Tree](https://github.com/nguyenquangminh0711/til/blob/master/introduction-to-interval-tree.md)
-- **hqc** : Remote Procedure Call
+- **hqc** : [Remote Procedure Call](https://gist.github.com/huynhquancam/2011a2d7ea35de4c479894f3e4869196), [gRPC](https://gist.github.com/huynhquancam/337ad23f5f8e75868c427f2f52db7c21)
