@@ -2,3 +2,4 @@
 
 - **huydx**: parsing technique (cont)
 - **huytd**: TF-IDF Algorithm for Text Summarization and Auto Categorize
+- **rhacker**: Concurrency (cont)
