@@ -8,3 +8,8 @@
 - **nguyenquangminh**:
   * Blog: [Introduction to Interval Tree](https://github.com/nguyenquangminh0711/til/blob/master/introduction-to-interval-tree.md)
   * Source code: [Interval Tree source code](https://github.com/nguyenquangminh0711/til/blob/master/introduction-to-interval-tree/interval_tree.rb)
+
+# Discussion
+
+- [Instruction's length on different CPU Arch](https://cdn.rawgit.com/ruby-vietnam/hardcore-rule/master/conversations/conversation-kiennt-09052016.html)
+
