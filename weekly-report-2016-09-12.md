@@ -4,3 +4,4 @@
 - **huytd** : [Gradient Descent](https://github.com/huytd/til/blob/master/machine-learning/gradient-descent.md)
 - **unrealhoang**: btree algorithm and variances
 - **nguyenquangminh**: Binary Indexed Tree
+- **rhacker**: 💀
