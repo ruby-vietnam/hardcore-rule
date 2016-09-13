@@ -40,4 +40,9 @@ Big idea
 - Everyone must share how you progress at it everyweek (share your progress!)
      - It’s great if you can output some where (code, blog, talk…)
 - When you share something, you MUST have in-depth comments of your shared articles.
-- Someone that can’t share anything for a week, leave room, and unless you found something to learn, go back 😃
+- When you register a new topic for a week, you must get votes from another, to make sure that what you choose fit to hardcore spirit
+- If you're too busy, you can skip for one or two weeks, but in a month, you MUST register at least 2 topics.
+- When you register a topic and fail to deliver that you MUST pay 10$. This money will be used to purchase ACM account for paper reading purpose.
+- Contact @huydx to join room
+
+
