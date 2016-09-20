@@ -4,5 +4,6 @@
 - **huytd** : Gradient Descent in Action 💀
 - **nguyenquanminh**: 💀
 - **kiennt**: read [There is no Fork: an Abstraction for Efficient, Concurrent and Concise Access](http://community.haskell.org/~simonmar/papers/haxl-icfp14.pdf)
+  - output: http://kipalog.com/posts/Su-dung-coroutine-trong-python-de-cai-dat-thuat-toan-dieu-phoi-cac-request
 - **rhacker** : Concurrency implementation
 https://github.com/rhacker/concurrency-learning
