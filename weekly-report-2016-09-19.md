@@ -7,3 +7,4 @@
   - output: http://kipalog.com/posts/Su-dung-coroutine-trong-python-de-cai-dat-thuat-toan-dieu-phoi-cac-request
 - **rhacker** : Concurrency implementation
 https://github.com/rhacker/concurrency-learning
+- **hieuk09**: [Look into Ruby profiler](hieuk09.github.io/ruby/2016/09/17/look-into-ruby-profiler.html)
