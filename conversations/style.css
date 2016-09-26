@@ -1,0 +1,70 @@
+* {
+  background-repeat: no-repeat;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.day_container {
+  padding: 10px;
+}
+
+.day_divider {
+  background: #EEE;
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.member_preview_link {
+  color: #2c3e50;
+  font-weight: bold;
+  text-decoration: none;
+}
+.member_preview_link::after {
+  content: ":";
+}
+
+.msg_inline_attachment_row, .ts_tip_multiline_inner, .message_gutter, .hidden, .timestamp, .message_star_holder {
+  display: none;
+}
+
+.emoji, .emoji-outer {
+  display: inline-block;
+  background-size: contain;
+  width: 24px; height: 24px;
+  line-height: 24px;
+  text-indent: -9999;
+}
+
+.special_formatting_quote {
+  padding: 5px;
+  font-style: italic;
+  background: #EEE;
+  border-left: 2px solid #CCC;
+  margin: 5px;
+}
+
+.message_body .special_formatting {
+  padding: 2px 4px;
+  color: #d14;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  word-wrap: break-word;
+}
+
+pre {
+  border: 1px solid #EEE;
+  background: #FAFAFA;
+  padding: 10px;
+  font-family: monospace;
+  word-wrap: break-word;
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;  
+}
+
+pre .copyonly {
+  display: none;
+}
