@@ -12,3 +12,4 @@
 - huynhquancam: LALR parsing algorithm
  - output:  [Ruby Internal part 2](http://kipalog.com/posts/Ruby-Internal---Code-Ruby-cua-ban-duoc-thuc-thi-nhu-the-nao--Phan-2)
 - kiennt: freemonad (cont): http://kipalog.com/posts/Phuong-phap-suy-luan-trong-lap-trinh-ham
+- huytd: [Solving Linear Regression Problems using Gradient Descent](https://github.com/huytd/til/blob/master/machine-learning/linear-regression.md)
