@@ -3,4 +3,4 @@
   - read https://blog.rudolph-miller.com/2016/06/11/create-regexp-engine/ and summary
 - kiennt: Bigtable: A Distributed Storage System for Structured Data
   - read http://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf
-
+- hieuk09: Implement a simple profiler to calculate memory usage of a block of code
