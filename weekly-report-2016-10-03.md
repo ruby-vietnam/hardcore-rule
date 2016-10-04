@@ -10,3 +10,5 @@
 - nguyenquangminh0711: Ebook research: [HTTP: The Definitive Guide (Definitive Guides)](https://www.amazon.com/HTTP-Definitive-Guide-Guides/dp/1565925092/ref=sr_1_1?ie=UTF8&qid=1474426868&sr=8-1&keywords=http+the+definitive+guide) (continue)
  - haond: Overview Hadoop ( Mapreduce Job, Daemons )
   - output: http://kipalog.com/posts/Co-ban-ve-Hadoop
+- giangnh: Ownership, references and borrowing, lifetimes in Rust
+  - output: [Ownership](http://kipalog.com/posts/Ownership--References--Borrowing-and-Lifetimes-in-Rust)
