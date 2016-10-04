@@ -1,6 +1,6 @@
 # Weekly Report 2016-10-03
-- huydx: NFA and regex cont
-  - read https://blog.rudolph-miller.com/2016/06/11/create-regexp-engine/ and summary
+- huydx: ~~NFA and regex cont~~ Rope algorithm
+  - ~~read https://blog.rudolph-miller.com/2016/06/11/create-regexp-engine/ and summary~~
   - output: http://kipalog.com/posts/Rope-algorithm
 - kiennt: Bigtable: A Distributed Storage System for Structured Data
   - read http://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf
