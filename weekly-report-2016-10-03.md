@@ -15,3 +15,5 @@
 
 - haond: Overview Hadoop ( Mapreduce Job, Daemons )
   - output: http://kipalog.com/posts/Co-ban-ve-Hadoop
+- giangnh: Ownership, references and borrowing, lifetimes in Rust
+  - output: [Ownership](http://kipalog.com/posts/Ownership--References--Borrowing-and-Lifetimes-in-Rust)
