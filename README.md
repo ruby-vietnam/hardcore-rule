@@ -45,4 +45,9 @@ Big idea
 - When you register a topic and fail to deliver that you MUST pay 10$. This money will be used to purchase ACM account for paper reading purpose.
 - Contact @huydx to join room
 
+#Faq
+- You scare to join
+  - me too, so don't need to scare :)
+- You don't know how to read a paper?
+  - take a look at http://cseweb.ucsd.edu/~wgg/CSE210/howtoread.html
 
