@@ -7,3 +7,4 @@
 - **huynhquancam**: Ruby VM - YARV
   - Book [Ruby Under a Microscope]
 - **kiennt**: **Operating System** Scheduling algorithm
+- **checkraiser**: **Neural Network Basic**
