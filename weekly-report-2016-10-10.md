@@ -6,3 +6,4 @@
 - **huytd**: Generalized Linear Models
 - **huynhquancam**: Ruby VM - YARV
   - Book [Ruby Under a Microscope]
+- **kiennt**: **Operating System** Scheduling algorithm
