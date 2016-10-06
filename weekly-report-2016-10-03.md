@@ -21,7 +21,7 @@
 
 - **huytd**: Logistic Regression Problems 
   - output: https://github.com/huytd/til/blob/master/machine-learning/logistic-regression.pdf
-  - implementation: (coming soon)
+  - implementation: https://github.com/huytd/til/blob/master/machine-learning/logistic-regression.swift
   
 - **rhacker**: Modeling concurrency with CSP
   - output: https://github.com/rhacker/concurrency-learning
