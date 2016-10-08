@@ -6,5 +6,6 @@
 - **huytd**: Generalized Linear Models
 - **huynhquancam**: Ruby VM - YARV
   - Book [Ruby Under a Microscope]
+  - [Output: Ruby Internal - Compilation](http://kipalog.com/posts/Ruby-Internal---Code-Ruby-cua-ban-duoc-thuc-thi-nhu-the-nao---Compilation--Phan-3)
 - **kiennt**: **Operating System** Scheduling algorithm
 - **checkraiser**: **Neural Network Basic**
