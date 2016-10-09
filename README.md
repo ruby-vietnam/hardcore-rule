@@ -47,7 +47,7 @@ Big idea
 
 #Faq
 - You scare to join
-  - me too, so don't need to scare :)
+  - me too, so there's no need to scare :)
 - You don't know how to read a paper?
   - take a look at http://cseweb.ucsd.edu/~wgg/CSE210/howtoread.html
 
