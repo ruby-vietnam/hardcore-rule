@@ -12,3 +12,5 @@
 - **checkraiser**: **Neural Network Basic**
 - **anhduy**: 💀
 - **lucdang**: 💀
+- **giangnh**: Ownership, References and borrowing, lifetimes in Rust
+  - [Output: References and borrowing, lifetimes in Rust](http://kipalog.com/posts/References-and-borrowing--lifetimes-in-Rust)
