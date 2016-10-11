@@ -51,3 +51,9 @@ Big idea
 - You don't know how to read a paper?
   - take a look at http://cseweb.ucsd.edu/~wgg/CSE210/howtoread.html
 
+#Events
+##Algorithm week
+We predically organize internal some events to training algorithm (just for fun, and for profit), for 4th weeks of every month.
+The rule is as follow:
+- For algorithm week, we will set for 2 rounds, each round will contain 3 problems range from easy to hard
+- After finishing each round, we will discuss to find what we learnt from those problems.
