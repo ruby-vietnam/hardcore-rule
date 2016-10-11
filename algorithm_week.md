@@ -41,3 +41,6 @@
 
 # Reference
 http://codeforces.com/blog/entry/14565
+
+# Some link to training:
+- http://vnoi.info/wiki/algo/basic/Tai-Lieu-Thuat-Toan
