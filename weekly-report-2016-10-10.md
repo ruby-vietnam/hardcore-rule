@@ -14,3 +14,5 @@
 - **anhduy**: 💀
 - **lucdang**: 💀
 - **unrealhoang**: 💀
+- **giangnh**: References and borrowing, lifetimes in Rust
+  - [Output](https://kipalog.com/posts/References-and-borrowing--lifetimes-in-Rust)
