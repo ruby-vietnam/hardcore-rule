@@ -4,3 +4,4 @@
 - **rhacker**: Concurrent data structure and algorithm
 - **hieuk09**: Finite Automata (Study: https://lagunita.stanford.edu/courses/course-v1:ComputerScience+Automata+Fall2016)
 - **kiennt**: Learning algorithm
+- **huydx** : Finite Automata (Study: https://lagunita.stanford.edu/courses/course-v1:ComputerScience+Automata+Fall2016)
