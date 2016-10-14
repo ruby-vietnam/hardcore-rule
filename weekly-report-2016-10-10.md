@@ -7,4 +7,4 @@
 - **huynhquancam**: Ruby VM - YARV
   - Book [Ruby Under a Microscope]
 - **kiennt**: **Operating System** Scheduling algorithm
-- **checkraiser**: **Neural Network Basic**
+- **checkraiser**: [Neural Network Basic](https://kipalog.com/posts/Neural-Network---Phan-1)
