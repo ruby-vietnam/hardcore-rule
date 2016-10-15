@@ -6,3 +6,4 @@
 - **kiennt**: Learning algorithm
 - **huydx** : Finite Automata (Study: https://lagunita.stanford.edu/courses/course-v1:ComputerScience+Automata+Fall2016)
 - **giangnh**: URL parser Rust (https://www.ietf.org/rfc/rfc1738.txt)
+- **lucdang**: Elasticsearch type of searches and usecases, practices (https://github.com/lucas2804/hardcore-rule/blob/master/elasticsearch/4-searching-your-data.md)
