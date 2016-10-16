@@ -10,7 +10,7 @@
   - [Output: Ruby Internal - Compilation](http://kipalog.com/posts/Ruby-Internal---Code-Ruby-cua-ban-duoc-thuc-thi-nhu-the-nao---Compilation--Phan-3)
 - **kiennt**: **Operating System** Scheduling algorithm
   - output: https://gist.github.com/kiennt/cbbbde877147857568b744585e817618
-- **checkraiser**: **Neural Network Basic**
+- **checkraiser**: [Neural Network Basic](https://kipalog.com/posts/Neural-Network---Phan-1)
 - **anhduy**: 💀
 - **lucdang**: 💀
 - **unrealhoang**: 💀
