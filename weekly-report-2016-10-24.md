@@ -2,4 +2,4 @@
 
 
 - huydx: https://lagunita.stanford.edu/courses/course-v1:ComputerScience+Automata+Fall2016
-- huytd: Bloom Filter
+- huytd: Matrix Multiplication (Continue)
