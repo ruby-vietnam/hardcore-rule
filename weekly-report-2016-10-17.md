@@ -8,3 +8,4 @@
 - **giangnh**: URL parser Rust (https://www.ietf.org/rfc/rfc1738.txt)
 - **haond**: About HDFS and HDFS2 (https://www.coursera.org/learn/hadoop)
 - **lucdang**: Elasticsearch type of searches and usecases, practices (https://github.com/lucas2804/hardcore-rule/blob/master/elasticsearch/4-searching-your-data.md)
+- **voanhduy1512**: Implement SWIM https://github.com/voanhduy1512/swim
