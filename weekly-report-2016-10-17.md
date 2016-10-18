@@ -6,7 +6,7 @@
 - **kiennt**: Learning algorithm
 - **huydx** : Finite Automata (Study: https://lagunita.stanford.edu/courses/course-v1:ComputerScience+Automata+Fall2016)
 - **giangnh**: URL parser Rust (https://www.ietf.org/rfc/rfc1738.txt)
-- **haond**: About HDFS and HDFS2 (https://www.coursera.org/learn/hadoop)
+- **haond**: About HDFS and HDFS2 (https://www.coursera.org/learn/hadoop). Output : https://kipalog.com/posts/Su-khac-nhau-ve-HDFS-va-HDFS2
 - **lucdang**: Elasticsearch type of searches and usecases, practices (https://github.com/lucas2804/hardcore-rule/blob/master/elasticsearch/4-searching-your-data.md)
 - **voanhduy1512**: Implement SWIM https://github.com/voanhduy1512/swim
 - **huynhquancam**: Functional Programming
