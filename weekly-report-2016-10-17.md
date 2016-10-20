@@ -2,7 +2,7 @@
 
 - **huytd**: Matrix Multiplication Algorithms Comparison (output: https://huytd.github.io/posts/nhan-ma-tran.html)
 - **rhacker**: Concurrent data structure and algorithm (output: https://github.com/rhacker/concurrent-skip-list )
-- **hieuk09**: Finite Automata (Study: https://lagunita.stanford.edu/courses/course-v1:ComputerScience+Automata+Fall2016)
+- **hieuk09**: Finite Automata (Study: https://lagunita.stanford.edu/courses/course-v1:ComputerScience+Automata+Fall2016) Output: 6/6 on basic problems set (course homework).
 - **kiennt**: Learning algorithm
 - **huydx** : Finite Automata (Study: https://lagunita.stanford.edu/courses/course-v1:ComputerScience+Automata+Fall2016)
 - **giangnh**: URL parser Rust (https://www.ietf.org/rfc/rfc1738.txt)
