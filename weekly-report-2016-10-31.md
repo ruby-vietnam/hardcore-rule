@@ -13,3 +13,5 @@ http://codeforces.com/problemset/problem/713/B
 - huytd
 
 ## Another goal
+
+- giangnh: Line bot sdk Rust [API](https://devdocs.line.me/en/)
