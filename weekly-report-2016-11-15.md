@@ -4,3 +4,4 @@
 - huytd: Writing C for large scale application
 - huydx: automata course (week2 and week3)
 - unrealhoang: automata course (week2 and week3)
+- giangnh: Text algorithm (Knuth–Morris–Pratt algorithm)
