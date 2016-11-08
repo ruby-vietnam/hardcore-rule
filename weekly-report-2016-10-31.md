@@ -11,7 +11,7 @@ http://codeforces.com/problemset/problem/713/B
 - kiennt
 - unrealhoang
 - huytd
-
+- haond
 ## Another goal
 
 - **huytd**: Linked List from Basic to Super basic (https://huytd.github.io/posts/algorithms/01-data-structures-linked-list.html)
