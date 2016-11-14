@@ -5,3 +5,4 @@
 - huydx: automata course (week2 and week3)
 - unrealhoang: automata course (week2 and week3)
 - giangnh: Text algorithm (Knuth–Morris–Pratt algorithm)
+- ludang: Elixir https://github.com/lucas2804/hardcore-rule/tree/master/elixir
