@@ -2,3 +2,4 @@
 
 - **huytd**: Write OOP code in ANSI C
 - **huydx**: elixir :v
+- **codeaholicguy**: How v8 engine optimize your JavaScript code
