@@ -4,3 +4,4 @@
 - @unreahoang: Build Redis driver for Rust base on tokio-rs [Issue #103](https://github.com/mitsuhiko/redis-rs/issues/103)
 - @huydx: Finish half of Applied Cryptography https://www.schneier.com/books/applied_cryptography/ (code some PoC of some algorithm as well)
 - @huytd: Build Unix's `top` web frontend with Rust
+- @nguyenquangminh0711: Build server handler for Rack that could run Rails using pre-fork and kqueue / epoll
