@@ -5,3 +5,4 @@
 - @huydx: Finish half of Applied Cryptography https://www.schneier.com/books/applied_cryptography/ (code some PoC of some algorithm as well)
 - @huytd: Build Unix's `top` web frontend with Rust
 - @nguyenquangminh0711: Build server handler for Rack that could run Rails using pre-fork and kqueue / epoll
+- @hngiang: Finish translate new Book: [Rust Programming Language](https://github.com/rust-vietnam/book)
