@@ -7,4 +7,4 @@
 - @nguyenquangminh0711: Build server handler for Rack that could run Rails using pre-fork and kqueue / epoll
 - @hngiang: Finish translate new Book: [Rust Programming Language](https://github.com/rust-vietnam/book)
 - @kiennt:  build 1 service preview link by elixir
-- @anhduy: TBD
+- @anhduy: Writing A Lisp Interpreter In Haskell
