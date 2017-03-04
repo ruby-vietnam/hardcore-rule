@@ -7,4 +7,4 @@
 - @hngiang: Finish translate new Book: [Rust Programming Language](https://github.com/rust-vietnam/book)
 - @kiennt:  build 1 service preview link by elixir
 - @anhduy: Writing A Lisp Interpreter In Haskell
-- @nguyenquangminh0711: Build server handler for Rack that could run Rails using pre-fork and kqueue / epoll [RubyWolf](github.com/nguyenquangminh0711/ruby_wolf)
+- @nguyenquangminh0711: Build server handler for Rack that could run Rails using pre-fork and kqueue / epoll [RubyWolf](http://github.com/nguyenquangminh0711/ruby_wolf)
