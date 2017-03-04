@@ -4,7 +4,7 @@
 - @unreahoang: Build Redis driver for Rust base on tokio-rs [Issue #103](https://github.com/mitsuhiko/redis-rs/issues/103)
 - @huydx: Finish half of Applied Cryptography https://www.schneier.com/books/applied_cryptography/ (code some PoC of some algorithm as well)
 - @huytd: Write MOS 6502 CPU Emulator
-- @nguyenquangminh0711: Build server handler for Rack that could run Rails using pre-fork and kqueue / epoll
 - @hngiang: Finish translate new Book: [Rust Programming Language](https://github.com/rust-vietnam/book)
 - @kiennt:  build 1 service preview link by elixir
 - @anhduy: Writing A Lisp Interpreter In Haskell
+- @nguyenquangminh0711: Build server handler for Rack that could run Rails using pre-fork and kqueue / epoll [RubyWolf](github.com/nguyenquangminh0711/ruby_wolf)
