@@ -10,3 +10,4 @@ Output: http://hieuk09.github.io/blog/2017/03/03/build-your-cas/
 - @anhduy: Writing A Lisp Interpreter In Haskell
 - @nguyenquangminh0711: Build server handler for Rack that could run Rails using pre-fork and kqueue / epoll [RubyWolf](http://github.com/nguyenquangminh0711/ruby_wolf)
 - @lucdang: Finish chapter 5 -> 11 https://github.com/lucas2804/hardcore-rule/tree/master/bdd-test-prescriptions-ebook
+- @nnluukhtn: Build your recommendation engine
