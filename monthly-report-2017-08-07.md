@@ -6,3 +6,4 @@
 - @hngnaig Operating Systems: Three Easy Pieces (Virtualization)
 - @unrealhoang Atomics and Memory fences
 - @runi_vn Bitcoin and SegWit, what is that
+- @qcam How rsync works? https://rsync.samba.org/how-rsync-works.html
