@@ -4,3 +4,4 @@
 - @nguyenquangminh Everything about Ruby Garbage collector
 - @triet Read Designing Data-Intensive Applications http://dataintensive.net/
 - @hngnaig Operating Systems: Three Easy Pieces (Virtualization)
+- @unrealhoang Atomics and Memory fences
