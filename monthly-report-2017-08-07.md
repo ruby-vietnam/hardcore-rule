@@ -7,3 +7,4 @@
 - @unrealhoang Atomics and Memory fences
 - @runi_vn Bitcoin and SegWit, what is that
 - @qcam How rsync works? https://rsync.samba.org/how-rsync-works.html
+- @haond Learn Algorithms - Big-O notation
