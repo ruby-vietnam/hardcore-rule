@@ -7,3 +7,4 @@
 - @unrealhoang Atomics and Memory fences
 - @runi_vn Bitcoin and SegWit, what is that
 - @qcam How rsync works? https://rsync.samba.org/how-rsync-works.html
+  - Report: https://kipalog.com/posts/Giai-thich-rsync-cho-tre-6-tuoi-nhu-the-nao
