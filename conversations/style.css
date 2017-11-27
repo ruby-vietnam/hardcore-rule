@@ -1,3 +1,19 @@
+body {
+  width: 700px;
+}
+
+button {
+  display: none;
+}
+
+.file_preview_preserve_aspect_ratio {
+  padding: 0 !important;
+}
+.image_bg {
+  background: none !important;
+  padding: 0 !important;
+}
+
 * {
   background-repeat: no-repeat;
   font-family: sans-serif;
