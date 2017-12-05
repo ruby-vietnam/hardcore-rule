@@ -1,3 +1,3 @@
-Bài 1: https://leetcode.com/problems/divide-two-integers/description
-Bài 2: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
-Bài 3: https://leetcode.com/problems/candy/description/
+- Bài 1: https://leetcode.com/problems/divide-two-integers/description
+- Bài 2: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
+- Bài 3: https://leetcode.com/problems/candy/description/
