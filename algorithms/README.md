@@ -15,7 +15,7 @@ How we work?
 - only submit solution after **3 days**, do not ask for solution before you show something to prove that you have done your homework
 
 3. For people who does not follow the rule, they will have to pay 200000 VND (or
-   10 USD) to the admin (using [paypal](paypal.me/hieuk09)). The penalty is for people who:
+   10 USD) to the admin (using [paypal](https://paypal.me/hieuk09)). The penalty is for people who:
 
 - don't summit any solutions in one week **OR**
 - don't join any discussion
