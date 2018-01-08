@@ -1,0 +1,3 @@
+- Bài 1: https://leetcode.com/problems/jump-game-ii/description/
+- Bài 2: https://leetcode.com/problems/sort-colors/description/
+- Bài 3: https://leetcode.com/problems/word-frequency/description/
