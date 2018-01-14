@@ -1,5 +1,4 @@
 
-```
 Với bài này thì đầu tiên em liên tưởng ngay tới việc từ 1 ô ta tô màu một loạt các ô mà nó nhảy đến. Rõ ràng để tới được những ô này thì từ số step chỉ tăng lên 1 mà thôi, và nó là minimum
 
 Vậy nếu nhảy tới 1 trong những ô này thì bước thứ 2 sẽ có thể đạt được là những ô nào
@@ -51,4 +50,3 @@ D -> nums[D] + D
 rõ ràng nếu ta chọn ô nào đó cho ta nhảy xa nhất thì ta có thể tiếp cận hàng loạt các ô mới, và các ô mới này chỉ mất 2 bước jump
 
 và cứ như vậy khi jump tới chính ô mà giúp ta nhảy xa nhất có thể, ta có hàng loạt cac lựa chọn tiếp theo, quay lại bước phía trên
-```
