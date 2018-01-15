@@ -1,6 +1,7 @@
 Tổng kết tuần 4
 
 ### 3 bài:
+- nguyenquangminh
 
 ### 2 bài:
 - huydx
@@ -14,6 +15,11 @@ Tổng kết tuần 4
 - triet
 - toanha
 - lephongvu
+
+## Đóng tiền
+- unrealhoang
+- anhduy
+- longkt90
 
 
 RIP những người còn lại.
