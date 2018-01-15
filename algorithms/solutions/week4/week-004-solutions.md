@@ -1,10 +1,7 @@
 Tổng kết tuần 4
 
 ### 3 bài:
-<<<<<<< HEAD
 - nguyenquangminh
-=======
->>>>>>> Add final summary
 
 ### 2 bài:
 - huydx
@@ -24,6 +21,11 @@ Tổng kết tuần 4
 ### Đóng tiền
 - unrealhoang
 - anhduy
+
+## Đóng tiền
+- unrealhoang
+- anhduy
+- longkt90
 
 
 RIP những người còn lại.
