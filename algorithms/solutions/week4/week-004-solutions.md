@@ -1,7 +1,10 @@
 Tổng kết tuần 4
 
 ### 3 bài:
+<<<<<<< HEAD
 - nguyenquangminh
+=======
+>>>>>>> Add final summary
 
 ### 2 bài:
 - huydx
