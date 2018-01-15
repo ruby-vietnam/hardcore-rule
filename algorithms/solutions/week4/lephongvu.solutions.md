@@ -3,6 +3,7 @@ O(2n)
 
 đang suy nghĩ tiếp :v 
 
+```
 void sortColors(vector<int>& nums) {
       int a[3] = {0};
         for(auto c: nums)
@@ -19,4 +20,4 @@ void sortColors(vector<int>& nums) {
             else if( a[2] > 0) nums[i] = 2;
         }  
 }
-
+```
