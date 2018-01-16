@@ -16,11 +16,11 @@ Tổng kết tuần 4
 - toanha
 - lephongvu
 - rikimaru amidan
+- longkt90
 
 ### Đóng tiền
 - unrealhoang
 - anhduy
-- longkt90
 
 
 RIP những người còn lại.
