@@ -15,6 +15,7 @@ Tổng kết tuần 4
 - triet
 - toanha
 - lephongvu
+- rikimaru amidan
 
 ### Đóng tiền
 - unrealhoang
