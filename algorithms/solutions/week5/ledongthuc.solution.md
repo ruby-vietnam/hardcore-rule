@@ -1,4 +1,4 @@
-## Problem 2
+## Problem 1
 
 https://play.golang.org/p/boUxINUIn9Y
 
