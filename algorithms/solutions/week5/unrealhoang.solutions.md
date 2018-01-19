@@ -64,7 +64,7 @@ fn max_envelopes(mut envelopes: Vec<(i32, i32)>) -> i32 {
     let mut d = vec![1i32; l];
 
     for i in 1..l {
-        for j in 1..i {
+        for j in 0..i {
             if envelopes[j].0 > envelopes[i].0 && envelopes[j].1 > envelopes[i].1 {
                 d[i] = std::cmp::max(d[i], d[j] + 1);
             }
