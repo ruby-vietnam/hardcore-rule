@@ -1,7 +1,32 @@
 # Problem 1: Pascal Triangle
 
 URL: https://leetcode.com/problems/pascals-triangle-ii/description/
-TODO
+
+Status:
+```
+  ✔ Accepted
+  ✔ 34/34 cases passed (55 ms)
+  ✔ Your runtime beats 45.45 % of ruby submissions
+```
+
+```ruby
+# @param {Integer} row_index
+# @return {Integer[]}
+def get_row(row_index)
+  array =  Array.new(row_index + 1, 0)
+  array[0] = 1
+  return array if row_index < 1
+  for i in (1...row_index+1) do
+    j = i
+    while j > 0 do
+      array[j] += array[j-1]
+      j -= 1
+    end
+  end
+  array
+end
+
+```
 
 # Problem 2: Valid Parenthesis String
 
