@@ -22,6 +22,11 @@ Tổng kết tuần 4
 - unrealhoang
 - anhduy
 
+### Đóng tiền
+- unrealhoang
+- anhduy
+- longkt90
+
 
 RIP những người còn lại.
 
