@@ -122,3 +122,18 @@ func updateMatrix(matrix [][]int) [][]int {
 	return output
 }
 ```
+
+## problem 3
+
+```
+func rotate(matrix [][]int)  {
+  	n := len(matrix)
+	for k := 0; k < n/2; k++ {
+		for i := k; i < n-k-1; i++ {
+			matrix[k][i], matrix[i][n-k-1] = matrix[i][n-k-1], matrix[k][i]
+			matrix[k][i], matrix[n-i-1][k] = matrix[n-i-1][k], matrix[k][i]
+			matrix[n-i-1][k], matrix[n-k-1][n-i-1] = matrix[n-k-1][n-i-1], matrix[n-i-1][k]
+		}
+	}
+}
+```
