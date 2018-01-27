@@ -1,5 +1,7 @@
 Problem 1:
 
+https://play.golang.org/p/Ucpn4yfhbv8
+
 ```
 
 type LeftRight struct {
@@ -43,4 +45,31 @@ func findShortestSubArray(nums []int) int {
 	return maxItem.Length
 }
 
+```
+
+Problem 2:
+
+Problem 3:
+
+https://play.golang.org/p/9fYhFYnNr3b
+
+```
+
+func rotate(matrix [][]int) {
+	length := len(matrix)
+	
+	// Transpose
+	for rowIndex, _ := range matrix {
+		for columnIndex:=0; columnIndex < rowIndex;columnIndex++  { 
+			matrix[rowIndex][columnIndex], matrix[columnIndex][rowIndex] = matrix[columnIndex][rowIndex], matrix[rowIndex][columnIndex]
+		}
+	}
+	
+	// Reverse
+	for rowIndex, _ := range matrix {
+		for columnIndex:=0; columnIndex < length / 2;columnIndex++  {
+			matrix[rowIndex][columnIndex], matrix[rowIndex][length-columnIndex-1] = matrix[rowIndex][length-columnIndex-1], matrix[rowIndex][columnIndex]
+		}
+	}
+}
 ```
