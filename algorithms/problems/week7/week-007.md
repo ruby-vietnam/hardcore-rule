@@ -4,3 +4,4 @@ Host: @triet
 - Problem 2: https://leetcode.com/problems/symmetric-tree/
 - Problem 3: https://leetcode.com/problems/candy
 - Bonus: https://leetcode.com/problems/lru-cache/description/
+- Bonus 2: https://leetcode.com/problems/insert-delete-getrandom-o1/description/
