@@ -85,3 +85,29 @@ def update_matrix(matrix)
   matrix
 end
 ```
+
+## Problem 3
+
+```ruby
+def rotate(matrix)
+  size = matrix.size
+  rotation_size = (size + 1) / 2
+
+  rotation_size.times do |i|
+    if size.odd? && i == rotation_size - 1
+      next
+    end
+    rotation_size.times do |j|
+      i2 = size - i - 1
+      j2 = size - j - 1
+      temp = matrix[i][j]
+      matrix[i][j] = matrix[j2][i]
+      matrix[j2][i] = matrix[i2][j2]
+      matrix[i2][j2] = matrix[j][i2]
+      matrix[j][i2] = temp
+    end
+  end
+
+  matrix
+end
+```
