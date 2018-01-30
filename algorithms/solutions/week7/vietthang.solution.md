@@ -2,6 +2,26 @@
 
 ```js
 /**
+ * @param {string} s
+ * @return {number}
+ */
+const firstUniqChar = (s) =>  {
+    let count = {}
+    for (let i = 0; i < s.length; i++) {
+        count[s[i]] = count[s[i]] + 1 || 1
+    }
+
+    for (let i = 0; i < s.length; i++) {
+        if (count[s[i]] === 1) return i
+    }
+    return -1
+}
+```
+
+# Problem set 2:
+
+```js
+/**
  * Definition for a binary tree node.
  * function TreeNode(val) {
  *     this.val = val;
