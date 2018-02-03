@@ -19,6 +19,60 @@ def first_uniq_char(s)
 end
 ```
 
+# Problem 2
+
+## Recursive
+
+```ruby
+def is_symmetric(root)
+    return true unless root
+
+    symmetric_pair?(root.left, root.right)
+end
+
+def symmetric_pair?(left, right)
+    # both of them are nil
+    return left == right if left.nil? || right.nil?
+
+    # their values vary
+    return false if left.val != right.val
+
+    # they have same values
+    symmetric_pair?(left.left, right.right) && symmetric_pair?(left.right, right.left)
+end
+```
+
+## Iterative
+
+```ruby
+def is_symmetric(root)
+    return true unless root
+
+    stack = [root.left, root.right]
+
+    while stack.count != 0
+        left = stack.pop()
+        right = stack.pop()
+
+        if left == nil || right == nil
+            return false if left != right
+        elsif left.val != right.val
+            return false
+        else
+            if left.left == nil && right.right == nil
+                stack.push(left.right, right.left)
+            elsif left.right == nil && right.left == nil
+                stack.push(left.left, right.right)
+            else
+                stack.push(left.left, right.right, left.right, right.left)
+            end
+        end
+    end
+
+    return true
+end
+```
+
 # Problem bonus
 
 ```ruby
