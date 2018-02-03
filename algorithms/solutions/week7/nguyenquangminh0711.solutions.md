@@ -50,6 +50,115 @@ func isLeaf(node *TreeNode) bool {
 }
 ```
 
+## Problem bonus
+
+https://leetcode.com/problems/lru-cache/description/
+
+Use a double linked list to store the cache list and a hash map to map key and node in the cache list.
+When pushing into the LRU, new node is pushed into the end. If it exceeds the capacity, the first node is discarded.
+When getting a key, the node is moved to the end of the linked list.
+
+```golang
+type node struct {
+	key      int
+	value    int
+	next     *node
+	previous *node
+}
+
+type LRUCache struct {
+	capacity int
+	hash     map[int]*node
+	length   int
+	head     *node
+	tail     *node
+}
+
+func Constructor(capacity int) LRUCache {
+	return LRUCache{
+		capacity: capacity,
+		hash:     make(map[int]*node),
+	}
+}
+
+func (cache *LRUCache) Get(key int) int {
+	n, exist := cache.hash[key]
+	if !exist {
+		return -1
+	}
+	cache.update(n)
+	return n.value
+}
+
+func (cache *LRUCache) Put(key int, value int) {
+	if cache.capacity <= 0 {
+		return
+	}
+
+	n, exist := cache.hash[key]
+	if exist {
+		cache.update(n)
+		n.value = value
+	} else {
+		n = &node{
+			key:   key,
+			value: value,
+		}
+		if cache.length >= cache.capacity {
+			out := cache.pop()
+			if out != nil {
+				delete(cache.hash, out.key)
+			}
+		}
+		cache.push(n)
+		cache.hash[key] = n
+	}
+}
+
+func (cache *LRUCache) push(n *node) {
+	if cache.head == nil {
+		cache.head = n
+		cache.tail = n
+	} else {
+		n.previous = cache.tail
+		cache.tail.next = n
+		cache.tail = n
+	}
+	cache.length++
+}
+
+func (cache *LRUCache) pop() *node {
+	if cache.head == nil {
+		return nil
+	}
+	n := cache.head
+	cache.head = cache.head.next
+	if cache.head != nil {
+		cache.head.previous = nil
+	}
+	cache.length--
+	return n
+}
+
+func (cache *LRUCache) update(n *node) {
+	if n.next != nil {
+		n.next.previous = n.previous
+	} else {
+		cache.tail = n.previous
+	}
+
+	if n.previous != nil {
+		n.previous.next = n.next
+	} else {
+		cache.head = n.next
+	}
+	n.next = nil
+	n.previous = nil
+	cache.length--
+	cache.push(n)
+}
+```
+
 ## Problem bonus 2
 
 https://leetcode.com/problems/insert-delete-getrandom-o1/description/
