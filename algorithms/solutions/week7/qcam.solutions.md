@@ -1,5 +1,14 @@
 # Problem 1
 
+## Hash as a cache
+
+```
+104 / 104 test cases passed.
+Status: Accepted
+Runtime: 379 ms
+Your runtime beats 78.13 % of ruby submissions
+```
+
 ```ruby
 def first_uniq_char(s)
     return -1 if s == ""
@@ -19,9 +28,60 @@ def first_uniq_char(s)
 end
 ```
 
+## Array as a cache
+
+```
+104 / 104 test cases passed.
+Status: Accepted
+Runtime: 328 ms
+Your runtime beats 87.50 % of ruby submissions
+```
+
+```ruby
+def first_uniq_char(s)
+    return -1 if s == ""
+    length = s.length
+
+    cache = []
+
+    for i in 0..(length - 1)
+        char = s[i]
+        cache_idx = char.ord
+
+        if item = cache[cache_idx]
+            start, count = item
+            cache[cache_idx] = [start, count + 1]
+        else
+            cache[cache_idx] = [i, 1]
+        end
+    end
+
+    min = length + 1
+
+    cache[97..(cache.length - 1)].each do |item|
+        start, count = item
+
+        if count == 1
+            min = min > start ? start : min
+        end
+    end
+
+    min < length ? min : -1
+end
+```
+
 # Problem 2
 
+https://leetcode.com/problems/symmetric-tree/description/
+
 ## Recursive
+
+```
+193 / 193 test cases passed.
+Status: Accepted
+Runtime: 64 ms
+Your runtime beats 25.00 % of ruby submissions
+```
 
 ```ruby
 def is_symmetric(root)
@@ -43,6 +103,13 @@ end
 ```
 
 ## Iterative
+
+```
+193 / 193 test cases passed.
+Status: Accepted
+Runtime: 59 ms
+Your runtime beats 41.67 % of ruby submissions.
+```
 
 ```ruby
 def is_symmetric(root)
@@ -74,6 +141,15 @@ end
 ```
 
 # Problem bonus
+
+https://leetcode.com/problems/lru-cache/description/
+
+```
+18 / 18 test cases passed.
+Status: Accepted
+Runtime: 202 ms
+Your runtime beats 54.55 % of ruby submissions
+```
 
 ```ruby
 class Node
