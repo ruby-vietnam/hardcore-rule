@@ -23,3 +23,25 @@ def first_uniq_char(s)
   min || -1
 end
 ```
+
+## Problem 2
+
+```ruby
+def equal_tree?(left, right)
+  if left.nil? && right.nil?
+    true
+  elsif !left.nil? && !right.nil?
+    left.val == right.val && equal_tree?(left.left, right.right) && equal_tree?(left.right, right.left)
+  else
+    false
+  end
+end
+
+def is_symmetric(root)
+  if root.nil?
+    true
+  else
+    equal_tree?(root.left, root.right)
+  end
+end
+```
