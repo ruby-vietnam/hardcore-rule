@@ -39,6 +39,36 @@ func isMirror(left *TreeNode, right *TreeNode) bool {
 
 ```
 
+Problem 3:
+
+https://play.golang.org/p/u_Bmk_fxdFb
+
+```
+func candy(ratings []int) int {
+    candies := make([]int, len(ratings))
+    candies[0] = 1
+    
+    for i := 1; i < len(ratings); i++ {
+        if ratings[i - 1] < ratings[i] {
+            
+        
+            candies[i] = candies[i - 1] + 1
+        } else {
+            candies[i] = 1
+            }
+    }
+    
+    noCandies :=   candies[len(ratings) - 1]
+    for i:=len(ratings)-2;i>=0;i--{
+        if ratings[i+1] < ratings[i] && candies[i] < candies[i+1] + 1 {
+            candies[i] = candies[i+1] + 1
+        }
+        noCandies += candies[i]
+    }
+    return noCandies
+}
+```
+
 Bonus 1:
 
 https://play.golang.org/p/C41max1tgP1
