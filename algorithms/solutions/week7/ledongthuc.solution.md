@@ -143,3 +143,58 @@ func (l *DoublyLinkedList) MoveToHead(node *DoublyLinkedNode) {
 	l.AddAtHead(node)
 }
 ```
+
+Bonus 2:
+
+https://play.golang.org/p/fPFBkVlE4FZ
+
+```go
+type RandomizedSet struct {
+	m map[int]int
+	l []int
+}
+
+/** Initialize your data structure here. */
+func Constructor() RandomizedSet {
+	return RandomizedSet{
+		m: make(map[int]int),
+		l: []int{},
+	}
+}
+
+/** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+func (this *RandomizedSet) Insert(val int) bool {
+	if _, ok := this.m[val]; ok {
+		return false
+	}
+	this.m[val] = len(this.l)
+	this.l = append(this.l, val)
+	return true
+}
+
+/** Removes a value from the set. Returns true if the set contained the specified element. */
+func (this *RandomizedSet) Remove(val int) bool {
+	index, ok := this.m[val]
+	if !ok {
+		return false
+	}
+	
+	
+	if len(this.l) > 1 {
+        // Move last item to removed location
+		this.l[index] = this.l[len(this.l)-1]
+		this.l = this.l[:len(this.l)-1]
+		this.m[last] = index
+	} else {
+		this.l = this.l[:0]
+	}
+	
+	delete(this.m, val)
+	return true
+}
+
+/** Get a random element from the set. */
+func (this *RandomizedSet) GetRandom() int {
+	return this.l[rand.Intn(len(this.l))]
+}
+```
