@@ -41,3 +41,36 @@ const checkSymmetric = (Left, Right) => {
     return Left.val === Right.val &&  checkSymmetric(Left.left, Right.right) && checkSymmetric(Left.right, Right.left)
 }
 ```
+
+# Problem set 3:
+
+```js
+/**
+ * @param {number[]} ratings
+ * @return {number}
+ */
+
+var feed = function(ratings, List) {
+    for (let i = 1; i < ratings.length; i++) {
+         if (ratings[i] > ratings[i-1]) {
+             List[i] = List[i-1] + 1
+         } else {
+             List[i] = 1
+         }
+     }
+
+     return List
+}
+
+var candy = function(ratings) {
+    let L = [1], R = [1], sum = 0
+    L = feed(ratings, L)
+    R = feed(ratings.reverse(), R).reverse()
+
+    for (let i = 0; i < ratings.length; i++) {
+        sum += Math.max(L[i], R[i])
+    }
+
+    return sum
+}
+```
