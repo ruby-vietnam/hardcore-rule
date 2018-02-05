@@ -52,13 +52,9 @@ const checkSymmetric = (Left, Right) => {
 
 var feed = function(ratings, List) {
     for (let i = 1; i < ratings.length; i++) {
-         if (ratings[i] > ratings[i-1]) {
-             List[i] = List[i-1] + 1
-         } else {
-             List[i] = 1
-         }
+         if (ratings[i] > ratings[i-1]) List[i] = List[i-1] + 1
+         else List[i] = 1
      }
-
      return List
 }
 
