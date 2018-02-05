@@ -1,5 +1,5 @@
 First Unique Character in a String
-
+```
 class Solution {
 public:
     int firstUniqChar(string s) {
@@ -19,10 +19,10 @@ public:
     }
 };
 
-
+```
 Symmetric Tree
 
-
+```
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -52,10 +52,10 @@ public:
         return isMir(root->left, root->right);
     }
 };
-
+```
 
 Candy:
-
+```
 class Solution {
 public:
     int candy(vector<int>& ratings) {
@@ -90,3 +90,4 @@ public:
         return sum;
     }
 };
+```
