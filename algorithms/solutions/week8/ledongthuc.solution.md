@@ -1,6 +1,6 @@
 Problem 1:
 
-```
+```go
 func longestWord(words []string) string {
 	if words == nil || len(words) == 0 {
 		return ""
@@ -57,6 +57,50 @@ func (t *TrieNode) GetLongestWord() string {
 			max = maxOfChildren
 		}
 	}
+	return max
+}
+```
+
+Problem 2:
+
+```go
+type MyCalendarThree struct {
+	Timeline []int
+	Counting map[int]int
+}
+
+func Constructor() MyCalendarThree {
+	return MyCalendarThree{
+		Counting: make(map[int]int),
+	}
+}
+
+func (this *MyCalendarThree) Book(start int, end int) int {
+	if counting, ok := this.Counting[start]; ok {
+		this.Counting[start] = counting + 1
+	} else {
+		this.Timeline = append(this.Timeline, start)
+		this.Counting[start] = 1
+	}
+	
+	if counting, ok := this.Counting[end]; ok {
+		this.Counting[end] = counting - 1
+	} else {
+		this.Timeline = append(this.Timeline, end)
+		this.Counting[end] = -1
+	}
+	
+	sort.Ints(this.Timeline)
+	
+	max := 0
+	currentCount := 0
+	for _, t := range this.Timeline {
+		currentCount += this.Counting[t]
+		if currentCount > max {
+			max = currentCount
+		}
+	}
+	
 	return max
 }
 ```
