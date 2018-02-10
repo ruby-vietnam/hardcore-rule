@@ -64,6 +64,7 @@ func (t *TrieNode) GetLongestWord() string {
 Problem 2:
 
 ```go
+
 type MyCalendarThree struct {
 	Timeline []int
 	Counting map[int]int
@@ -79,19 +80,19 @@ func (this *MyCalendarThree) Book(start int, end int) int {
 	if counting, ok := this.Counting[start]; ok {
 		this.Counting[start] = counting + 1
 	} else {
-		this.Timeline = append(this.Timeline, start)
+		this.Timeline = OrderedInsert(this.Timeline, start)
 		this.Counting[start] = 1
 	}
-	
+
 	if counting, ok := this.Counting[end]; ok {
 		this.Counting[end] = counting - 1
 	} else {
-		this.Timeline = append(this.Timeline, end)
+		this.Timeline = OrderedInsert(this.Timeline, end)
 		this.Counting[end] = -1
 	}
-	
-	sort.Ints(this.Timeline)
-	
+
+	// sort.Ints(this.Timeline)
+
 	max := 0
 	currentCount := 0
 	for _, t := range this.Timeline {
@@ -100,7 +101,29 @@ func (this *MyCalendarThree) Book(start int, end int) int {
 			max = currentCount
 		}
 	}
-	
+
 	return max
 }
+
+func OrderedInsert(list []int, item int) []int {
+	if len(list) == 0 {
+		return []int{item}
+	}
+
+	isInserted := false
+	result := make([]int, 0, len(list)+1)
+	for _, t := range list {
+		if t > item && isInserted == false {
+			result = append(result, item)
+			isInserted = true
+		}
+		result = append(result, t)
+	}
+
+	if isInserted == false {
+		result = append(result, item)
+	}
+	return result
+}
+
 ```
