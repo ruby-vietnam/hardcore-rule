@@ -21,7 +21,7 @@ func longestWord(words []string) string {
 				if w == cw {
 					found = true
 					count++
-					continue
+					break
 				}
 			}
 			if !found {
