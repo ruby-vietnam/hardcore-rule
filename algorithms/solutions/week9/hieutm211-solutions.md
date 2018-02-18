@@ -1,4 +1,23 @@
 
+##Problem 1
+```cpp
+class Solution {
+public:
+    int findLHS(vector<int>& nums) {
+        if(nums.size() == 0) return 0;
+
+        sort(nums.begin(), nums.end());
+
+        int ans = 0, start = 0;
+        for(int i = 1; i < nums.size(); ++i){
+            while (start+1 <= i && nums[i] - nums[start] > 1) ++start;
+            if (nums[i]-nums[start] == 1) ans = max(ans, i-start+1);
+        }
+        return ans;
+    }
+};
+```
+
 ##Problem bonus
  
 ```cpp
