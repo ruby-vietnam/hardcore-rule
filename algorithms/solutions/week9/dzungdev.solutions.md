@@ -31,3 +31,19 @@ public int findLHS(int[] nums) {
     return ans;
   }
 ```
+
+Problem 2:
+We can use recursion to loop all the nodes and make sum of 2 nodes if there are value, if one of node are null, then it is value 0. If 2 nodes are null, then we just return null.
+
+The time complexity is O(n) as we loop all the nodes, space complexity is O(n) too.
+
+
+```java
+public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+        if (t1 == null && t2 == null) return null;
+        TreeNode newNode = new TreeNode((t1 == null ? 0 : t1.val) + (t2 == null ? 0 : t2.val));
+        newNode.left = mergeTrees(t1 == null ? null : t1.left, t2 == null ? null : t2.left);
+        newNode.right = mergeTrees(t1== null ? null : t1.right, t2 == null ? null : t2.right);
+        return newNode;
+    }
+```
