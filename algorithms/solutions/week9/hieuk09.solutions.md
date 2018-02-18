@@ -22,3 +22,34 @@ def find_lhs(nums)
   max
 end
 ```
+
+## Problem 2
+
+```ruby
+def merge_trees(t1, t2)
+  return nil if t1.nil? && t2.nil?
+
+  new_tree = TreeNode.new(0)
+  stack = [[t1, t2, new_tree]]
+
+  while !stack.empty? do
+    t1, t2, new_t = stack.pop
+    t1 ||= TreeNode.new(0)
+    t2 ||= TreeNode.new(0)
+
+    new_t.val = t1.val + t2.val
+
+    if !(t1.left.nil? && t2.left.nil?)
+      new_t.left = TreeNode.new(0)
+      stack.push([t1.left, t2.left, new_t.left])
+    end
+
+    if !(t1.right.nil? && t2.right.nil?)
+      new_t.right = TreeNode.new(0)
+      stack.push([t1.right, t2.right, new_t.right])
+    end
+  end
+
+  new_tree
+end
+```
