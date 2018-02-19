@@ -58,3 +58,24 @@ class Solution {
     }
 }
 ```
+
+# Problem 3
+
+```java
+class Solution {
+    public List<Integer> grayCode(int n) {
+        if (n == 0) { 
+            List<Integer> r = new ArrayList<>();
+            r.add(0);
+            return r;
+        }        
+        List<Integer> ret = grayCode(n-1);
+        int msb = 1 << (n-1);
+        int l = ret.size();        
+        for (int i = l-1; i >= 0; i--) {
+            ret.add((1 << (n-1)) + ret.get(i));
+        }
+        return ret;
+    }
+}
+```
