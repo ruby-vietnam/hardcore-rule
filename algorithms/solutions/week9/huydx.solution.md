@@ -34,7 +34,7 @@ class Solution {
 
 # Problem 2
 
-```
+```java
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
