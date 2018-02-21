@@ -1,6 +1,6 @@
 ## Summary
 
-15 submissions.
+16 submissions.
 
 Finished 1 problem:
 
@@ -20,6 +20,7 @@ Finished 2 problems:
 - hieuk09
 - dzungdev
 - unrealhoang
+- toanha
 
 Finished 3 problems:
 
@@ -34,4 +35,3 @@ Not submission:
 - anhduy
 - loind
 - nguyenquangminh
-- toanha
