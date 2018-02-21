@@ -1,6 +1,6 @@
 ## Summary
 
-14 submissions.
+15 submissions.
 
 Finished 1 problem:
 
@@ -10,6 +10,7 @@ Finished 1 problem:
 - qcam
 - longkt90
 - ledongthuc
+- lephongvu
 
 Finished 2 problems:
 
@@ -30,7 +31,6 @@ Finished 4 problems:
 
 Not submission:
 
-- lephongvu
 - anhduy
 - loind
 - nguyenquangminh
