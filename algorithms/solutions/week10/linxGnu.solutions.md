@@ -170,15 +170,15 @@ func getSkyline(buildings [][]int) (result [][]int) {
 	// store current max height
 	var curMaxHeight int
 
-    // now solve our problem
+	// now solve our problem
 	for i < numLines {
-        // get all vertical lines with same x-axis with current line
+		// get all vertical lines with same x-axis with current line
 		for j = i; j < numLines && vLines[j].X == vLines[i].X; j++ {
 		}
-        // [i, j) has the same x-axis
-        
-        // heap is empty then just push to heap
-		if len(h) == 0 { 
+		// [i, j) has the same x-axis
+
+		// heap is empty then just push to heap
+		if len(h) == 0 {
 			for k = i; k < j; k++ {
 				heap.Push(&h, &builds[vLines[k].Bid])
 			}
@@ -200,7 +200,7 @@ func getSkyline(buildings [][]int) (result [][]int) {
 		// heap is empty means end of block of buildings
 		if len(h) == 0 {
 			result = append(result, []int{vLines[i].X, 0})
-        } else if h[0].H != curMaxHeight { // if not, check for the change of max height
+		} else if h[0].H != curMaxHeight { // if not, check for the change of max height
 			result = append(result, []int{vLines[i].X, h[0].H})
 		}
 
