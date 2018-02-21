@@ -25,6 +25,7 @@ Finished 2 problems:
 Finished 3 problems:
 
 - [huydx](https://github.com/ruby-vietnam/hardcore-rule/blob/master/algorithms/solutions/week9/huydx.solution.md)
+- nguyenquangminh0711
 
 Finished 4 problems:
 
@@ -34,4 +35,3 @@ Not submission:
 
 - anhduy
 - loind
-- nguyenquangminh
