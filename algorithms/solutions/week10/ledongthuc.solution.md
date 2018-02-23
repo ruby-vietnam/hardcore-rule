@@ -1,5 +1,8 @@
 Problem 1: https://leetcode.com/problems/valid-palindrome-ii/
 
+Time: 32ms
+Complexity: O(n)
+
 Solution is the same with Palindrome checking with some change.
 When you got a invalid pair character, we have 2 cases, 
   1. the left one is removable character
