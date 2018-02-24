@@ -1,7 +1,7 @@
-### Problem 1: https://leetcode.com/problems/valid-palindrome-ii/
+### Problem 1: 
 
+https://leetcode.com/problems/valid-palindrome-ii/
 Time: 32ms
-
 Complexity: O(n)
 
 Solution is the same with Palindrome checking with some change.
@@ -96,5 +96,41 @@ func  DigAndAppend(node *TreeNode) (*TreeNode) {
         return lastLeft
     }
     return DigAndAppend(node.Right)
+}
+```
+
+### Problem 3:
+
+https://leetcode.com/problems/is-subsequence
+Time: 16 ms
+Complexity: O(n)
+
+`s` works like a stack. We loop through a string `t` and pop `s` to check. 
+- If the loop is finish but `s` is not empty -> `t` is doesn't contain all `s`
+- Otherwise -> `t` contains `s`
+
+```
+func isSubsequence(s string, t string) bool {
+    if len(s) == 0 {
+        return true
+    }
+    
+    if len(t) == 0 {
+        return false
+    }
+    
+    checkingIndex := 0
+    sLength := len(s)
+    for _, r := range t {
+        if r == rune(s[checkingIndex]) {
+            checkingIndex++
+        }
+        
+        if checkingIndex >= sLength {
+            return true
+        }
+    }
+    
+    return false
 }
 ```
