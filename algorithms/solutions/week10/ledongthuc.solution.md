@@ -105,7 +105,7 @@ https://leetcode.com/problems/is-subsequence
 Time: 16 ms
 Complexity: O(n)
 
-`s` works like a stack. We loop through a string `t` and pop `s` to check. 
+`s` works like a queue. We loop through a string `t` and pop `s` to check. 
 - If the loop is finish but `s` is not empty -> `t` is doesn't contain all `s`
 - Otherwise -> `t` contains `s`
 
