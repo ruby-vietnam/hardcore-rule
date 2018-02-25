@@ -63,3 +63,31 @@ var flatten = function(root) {
     }
 };
 ```
+
+# Problem 3
+
+```js
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+
+var isSubsequence = function(s, t) {
+    let di = 0
+    for (let i = 0; i < s.length; i++) {
+        let idx = checkE(t, s[i], di)
+        if (idx >= 0) {
+            di = idx+1
+        } else return false
+    }
+    return true
+};
+
+var checkE = function(s, c, start) {
+    for (let i = start; i < s.length; i++) {
+        if (s[i] === c) return i
+    }
+    return -1
+}
+```
