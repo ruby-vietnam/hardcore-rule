@@ -46,3 +46,24 @@ def flatten(root)
   end
 end
 ```
+
+# Problem 3
+
+```ruby
+def is_subsequence(s, t)
+  s_index = 0
+  t_index = 0
+  while s_index < s.length
+    while t_index < t.length
+      if t[t_index] == s[s_index]
+        s_index += 1
+        t_index += 1
+      else
+        t_index += 1
+      end
+    end
+    return false if t_index == t.length && s_index < s.length
+  end
+  s_index == s.length ? true : false
+end
+```
