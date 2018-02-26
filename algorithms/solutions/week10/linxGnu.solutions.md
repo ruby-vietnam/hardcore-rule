@@ -104,7 +104,6 @@ Using Heap to observe heighest building
 
 ```go
 type Building struct {
-	ID  int // ID of building
 	H   int // the height of the building
 	R   int // the x coordinate of right edge of the building
 	Ind int // index in heap
@@ -163,32 +162,22 @@ func getSkyline(buildings [][]int) (result [][]int) {
 	// result in form of points
 	result = make([][]int, 0, (n<<2)+1)
 
-	// stack variable
+	// now solve our problem
 	var line *VerticalLine
 	var i, j, k int
 
 	// store current max height
 	var curMaxHeight int
 
-	// now solve our problem
 	for i < numLines {
-		// get all vertical lines with same x-axis with current line
 		for j = i; j < numLines && vLines[j].X == vLines[i].X; j++ {
 		}
 		// [i, j) has the same x-axis
 
-		// heap is empty then just push to heap
-		if len(h) == 0 {
-			for k = i; k < j; k++ {
-				heap.Push(&h, &builds[vLines[k].Bid])
-			}
-
-			result = append(result, []int{vLines[i].X, h[0].H})
-			goto outLoop
-		}
-
 		// try to add/remove building to/from heap
-		curMaxHeight = h[0].H
+		curMaxHeight = 0
+		if len(h) > 0 { curMaxHeight = h[0].H }
+        
 		for k = i; k < j; k++ {
 			if line = &vLines[k]; line.Type == 1 { // end of a building
 				heap.Remove(&h, builds[line.Bid].Ind)
@@ -200,11 +189,11 @@ func getSkyline(buildings [][]int) (result [][]int) {
 		// heap is empty means end of block of buildings
 		if len(h) == 0 {
 			result = append(result, []int{vLines[i].X, 0})
-		} else if h[0].H != curMaxHeight { // if not, check for the change of max height
+		} else if h[0].H != curMaxHeight { // if not, check for change of max height
 			result = append(result, []int{vLines[i].X, h[0].H})
 		}
 
-	outLoop:
+		// out of loop
 		i = j
 	}
 
@@ -217,15 +206,13 @@ func parseData(buildings [][]int) (builds []Building, vLines []VerticalLine) {
 	builds, vLines = make([]Building, n), make([]VerticalLine, n<<1)
 
 	for i, v := range buildings {
-		builds[i].ID, builds[i].H, builds[i].R = i, v[2], v[1]
+		builds[i].H, builds[i].R = v[2], v[1]
 
 		vLines[i].X, vLines[i].Type, vLines[i].Bid = v[0], 0, i
 		vLines[i+n].X, vLines[i+n].Type, vLines[i+n].Bid = v[1], 1, i
 	}
 
-	sort.Slice(vLines, func(i, j int) bool {
-		return vLines[i].X < vLines[j].X
-	})
+	sort.Slice(vLines, func(i, j int) bool { return vLines[i].X < vLines[j].X })
 
 	return
 }
