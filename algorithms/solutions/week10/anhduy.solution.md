@@ -24,3 +24,26 @@ bool validPalindrome(char* s) {
 	return true;
 }
 ```
+
+# 114. Flatten Binary Tree to Linked List
+
+```c
+void flatten(struct TreeNode* root) {
+    if (root) {
+      struct TreeNode* left = root->left;
+      struct TreeNode* right = root->right;
+
+      root->left = NULL;
+
+      flatten(left);
+      flatten(right);
+
+      root->right = left;
+      struct TreeNode* node = root;
+      while (node->right) {
+        node = node->right;
+      }
+      node->right = right;
+    }
+}
+```
