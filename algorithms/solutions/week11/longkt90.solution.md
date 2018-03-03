@@ -56,3 +56,31 @@ def odd_even_list(head)
 end
 
 ```
+
+# Problemm 4:
+
+URL: https://leetcode.com/problems/range-sum-query-mutable/description/
+
+Status:
+```
+  ✘ Time Limit Exceeded
+  ✘ 9/10 cases passed (N/A)
+```
+
+```ruby
+class NumArray
+    attr_reader :nums
+    def initialize(nums)
+        @nums = nums
+    end
+
+    def update(i, val)
+        nums[i] = val
+    end
+
+    def sum_range(i, j)
+        nums[i..j].inject(0) {|sum, e| sum + e }
+    end
+end
+
+```
