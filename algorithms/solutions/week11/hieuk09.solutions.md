@@ -43,6 +43,31 @@ var hasCycle = function(head) {
 };
 ```
 
+## Problem 2
+
+Created base on the hint in a discussion:
+
+- Sort the array descending
+- Split into 2 halves
+- The small half are put at odd position, big half are put at even position
+
+```ruby
+def wiggle_sort(nums)
+  new_nums = nums.sort { |a, b| b <=> a }
+  size = nums.size
+  half = (size - 1) / 2
+  flag = size.odd? ? 0 : 1
+
+  (0..half).each do |n|
+    nums[n * 2] = new_nums[half + n + flag]
+
+    if n * 2 + 1 < size
+      nums[n * 2 + 1] = new_nums[n]
+    end
+  end
+end
+```
+
 ## Problem 3
 
 Use Array
