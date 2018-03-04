@@ -42,3 +42,90 @@ var hasCycle = function(head) {
     return false;
 };
 ```
+
+## Problem 3
+
+Use Array
+
+```ruby
+
+def to_a(head)
+  array = []
+  node = head
+
+  while node do
+    array << node.val
+    node = node.next
+  end
+
+  array
+end
+
+def from_a(array)
+  previous_node = nil
+
+  array.reverse.each do |element|
+    node = ListNode.new(element)
+    node.next = previous_node
+    previous_node = node
+  end
+
+  previous_node
+end
+
+def odd_even_list(head)
+  elements = to_a(head)
+  size = elements.size
+  odds = []
+  (0..size - 1).step(2) do |index|
+    odds << elements[index]
+  end
+
+  evens = []
+  (1..size - 1).step(2) do |index|
+    evens << elements[index]
+  end
+
+  sum = odds + evens
+
+  from_a(sum)
+end
+```
+
+Use List
+
+```ruby
+def odd_even_list(head)
+  node = head
+  index = 1
+  head_even = odd = even = nil
+
+  while node do
+    if index.odd?
+      if odd
+        odd = odd.next = node
+      else
+        odd = node
+      end
+    else
+      if even
+        even = even.next = node
+      else
+        head_even = even = node
+      end
+    end
+
+    node = node.next
+    index += 1
+  end
+
+  if odd
+    odd.next = head_even
+    if even
+      even.next = nil
+    end
+  end
+
+  head
+end
+```
