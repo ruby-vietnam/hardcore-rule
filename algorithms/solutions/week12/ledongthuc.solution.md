@@ -21,3 +21,29 @@ https://leetcode.com/problems/nim-game/description/
 ```
 numberOfStone % 4
 ```
+
+Problem 2:
+
+https://leetcode.com/problems/teemo-attacking/description/
+
+ - We track the longest end time of poision status. Set its value when Temo attacks with normal status victim. Poison duration is full.
+ - The longest end time of poison status will be extended if Temo attack during poison duration. Extended poison duration is added instead of full one.
+
+```
+func findPoisonedDuration(timeSeries []int, duration int) int {
+    var totalDuration int
+    lastTimeEnd := -1
+    for _, time := range timeSeries {
+        var extendedDuration int
+        if time > lastTimeEnd {
+            lastTimeEnd = time+duration-1
+            extendedDuration = duration
+        } else if extendedDuration = (time+duration -1 - lastTimeEnd); extendedDuration > 0 {
+            lastTimeEnd += extendedDuration
+        }
+        
+        totalDuration += extendedDuration
+    }
+    return totalDuration
+}
+```
