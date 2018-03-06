@@ -29,6 +29,8 @@ https://leetcode.com/problems/teemo-attacking/description/
  - We track the longest end time of poision status. Set its value when Temo attacks with normal status victim. Poison duration is full.
  - The longest end time of poison status will be extended if Temo attack during poison duration. Extended poison duration is added instead of full one.
 
+![](https://image.ibb.co/eayNTS/Screen_Shot_2018_03_07_at_12_05_16_AM.png)
+
 ```
 func findPoisonedDuration(timeSeries []int, duration int) int {
     var totalDuration int
