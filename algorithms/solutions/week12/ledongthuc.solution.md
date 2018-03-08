@@ -49,3 +49,45 @@ func findPoisonedDuration(timeSeries []int, duration int) int {
     return totalDuration
 }
 ```
+
+Problem 3:
+
+https://leetcode.com/problems/swim-in-rising-water
+
+Using depth first search to move 4-directions. When next move reach to final move or reach limit 
+
+```go
+
+var moves [][]int = [][]int{{-1, 0}, {1, 0}, {0, 1}, {0, -1}}
+
+func swimInWater(grid [][]int) int {
+	var time int
+	moveMap := make(map[int]bool)
+
+	gridLength := len(grid)
+	isVisited := moveMap[gridLength*gridLength-1]
+	for !isVisited {
+		moveMap = make(map[int]bool)
+		dfs(grid, 0, 0, time, moveMap)
+		time++
+		isVisited = moveMap[gridLength*gridLength-1]
+	}
+	return time - 1
+}
+
+func dfs(grid [][]int, i int, j int, time int, moveMap map[int]bool) {
+	gridLength := len(grid)
+	isVisited := moveMap[i*gridLength+j]
+
+	if (i < 0 || i > gridLength-1) || // Check limit boundary
+		(j < 0 || j > len(grid[0])-1) || // Check limit boundary
+		grid[i][j] > time || // Check limit time with moves
+		isVisited {
+		return
+	}
+	moveMap[i*gridLength+j] = true
+	for _, move := range moves {
+		dfs(grid, i+move[0], j+move[1], time, moveMap)
+	}
+}
+```
