@@ -26,7 +26,6 @@ class Solution {
 
     public void maintainMax(int[] windows, int num) {
         int tmp;
-        Arrays.sort(windows);
         for (int i = windows.length-1; i >= 0; i--) {
             if (num > windows[i]) {
                 tmp = windows[i];
@@ -39,7 +38,6 @@ class Solution {
 
     public void maintainMin(int[] windows, int num) {
         int tmp;
-        Arrays.sort(windows);
         for (int i = 0; i < windows.length; i++) {
             if (num < windows[i]) {
                 tmp = windows[i];
