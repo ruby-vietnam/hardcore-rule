@@ -81,3 +81,96 @@ func findMax(nums []int, init, maxIndex1, maxIndex2 int) int {
 	return maxIndex
 }
 ```
+
+
+## Problem 2
+Division binary
+
+https://en.wikipedia.org/wiki/Division_algorithm#Integer_division_(unsigned)_with_remainder
+
+```go
+func divide(dividend int, divisor int) int {
+	maxInt := 1<<31 - 1
+	minInt := -(1 << 31)
+
+	if dividend > maxInt || dividend < minInt {
+		return maxInt
+	}
+
+	if divisor > maxInt || divisor < minInt {
+		return maxInt
+	}
+
+	t := 1
+	if dividend < 0 {
+		dividend = -dividend
+		t = -t
+	}
+	if divisor < 0 {
+		divisor = -divisor
+		t = -t
+	}
+
+	if divisor == 0 {
+		return maxInt
+	}
+
+	// https://en.wikipedia.org/wiki/Division_algorithm#Integer_division_(unsigned)_with_remainder
+	quotation := 0
+	remain := 0
+	nBit := bitCount(dividend)
+	if nBit == 0 {
+		return 0
+	}
+	/*fmt.Println(nBit)*/
+	var i uint
+	for i = nBit - 1; i >= 0; i-- {
+		remain = remain << 1                    // Left shift
+		if getBitAtPosition(dividend, i) == 1 { // if dividend's bit at position i is 1 then update remain significant bit
+			remain = remain | 1 // OR with 1
+		}
+		if remain >= divisor {
+			remain = remain - divisor
+			quotation = toggleBitAtPosition(quotation, i)
+		}
+		/*fmt.Println("Bits:", i)
+		printBit("Remain:", remain)
+		printBit("Quotation:", quotation)*/
+		if i == 0 {
+			break
+		}
+
+	}
+	if t < 0 {
+		quotation = -quotation
+	}
+    
+    	if quotation > maxInt || quotation < minInt {
+		return maxInt
+	}
+
+
+	return quotation
+}
+
+func toggleBitAtPosition(number int, i uint) int {
+	return number | (1 << i) // left shift 1 to i then OR with number. Ex: i=3, n=5=101 => 1 << 3 = 1000; 0101 | 1000 = 1101
+}
+
+func bitCount(n int) uint {
+	var count uint
+	for n > 0 {
+		count++
+		n = n >> 1 // Left shift
+	}
+	return count
+}
+
+func getBitAtPosition(number int, i uint) int {
+	return getLeastSignificantBit(number >> i)
+}
+
+func getLeastSignificantBit(number int) int {
+	return number & 1
+}
+```
