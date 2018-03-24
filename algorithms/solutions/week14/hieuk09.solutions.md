@@ -71,3 +71,55 @@ This number can be present as `0x55555555`. So `num & 0x55555555` must be `num`.
 ```ruby
 (num & (num - 1)) == 0 && (num & 0x55555555) == num && num != 0
 ```
+
+## Problem 2
+
+```ruby
+def num_islands(grid)
+  already_check = {}
+  possible_islands = []
+  height = grid.size
+  width = height > 0 ? grid.first.size : 0
+  directions = [[1, 0], [0, 1], [-1, 0], [0, -1]]
+
+  grid.each_with_index do |line, y|
+    line.each_with_index do |cell, x|
+      if cell == 1
+        possible_islands << [x, y]
+      end
+    end
+  end
+
+  count = 1
+
+  while !possible_islands.empty?
+    coordinations = possible_islands.pop
+
+    next if already_check[coordinations]
+
+    queue = [coordinations]
+
+    while !queue.empty?
+      x, y = pos = queue.pop
+
+      next if already_check[pos]
+
+      already_check[pos] = count
+
+      directions.each do |delta_x, delta_y|
+        new_x = x + delta_x
+        new_y = y + delta_y
+
+        next if new_x < 0 || new_y < 0 || new_x >= width || new_y >= height
+        next if grid[new_y][new_x] != 1
+
+        queue.push([new_x, new_y])
+      end
+    end
+
+    count += 1
+  end
+
+  count - 1
+end
+```
