@@ -1,4 +1,4 @@
-# Week 15
+# Week 14
 
 - Bài 1: https://leetcode.com/problems/power-of-four/ [Easy]
 - Bài 2: https://leetcode.com/problems/number-of-islands/ [Medium]
