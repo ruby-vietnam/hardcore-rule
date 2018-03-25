@@ -57,3 +57,48 @@ case 1073741824: return true
     return false
 }
 ```
+
+Problem 2:
+
+https://leetcode.com/problems/number-of-islands
+
+```go
+func numIslands(grid [][]byte) int {
+    if len(grid) == 0 {
+		return 0
+	}
+
+	var numIslands int
+    rows, cols := len(grid), len(grid[0])
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			if grid[i][j] == 'x' {
+				continue
+			}
+
+			if grid[i][j] == '1' {
+				discoverIsland(grid, rows, cols, i, j)
+				numIslands++
+			} else {
+				grid[i][j] = 'x'
+			}
+		}
+	}
+
+	return numIslands
+}
+
+func discoverIsland(g [][]byte, h, w, x, y int) {
+    if (x < 0 || y < 0 || x >= h || y >= w) ||
+    (g[x][y] == 'x' || g[x][y] == '0' ){
+		return
+	}
+
+	g[x][y] = 'x'
+
+	discoverIsland(g, h, w, x+1, y)
+	discoverIsland(g, h, w, x, y+1)
+	discoverIsland(g, h, w, x-1, y)
+	discoverIsland(g, h, w, x, y-1)
+}
+```
