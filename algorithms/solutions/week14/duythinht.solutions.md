@@ -7,7 +7,7 @@ Leetcode runtime Error detected :troll:
 ```
 void visit(char** grid, int x, int y, int w, int h) {
     // return if node is invalid
-    if (x < 0 || x > w -1 || y < 0 || y > h - 1) {
+    if (x < 0 || x > h -1 || y < 0 || y > w - 1) {
       return;
     }
 
@@ -22,11 +22,11 @@ void visit(char** grid, int x, int y, int w, int h) {
     visit(grid, x - 1, y, w, h);
     visit(grid, x + 1, y, w, h);
 }
-int numIslands(char** grid, int width, int height) {
+int numIslands(char** grid, int height, int width) {
     int count = 0;
     for (int i = 0; i < width * height; i++) {
-        int x = i / height;
-        int y = i % height;
+        int x = i / width;
+        int y = i % width;
         if (grid[x][y] == '1') {
             count++;
             visit(grid, x, y, width, height);
