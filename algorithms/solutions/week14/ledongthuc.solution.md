@@ -102,3 +102,74 @@ func discoverIsland(g [][]byte, h, w, x, y int) {
 	discoverIsland(g, h, w, x, y-1)
 }
 ```
+
+Problem 3:
+
+https://leetcode.com/problems/zuma-game
+
+```go
+
+func remove(s string) string {
+	for i := 1; i < len(s); i++ {
+		if s[i] != s[i-1] {
+			continue
+		}
+		j := i + 1
+		for s[j] == s[i] {
+			j++
+		}
+		if j-i > 1 {
+			return remove(s[0:i-1] + s[j:])
+		}
+	}
+	return s
+}
+
+func dfs(board string, h, min []int, steps int) {
+	if board == "P" && steps < min[0] {
+		min[0] = steps
+		return
+	}
+
+	if steps >= min[0] {
+		return
+	}
+
+	for i := 0; i < len(board)-1; i++ {
+		if i > 0 && board[i] == board[i-1] {
+			continue
+		}
+
+		if board[i] == board[i+1] && h[board[i]-'A'] > 0 {
+			newBoard := remove(board[0:i] + board[i+2:])
+			h[board[i]-'A']--
+			dfs(newBoard, h, min, steps+1)
+			h[board[i]-'A']++
+
+		} else if board[i] != board[i+1] && h[board[i]-'A'] > 1 {
+			newBoard := remove(board[0:i] + board[i+1:])
+			h[board[i]-'A']--
+			h[board[i]-'A']--
+			dfs(newBoard, h, min, steps+2)
+			h[board[i]-'A']++
+			h[board[i]-'A']++
+
+		}
+
+	}
+}
+
+func findMinStep(board string, hand string) int {
+	min := []int{math.MaxInt32}
+	h := make([]int, 26, 26)
+	for _, b := range hand {
+		h[b-rune('A')]++
+	}
+
+	dfs(board+"P", h, min, 0)
+	if min[0] == math.MaxInt32 {
+		return -1
+	}
+	return min[0]
+}
+```
