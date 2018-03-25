@@ -32,3 +32,46 @@ var isPowerOfFour = function(num) {
     return lg4 === (~~lg4);
 };
 ```
+
+# Problem 2: Number of Islands
+
+URL: https://leetcode.com/problems/number-of-islands/
+
+Status:
+```
+  ✔ Accepted
+  ✔ 47/47 cases passed (72 ms)
+  ✔ Your runtime beats 88.43 % of javascript submissions
+```
+
+Solution: [Seek and Destroy](https://www.youtube.com/watch?v=NUAdgt5Glk0), we use BFS to traversal the map, for every island cell we reach, we destroy it (change it into water cell `0`), so in the next visit, we don't repeat ourself. And each time we decided to start a tour (start BFS), we landed on an island, so increase the counter.
+
+```javascript
+var numIslands = function(grid) {
+    let h = grid && grid.length || 0;
+    let w = grid[0] && grid[0].length || 0;
+    let count = 0;
+    for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+            if (~~grid[y][x] === 1) {
+                BFS(y, x, grid, w, h);
+                count++;
+            }
+        }
+    }
+    return count;
+};
+
+const BFS = (y, x, grid, w, h) => {
+    if (y < 0 || y >= h || x < 0 || x >= w || ~~grid[y][x] !== 1) {
+        return;
+    }
+
+    grid[y][x] = 0;
+
+    BFS(y-1, x, grid, w, h);
+    BFS(y+1, x, grid, w, h);
+    BFS(y, x-1, grid, w, h);
+    BFS(y, x+1, grid, w, h);
+};
+```
