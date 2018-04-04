@@ -1,4 +1,5 @@
 ## Problem 1
+https://leetcode.com/problems/contains-duplicate-ii/
 
 O(n^2)
 ```go
@@ -29,5 +30,32 @@ func containsNearbyDuplicate(nums []int, k int) bool {
 	}
     
     return false
+}
+```
+
+## Problem 2
+https://leetcode.com/problems/find-peak-element/description/
+
+O(n)
+```go
+func findPeakElement(nums []int) int {
+    peakIndex := 0
+	for i := 0; i < len(nums); i++ {
+		if i-1 >= 0 {
+			if nums[i] < nums[i-1] {
+				continue
+			}
+		}
+
+		if i+1 < len(nums) {
+			if nums[i] < nums[i+1] {
+				continue
+			}
+		}
+
+		peakIndex = i
+	}
+
+	return peakIndex
 }
 ```
