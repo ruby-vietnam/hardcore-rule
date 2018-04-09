@@ -35,7 +35,7 @@ Status:
   ✔ Your runtime beats 61.48 % of javascript submissions
 ```
 
-What's going on? I'm just submited and passed. The solution is... find max.
+What's going on? I'm just submited and passed. The solution is... find max. Well, O(n) solution:
 
 ```javascript
 var findPeakElement = function(nums) {
@@ -47,5 +47,22 @@ var findPeakElement = function(nums) {
         }
     }
     return maxi;
+};
+```
+
+Binary search solution:
+
+```javascript
+var findPeakElement = function(nums) {
+    let first = 0;
+    let last = nums.length - 1;
+    while (first < last) {
+        let mid = ~~((first + last) / 2);
+        if (mid + 1 <= last && nums[mid] < nums[mid + 1])
+            first = mid + 1;
+        else
+            last = mid;
+    }
+    return first;
 };
 ```
