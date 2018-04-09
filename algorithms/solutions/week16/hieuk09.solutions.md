@@ -15,3 +15,25 @@ def contains_nearby_duplicate(nums, k)
   false
 end
 ```
+
+# Problem 2
+
+```ruby
+def find_peak_element(nums)
+  nums.each_with_index do |num, index|
+    if index > 0
+      if num < nums[index - 1]
+        next
+      end
+    end
+
+    if index < nums.size - 1
+      if num < nums[index + 1]
+        next
+      end
+    end
+
+    return index
+  end
+end
+```
