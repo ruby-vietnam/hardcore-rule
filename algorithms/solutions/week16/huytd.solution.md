@@ -22,3 +22,30 @@ var containsNearbyDuplicate = function(nums, k) {
     return false;
 };
 ```
+
+# Problem 2: Find Peak Element
+
+URL: https://leetcode.com/problems/find-peak-element/description/
+
+Status:
+
+```
+  ✔ Accepted
+  ✔ 58/58 cases passed (56 ms)
+  ✔ Your runtime beats 61.48 % of javascript submissions
+```
+
+What's going on? I'm just submited and passed. The solution is... find max.
+
+```javascript
+var findPeakElement = function(nums) {
+    let max = nums[0]; let maxi = 0;
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] > max) {
+            max = nums[i];
+            maxi = i;
+        }
+    }
+    return maxi;
+};
+```
