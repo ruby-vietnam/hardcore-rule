@@ -35,3 +35,42 @@ func isIsomorphic(s string, t string) bool {
     return true
 }
 ```
+
+Problem 2:
+
+https://leetcode.com/problems/rotate-list
+
+```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func rotateRight(head *ListNode, k int) *ListNode {
+    if head == nil || head.Next == nil || k == 0 {
+        return head
+    }
+    
+    l :=[]*ListNode {head}
+    tail := head
+    length := 1
+    
+    for tail.Next != nil {
+        length++
+        l = append(l, tail.Next)
+        tail = tail.Next
+    }
+    
+    if length == k || (k%length == 0 && length < k) {
+        return head
+    } else if length < k {
+        k = (k % length)
+    }
+    
+    tail.Next = head
+    l[length-k-1].Next = nil    
+    return l[length-k]
+}
+```
