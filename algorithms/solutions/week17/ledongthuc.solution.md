@@ -74,3 +74,44 @@ func rotateRight(head *ListNode, k int) *ListNode {
     return l[length-k]
 }
 ```
+
+Problem 3:
+
+https://leetcode.com/problems/recover-binary-search-tree
+
+```go
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+var mistake1, mistake2, tempChecking *TreeNode
+
+func recoverTree(root *TreeNode)  {
+    mistake1, mistake2, tempChecking = nil, nil, &TreeNode{
+        Val: math.MinInt32,
+    }
+    checkMistake(root)
+    mistake1.Val, mistake2.Val = mistake2.Val, mistake1.Val
+}
+
+func checkMistake(root *TreeNode)  {
+    if root == nil {
+        return
+    }
+    
+    checkMistake(root.Left)
+    if tempChecking != nil && tempChecking.Val > root.Val {
+        if mistake1 == nil {
+            mistake1 = tempChecking
+        }
+        mistake2 = root;
+    }
+    
+    tempChecking = root;
+    checkMistake(root.Right)
+}
+```
