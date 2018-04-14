@@ -1,0 +1,98 @@
+# Problem 1
+
+Approach 1 O((n-1)^2)
+
+```golang
+func isIsomorphic(s string, t string) bool {
+    for i:=0; i<len(s)-1; i++{
+        for j:=i+1; j<len(s); j++{
+            if s[i] == s[j] {
+                if t[i] == t[j] {
+                    continue
+                } else {
+                    return false
+                }
+            } else {
+                if t[i] == t[j] {
+                    return false
+                } else {
+                    continue
+                }
+            }
+        }
+    }
+
+    return true
+}
+```
+
+Approach 2 O(n)
+
+```golang
+func isIsomorphic(s string, t string) bool {
+    var charArrayS = [256]byte{}
+    var charArrayT = [256]byte{}
+
+    for i:=0; i<len(s); i++ {
+        if charArrayS[s[i]] != 0 || charArrayT[t[i]] != 0 {
+            if charArrayS[s[i]] != t[i] || charArrayT[t[i]] != s[i] {
+                return false
+            }
+        } else {
+            charArrayS[s[i]] = t[i]
+            charArrayT[t[i]] = s[i]
+        }
+    }
+    return true
+}
+```
+
+# Problem 2
+
+```golang
+func getTailAndLength(head *ListNode) (*ListNode, int) {
+    var tail *ListNode
+    var length int
+    var node = head
+
+    for node != nil {
+        length++
+        tail = node
+        node = node.Next
+    }
+    return tail, length
+}
+
+func getNodeAt(head *ListNode, k int) (node *ListNode, pre *ListNode) {
+    var count int
+    node = head
+
+    for count < k {
+        count++
+        pre = node
+        node = node.Next
+    }
+
+    return
+}
+
+func rotateRight(head *ListNode, k int) *ListNode {
+    tail, l := getTailAndLength(head)
+
+    if l < 2 {
+        return head
+    }
+
+    k = k % l
+
+    if k == 0 {
+        return head
+    }
+
+    node, pre := getNodeAt(head, l - k)
+    tail.Next = head
+    pre.Next = nil
+
+    return node
+}
+```
