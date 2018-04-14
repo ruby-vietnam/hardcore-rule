@@ -50,17 +50,14 @@ func isIsomorphic(s string, t string) bool {
 # Problem 2
 
 ```golang
-func getTailAndLength(head *ListNode) (*ListNode, int) {
-    var tail *ListNode
-    var length int
-    var node = head
-
-    for node != nil {
+func getTailAndLength(head *ListNode) (tail *ListNode, length int) {
+    for head != nil {
         length++
-        tail = node
-        node = node.Next
+        tail = head
+        head = head.Next
     }
-    return tail, length
+
+    return
 }
 
 func getNodeAt(head *ListNode, k int) (node *ListNode, pre *ListNode) {
@@ -83,7 +80,7 @@ func rotateRight(head *ListNode, k int) *ListNode {
         return head
     }
 
-    k = k % l
+    k = k % l // I failed in case k > l :(
 
     if k == 0 {
         return head
