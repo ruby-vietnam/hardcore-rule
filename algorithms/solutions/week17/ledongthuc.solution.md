@@ -115,3 +115,30 @@ func checkMistake(root *TreeNode)  {
     checkMistake(root.Right)
 }
 ```
+
+Problem optional: 
+
+https://leetcode.com/problems/trapping-rain-water
+
+```
+func trap(height []int) int {
+    var h, left, right, area int
+    right = len(height) - 1
+    for left < right {
+        if height[left] < height[right] {
+            if height[left] > h {
+                h = height[left]
+            }
+            area += h - height[left]
+            left++
+        } else {
+            if height[right] > h {
+                h = height[right]
+            }
+            area += h - height[right]
+            right--
+        }
+    }
+    return area
+}
+```
