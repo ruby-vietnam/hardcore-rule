@@ -42,6 +42,8 @@ So the step to do is:
 
 I run fail some round and then added some edge case like linkedlist has 1 node only, or [ 1 ,2 ] and k = 0
 
+Time complexity is O(n) and space O(1)
+
 ```java
 public ListNode rotateRight(ListNode head, int k) {
     if (head == null || head.next == null)
