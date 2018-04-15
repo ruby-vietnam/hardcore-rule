@@ -70,3 +70,51 @@ def rotate_right(head, k)
   head
 end
 ```
+
+# Problem 3: Trapping Rain Water
+
+https://leetcode.com/problems/trapping-rain-water/description/
+
+```
+Runtime: 40 ms
+Your runtime beats 100.00 % of ruby submissions.
+```
+
+```ruby
+# @param {Integer[]} height
+# @return {Integer}
+def count_water(from, to, height)
+  min = height[from] > height[to] ? height[to] : height[from]
+  sum = 0
+  (from + 1).upto(to - 1) do |i|
+    sum += min - height[i] if min > height[i] 
+  end
+  sum
+end
+def trap(height)
+  peaks = []
+  sum = 0
+  height.length.times do |i|
+    left = i > 0 ? height[i - 1] : 0
+    right = i < height.length - 1 ? height[i + 1] : 0
+    if height[i] > left && height[i] >= right && height[i] > 0
+      peaks.push(i)
+    end
+  end
+  i = 0
+  while i < peaks.length - 1
+    pivot = nil
+    j = i
+    while j < peaks.length - 1
+      j += 1
+      if pivot.nil? || height[peaks[i]] <= height[peaks[j]] || height[peaks[pivot]] < height[peaks[j]]
+        pivot = j 
+      end
+      break if height[peaks[i]] <= height[peaks[j]]
+    end
+    sum += count_water(peaks[i], peaks[pivot], height)
+    i = pivot
+  end
+  sum
+end
+```
