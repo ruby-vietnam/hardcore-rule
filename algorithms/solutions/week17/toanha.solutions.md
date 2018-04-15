@@ -93,3 +93,32 @@ func rotateRight(head *ListNode, k int) *ListNode {
     return node
 }
 ```
+
+
+# Problem bonus
+
+```golang
+func trap(height []int) int {
+    var sum, left, maxLeft, maxRight int
+    var right = len(height) - 1
+
+    for left < right {
+        if height[left] > height[right] {
+            if height[right] > maxRight {
+                maxRight = height[right]
+            } else {
+                sum += maxRight - height[right]
+            }
+            right--
+        } else {
+            if height[left] > maxLeft {
+                maxLeft = height[left]
+            } else {
+                sum += maxLeft - height[left]
+            }
+            left++
+        }
+    }
+    return sum
+}
+```
