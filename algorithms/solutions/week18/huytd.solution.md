@@ -7,8 +7,16 @@ Status:
   ✔ Your runtime beats 69.07 % of javascript submissions
 ```
 
+```
+  ✔ Accepted
+  ✔ 18/18 cases passed (12 ms)
+  ✔ Your runtime beats 63.87 % of c submissions
+
+```
+
 Approach: Using two stack, one for storing data, another one for storing minum value.
 
+JavaScript version
 ```javascript
 /**
  * initialize your data structure here.
@@ -64,4 +72,70 @@ MinStack.prototype.top = function() {
 MinStack.prototype.getMin = function() {
     return this.min.peek();
 };
+```
+
+C version
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+
+typedef struct {
+  int* data;
+  int* min;
+  int cap;
+  int data_size;
+  int min_size;
+} MinStack;
+
+MinStack* minStackCreate(int maxSize) {
+  MinStack* self = (MinStack*)malloc(sizeof(MinStack));
+  self->data = (int*)malloc(sizeof(int) * maxSize);
+  self->min = (int*)malloc(sizeof(int) * maxSize);
+  self->data_size = -1;
+  self->min_size = -1;
+  self->cap = maxSize;
+  return self;
+}
+
+void minStackPush(MinStack* obj, int x) {
+  if (obj->data_size < obj->cap) {
+    if (obj->min_size > -1) {
+      if (obj->min[obj->min_size] >= x) {
+        obj->min_size += 1;
+        obj->min[obj->min_size] = x;
+      }
+    } else {
+      obj->min_size = 0;
+      obj->min[obj->min_size] = x;
+    }
+    obj->data_size += 1;
+    obj->data[obj->data_size] = x;
+  }
+}
+
+void minStackPop(MinStack* obj) {
+  int last = obj->data[obj->data_size];
+  int min = obj->min[obj->min_size];
+  if (min >= last) {
+    obj->min_size -= 1;
+  }
+  obj->data_size -= 1;
+}
+
+int minStackTop(MinStack* obj) {
+  return obj->data[obj->data_size];
+}
+
+int minStackGetMin(MinStack* obj) {
+  return obj->min[obj->min_size];
+}
+
+void minStackFree(MinStack* obj) {
+  obj->data_size = -1;
+  obj->min_size = -1;
+  obj->data = (int*)malloc(sizeof(int) * obj->cap);
+  obj->min = (int*)malloc(sizeof(int) * obj->cap);
+}
 ```
