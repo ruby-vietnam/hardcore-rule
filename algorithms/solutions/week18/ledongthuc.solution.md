@@ -2,8 +2,7 @@ Problem 1:
 
 https://leetcode.com/problems/min-stack
 
-bianry heap:
-
+Bianry heap:
 ```go
 
 type BinaryHeap struct {
@@ -103,16 +102,6 @@ func (this *MinStack) Top() int {
 func (this *MinStack) GetMin() int {
     return this.Heap.Get(1)
 }
-
-
-/**
- * Your MinStack object will be instantiated and called as such:
- * obj := Constructor();
- * obj.Push(x);
- * obj.Pop();
- * param_3 := obj.Top();
- * param_4 := obj.GetMin();
- */
  ```
  
 Stack:
@@ -128,7 +117,7 @@ type MinStack struct {
 
 /** initialize your data structure here. */
 func Constructor() MinStack {
-    return MinStack{}
+    return MinStack{InternalStack: make([]StackItem,0,999999)}
 }
 
 func (this *MinStack) Push(x int)  {
