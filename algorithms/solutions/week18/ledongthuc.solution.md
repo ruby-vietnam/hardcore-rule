@@ -2,7 +2,7 @@ Problem 1:
 
 https://leetcode.com/problems/min-stack
 
-bianry heap
+bianry heap:
 
 ```go
 
@@ -114,3 +114,55 @@ func (this *MinStack) GetMin() int {
  * param_4 := obj.GetMin();
  */
  ```
+ 
+Stack:
+```
+type StackItem struct {
+    Value int
+    MinItemInThisTime int
+}
+
+type MinStack struct {
+    InternalStack []StackItem
+}
+
+/** initialize your data structure here. */
+func Constructor() MinStack {
+    return MinStack{}
+}
+
+func (this *MinStack) Push(x int)  {
+    if len(this.InternalStack) == 0 {
+        this.InternalStack = append(this.InternalStack, StackItem{ Value: x, MinItemInThisTime: x })
+    } else {
+        currentMin := this.GetMin()
+        if currentMin < x {
+            this.InternalStack = append(this.InternalStack, StackItem{ Value: x, MinItemInThisTime: currentMin })
+        } else {
+            this.InternalStack = append(this.InternalStack, StackItem{ Value: x, MinItemInThisTime: x })
+        }
+    }
+}
+
+func (this *MinStack) Pop()  {
+    if len(this.InternalStack) == 0 {
+        return
+    }
+    this.InternalStack = this.InternalStack[:len(this.InternalStack) - 1]
+}
+
+func (this *MinStack) Top() int {
+    if len(this.InternalStack) == 0 {
+        return 0
+    }
+	return this.InternalStack[len(this.InternalStack) - 1].Value
+}
+
+
+func (this *MinStack) GetMin() int {
+    if len(this.InternalStack) == 0 {
+        return 0
+    }
+    return this.InternalStack[len(this.InternalStack) - 1].MinItemInThisTime
+}
+```
