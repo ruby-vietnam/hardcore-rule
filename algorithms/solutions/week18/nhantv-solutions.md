@@ -61,5 +61,49 @@ class MinStack
       @min.last
     end
 end
-  ```
-  
+```
+
+# Problem 2: Restore IP Addresses
+
+https://leetcode.com/problems/restore-ip-addresses/description/
+
+```
+Runtime: 36 ms
+Your runtime beats 100.00 % of ruby submissions.
+```
+
+```ruby
+# @param {String} s
+# @return {String[]}
+def restore_ip_addresses(s)
+  len = s.length
+  return [] if len < 4 || len > 12
+  ips = []
+  a = 1
+  while a <= 3
+    temp_a = s[0..a - 1]
+    break if temp_a.to_i > 255
+    b = 1
+    while b <= 3 && temp_a.to_i.to_s == temp_a
+      temp_b = s[a..a + b - 1]
+      break if temp_b.to_i > 255
+      c = 1
+      while c <= 3 && temp_b.to_i.to_s == temp_b
+        temp_c = s[a + b..a + b + c - 1]
+        break if temp_c.to_i > 255
+        d = len - a - b - c
+        if d < 4 && d > 0 && temp_c.to_i.to_s == temp_c
+          temp_d = s[a + b + c..len - 1]
+          if temp_d.to_i <= 255 && temp_d.to_i.to_s == temp_d
+            ips << [temp_a, temp_b, temp_c, temp_d].join('.')
+          end
+        end
+        c += 1
+      end
+      b += 1
+    end
+    a += 1
+  end
+  ips.uniq
+end
+```
