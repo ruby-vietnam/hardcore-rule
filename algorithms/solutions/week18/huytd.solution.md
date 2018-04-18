@@ -14,7 +14,12 @@ Status:
 
 ```
 
-Approach: Using two stack, one for storing data, another one for storing minum value.
+Approach: 
+
+- For JavaScript version, I'm using two stack, one for storing data, another one for storing minum value.
+- For C version, I'm using two array
+
+Both of them are O(1) for all actions.
 
 JavaScript version
 ```javascript
