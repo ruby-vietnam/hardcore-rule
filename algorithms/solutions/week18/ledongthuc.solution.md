@@ -116,7 +116,7 @@ func (this *MinStack) GetMin() int {
  ```
  
 Stack:
-```
+```go
 type StackItem struct {
     Value int
     MinItemInThisTime int
