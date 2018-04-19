@@ -145,7 +145,7 @@ void minStackFree(MinStack* obj) {
 }
 ```
 
-Problem 2: Restore IP Addresses
+# Problem 2: Restore IP Addresses
 
 Status:
 
