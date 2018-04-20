@@ -214,6 +214,57 @@ char** restoreIpAddresses(char* ip, int* returnSize) {
 }
 ```
 
+# Problem 3: Wildcard Matching
+
+Status:
+```
+  ✔ Accepted
+  ✔ 1808/1808 cases passed (32 ms)
+  ✔ Your runtime beats 41.46 % of c submissions
+```
+
+Man, I like how C using pointer incremental to consume a string. It's brilliant!!!
+
+```c
+bool isMatch(char* s, char* p) {
+  int ls = len(s);
+  int lp = len(p);
+  char* star = NULL;
+  char* smatch = s;
+  while (*s) {
+    // the simple case: matching any single character
+    if (*p == '?' || *p == *s) {
+      s++;
+      p++;
+      continue;
+    }
+    // the hard case: matching star
+    if (*p == '*') {
+      star = p;
+      smatch = s;
+      p++;
+      continue;
+    }
+    // if we're having a star matching
+    if (star) {
+      p = star + 1;
+      smatch++;
+      s = smatch;
+      continue;
+    }
+    // nothing matched
+    return false;
+  }
+
+  // if no character remaining in s
+  // but p still has some pattern
+  // we just discard it
+  while (*p == '*') p++;
+
+  return !*p;
+}
+```
+
 # Bonus Problem: Edit Distance
 
 Status:
