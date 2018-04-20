@@ -213,3 +213,51 @@ char** restoreIpAddresses(char* ip, int* returnSize) {
   return result;
 }
 ```
+
+# Bonus Problem: Edit Distance
+
+Status:
+```
+  ✔ Accepted
+  ✔ 1146/1146 cases passed (192 ms)
+  ✔ Your runtime beats 0 % of c submissions
+```
+
+Nothing to say, this is a classical dynamic programming problem.
+
+```c
+int min(int a, int b, int c) {
+  if (a > b) {
+    return b > c ? c : b;
+  } else {
+    return a > c ? c : a;
+  }
+}
+
+int minDistance(char* word1, char* word2) {
+  int l1 = strlen(word1);
+  int l2 = strlen(word2);
+  if (!l1 && !l2) return 0;
+  if (!l1) return l2;
+  if (!l2) return l1;
+  int D[l1+1][l2+1];
+
+  for (int i = 0; i <= l1; i++) {
+    for (int j = 0; j <= l2; j++) {
+      if (i == 0) {
+        D[i][j] = j;
+      } else if (j == 0) {
+        D[i][j] = i;
+      } else if (word1[i-1] == word2[j-1]) {
+        D[i][j] = D[i-1][j-1];
+      } else {
+        D[i][j] = 1 + min(D[i][j-1],   // Insert
+                          D[i-1][j],   // Remove
+                          D[i-1][j-1]);// Replace
+      }
+    }
+  }
+
+  return D[l1][l2];
+}
+```
