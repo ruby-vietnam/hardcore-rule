@@ -69,6 +69,30 @@ class Solution {
     }
 }
 ```
+# Problem 3:
+#### [Wildcard Matching](https://leetcode.com/problems/wildcard-matching/)
+```
+class Solution {
+    public boolean isMatch(String s, String p) {
+        boolean[][] f = new boolean[s.length()+1][p.length()+1];
+        f[0][0] = true;
+        for(int i = 0, len1 = s.length(); i <= len1; i++) {
+            for(int j = 0, len2 = p.length(); j < len2; j++) {
+                if(!f[i][j]) continue;
+                if(p.charAt(j) == '*') {
+                    for(int k = i; k <= len1; k++) {
+                        f[k][j+1] = true;
+                    }
+                } else if(i < len1) {
+                    f[i+1][j+1] |= s.charAt(i) == p.charAt(j) || p.charAt(j) == '?';
+                }
+            }
+        }
+
+        return f[s.length()][p.length()];
+    }
+}
+```
 # Problem bonus
 #### [Edit Distance](https://leetcode.com/problems/edit-distance/)
 ```
