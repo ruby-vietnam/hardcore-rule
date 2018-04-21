@@ -155,3 +155,44 @@ func (this *MinStack) GetMin() int {
     return this.InternalStack[len(this.InternalStack) - 1].MinItemInThisTime
 }
 ```
+
+Problem 2:
+
+https://leetcode.com/problems/restore-ip-addresses
+
+```
+func restoreIpAddresses(s string) []string {
+    var results []string
+	analyze(&results, "", s, 0)
+	return results
+}
+
+func analyze(results *[]string, processing string, remaining string, noPart int) {
+	remainingLen := len(remaining)
+	if noPart == 4 && remainingLen == 0 {
+		*results = append(*results, processing[1:])
+		return
+	}
+	if noPart == 4 || remainingLen == 0 {
+		return
+	}
+
+
+	maxCharsNextPart := remainingLen
+	if remainingLen >= 4 {
+		maxCharsNextPart = 3
+	}
+	
+	
+	for i := 1; i <= maxCharsNextPart; i++ {
+		appending := remaining[0:i]
+		number, _ := strconv.Atoi(appending)
+        if number > 255 || (len(appending) > 1 && appending[0] == '0') {
+			continue
+		}
+		nextProcessing := processing + "." + appending
+		nextRemaining := remaining[i:]
+		analyze(results, nextProcessing, nextRemaining, noPart+1)
+	}
+}
+```
