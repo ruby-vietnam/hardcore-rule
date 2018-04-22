@@ -1,6 +1,6 @@
 # Problem 1
 
-```
+```java
 class MinStack {
     Stack<Integer> data = new Stack<>();
     Stack<Integer> minUntil = new Stack<>(); // hold min value until push last item at `data` stack;
@@ -46,7 +46,7 @@ class MinStack {
 
 # Problem 2
 
-```
+```java
 class Solution {
     public List<String> restoreIpAddresses(String s) {
         return restoreIpAddressesN(s, 4);
