@@ -1,5 +1,5 @@
 # Problem 1
-Status:   ✘ Wrong Answer ✘ 13/18 cases passed (N/A)
+Status:   ✔ Accepted
 Approach: use 1 stack but store the value x, and the min of stack
 
 ```ruby
@@ -19,6 +19,7 @@ class MinStack
   def pop
     stack.pop
     stack.pop
+    @min = get_min
   end
 
   def top
