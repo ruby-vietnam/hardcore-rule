@@ -8,8 +8,6 @@ using namespace std;
 
 class Solution {
 public:
-    set<vector<string>> marked;
-
     vector<vector<string>> findLadders(string beginWord,
                                        string endWord,
                                        vector<string>& wordList) {
@@ -20,47 +18,54 @@ public:
 
         // 1. Construct a graph
         map<string, vector<pair<string, int>>> costsAdjacent;
-        wordList.push_back(beginWord);
-        for(int i = 0; i < wordList.size(); i++) {
-            for(int j = 0; j < wordList.size(); j++) {
-                if(isAdjacent(wordList[i], wordList[j])) {
-                    if(wordList[i] != beginWord) {
-                        costsAdjacent[wordList[j]].push_back(make_pair(wordList[i], 1));
-                    }
-                    if(wordList[j] != beginWord) {
-                        costsAdjacent[wordList[i]].push_back(make_pair(wordList[j], 1));
-                    }
+        if(find(wordList.begin(), wordList.end(), beginWord) == wordList.end()) {
+            wordList.push_back(beginWord);
+        }
+        for(auto &u: wordList) {
+            for(auto &v: wordList) {
+                if(u != v && isAdjacent(u, v)) {
+                    costsAdjacent[u].push_back(make_pair(v, 1));
                 }
             }
         }
 
         // 2. Find the shortest path from beginWord to endWord
         map<string, int> dist;
+        map<string, string> p;
         for(auto& w: wordList) {
             dist[w] = INT_MAX;
         }   dist[beginWord] = 0;
 
-        for(int i = 1; i <= wordList.size(); i++){
-            for(auto& v: wordList) {
-                for(auto& e: costsAdjacent[v]) {
-                    string source = v;
-                    string target = e.first;
-                    int weight = e.second;
+        priority_queue <pair<int, string>> q;
+        q.push(make_pair(0, beginWord));
+        while (!q.empty()) {
+            string v = q.top().second;
+            int cur_d = -q.top().first;
 
-                    if(dist[source] != INT_MAX && dist[source] + weight < dist[target]) {
-                        dist[target] = dist[source] + weight;
-                    }
+            q.pop();
+            if (cur_d > dist[v]) {
+                continue;
+            }
+
+            for (auto& edge: costsAdjacent[v]) {
+                string to = edge.first;
+                int len = edge.second;
+                if (dist[v] + len < dist[to]) {
+                    dist[to] = dist[v] + len;
+                    p[to] = v;
+                    q.push(make_pair(-dist[to], to));
                 }
             }
         }
 
         // 3. Generate all paths with given length from beginWord to endWord
         int targetLength = dist[endWord];
-        generate(costsAdjacent, wordList, beginWord, endWord, targetLength);
 
-        for(auto& v: marked) {
-            answers.push_back(v);
-        }
+        /* DFS-based search */
+        answers = dfsFind(costsAdjacent, wordList, beginWord, endWord, targetLength);
+
+        /* BFS-based search */
+        // answers = bfsFind(costsAdjacent, beginWord, endWord, targetLength);
 
         return answers;
     }
@@ -84,49 +89,79 @@ private:
         return (count == 1);
     }
 
-    void generateUtils(map<string, vector<pair<string, int>>>& costs,
-                        map<string, bool> visited,
-                        string &currentSource,
-                        string target,
-                        int maxLength,
-                        int currentLength,
-                        vector<string> currentPath) {
-        visited[currentSource] = true;
+    void dfsUtils(map<string, vector<pair<string, int>>>& costs,
+                  string currentSource,
+                  string target,
+                  set<string> visited,
+                  int maxLength,
+                  int currentLength,
+                  vector<vector<string>>& paths,
+                  vector<string> currentPath) {
+        visited.insert(currentSource);
         currentPath.push_back(currentSource);
 
         if (currentSource == target && currentLength == maxLength) {
-            if(marked.find(currentPath) == marked.end()){
-                marked.insert(currentPath);
-            }
+            paths.push_back(currentPath);
         } else if (currentLength < maxLength) {
             for(auto& edge: costs[currentSource]) {
                 string newSource = edge.first;
                 int weight = edge.second;
-                if (!visited[newSource]) {
-                    generateUtils(costs, visited, newSource, target, maxLength, currentLength+weight, currentPath);
+                if (visited.find(newSource) == visited.end() ) {
+                    dfsUtils(costs, newSource, target, visited, maxLength, currentLength+weight, paths, currentPath);
                 }
             }
         }
 
         currentPath.clear();
         currentLength = 0;
-        visited[currentSource] = false;
+        visited.erase(currentSource);
     }
 
-    void generate(map<string, vector<pair<string, int>>>& costs,
+    vector<vector<string>> dfsFind(map<string, vector<pair<string, int>>>& costs,
                                     vector<string> wordList,
                                     string source,
                                     string target,
                                     int maxLength) {
-        vector<pair<vector<string>, int>> paths;
-        map<string, bool> visited;
+        vector<string> currentPath;
+        set<string> visited;
 
-        for(auto& v: wordList) {
-            visited[v] = false;
+        vector<vector<string>> paths;
+        dfsUtils(costs, source, target, visited, maxLength, 0, paths, currentPath);
+
+        return paths;
+    }
+
+    vector<vector<string>> bfsFind(map<string, vector<pair<string, int>>>& costs,
+                                   string source,
+                                   string target,
+                                   int targetLength) {
+        vector<vector<string>> answers;
+
+        queue<vector<string>> q;
+        vector<string> path;
+        path.push_back(source);
+
+        q.push(path);
+        while (!q.empty()) {
+            path = q.front();
+
+            q.pop();
+            string lastNode = path[path.size() - 1];
+
+            if (lastNode == target && path.size() == targetLength + 1) {
+                answers.push_back(path);
+            }
+
+            for (auto& e: costs[lastNode]) {
+                string newNode = e.first;
+                if (find(path.begin(), path.end(), newNode) == path.end()) {
+                    vector<string> newpath(path);
+                    newpath.push_back(newNode);
+                    q.push(newpath);
+                }
+            }
         }
 
-        vector<string> currentPath;
-
-        generateUtils(costs, visited, source, target, maxLength, 0, currentPath);
+        return answers;
     }
 };
