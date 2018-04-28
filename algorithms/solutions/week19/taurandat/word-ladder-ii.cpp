@@ -29,7 +29,7 @@ public:
             }
         }
 
-        // 2. Find the shortest path from beginWord to endWord
+        // 2. Find the shortest path from `beginWord` to `endWord`
         vector<int> dist(n, INT_MAX);
         dist[0] = 0;
         vector<vector<int>> prev(n);
@@ -55,7 +55,8 @@ public:
             }
         }
 
-        // 3. Generate all paths with given length from beginWord to endWord
+        // 3. Generate all paths with given length from `beginWord` to `endWord`
+        // using precomputed `prev`
         int targetIndex = -1;
         for(int i = 0; i < wordList.size(); i++) {
             if(wordList[i] == endWord) {
@@ -67,12 +68,6 @@ public:
         if (targetLength == INT_MAX) {
             return answers;
         }
-
-        /* DFS-based search: too slow */
-        // answers = dfsFind(costsAdjacent, wordList, beginWord, endWord, targetLength);
-
-        /* BFS-based search: too slow */
-        // answers = bfsFind(costsAdjacent, beginWord, endWord, targetLength);
 
         /* Dijkstra trace back: MLE */
         vector<int> path;
@@ -121,80 +116,5 @@ private:
                 trace(answers, wordList, beginWord, endWord, prev, path, v);
             }
         }
-    }
-
-    void dfsUtils(map<string, vector<pair<string, int>>>& costs,
-                  string currentSource,
-                  string target,
-                  set<string> visited,
-                  int maxLength,
-                  int currentLength,
-                  vector<vector<string>>& paths,
-                  vector<string> currentPath) {
-        visited.insert(currentSource);
-        currentPath.push_back(currentSource);
-
-        if (currentSource == target && currentLength == maxLength) {
-            paths.push_back(currentPath);
-        } else if (currentLength < maxLength) {
-            for(auto& edge: costs[currentSource]) {
-                string newSource = edge.first;
-                if (visited.find(newSource) == visited.end()) {
-                    dfsUtils(costs, newSource, target, visited, maxLength, currentLength+1, paths, currentPath);
-                }
-            }
-        }
-
-        currentPath.clear();
-        currentLength = 0;
-        visited.erase(currentSource);
-    }
-
-    vector<vector<string>> dfsFind(map<string, vector<pair<string, int>>>& costs,
-                                    vector<string> wordList,
-                                    string source,
-                                    string target,
-                                    int maxLength) {
-        vector<string> currentPath;
-        set<string> visited;
-
-        vector<vector<string>> paths;
-        dfsUtils(costs, source, target, visited, maxLength, 0, paths, currentPath);
-
-        return paths;
-    }
-
-    vector<vector<string>> bfsFind(map<string, vector<pair<string, int>>>& costs,
-                                   string source,
-                                   string target,
-                                   int targetLength) {
-        vector<vector<string>> answers;
-
-        queue<vector<string>> q;
-        vector<string> path;
-        path.push_back(source);
-
-        q.push(path);
-        while (!q.empty()) {
-            path = q.front();
-
-            q.pop();
-            string lastNode = path[path.size() - 1];
-
-            if (lastNode == target && path.size() == targetLength + 1) {
-                answers.push_back(path);
-            }
-
-            for (auto& e: costs[lastNode]) {
-                string newNode = e.first;
-                if (find(path.begin(), path.end(), newNode) == path.end()) {
-                    vector<string> newpath(path);
-                    newpath.push_back(newNode);
-                    q.push(newpath);
-                }
-            }
-        }
-
-        return answers;
     }
 };
