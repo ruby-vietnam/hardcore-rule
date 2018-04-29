@@ -1,15 +1,15 @@
+/*
+ * Link: https://leetcode.com/problems/remove-invalid-parentheses/
+ *
+ * 125 / 125 test cases passed.
+ * Status: Accepted
+ * Runtime: 111 ms
+ * Your runtime beats 12.73 % of cpp submissions.
+ *
+ */
+
 class Solution {
 public:
-    bool isValid(string s) {
-        int count = 0;
-        for(int i = 0; i < s.size(); i++) {
-            if(s[i] == '(') count++;
-            if(s[i] == ')') count--;
-            if(count < 0) return false;
-        }
-        return (count == 0);
-    }
-
     vector<string> removeInvalidParentheses(string s) {
         vector<string> answers;
 
@@ -47,5 +47,16 @@ public:
         }
 
         return answers;
+    }
+
+private:
+    bool isValid(string s) {
+        int count = 0;
+        for(int i = 0; i < s.size(); i++) {
+            if(s[i] == '(') count++;
+            if(s[i] == ')') count--;
+            if(count < 0) return false;
+        }
+        return (count == 0);
     }
 };

@@ -1,3 +1,13 @@
+/*
+ * Link: https://leetcode.com/problems/network-delay-time/
+ *
+ * 51 / 51 test cases passed.
+ * Status: Accepted
+ * Runtime: 63 ms
+ * Your runtime beats 95.74 % of cpp submissions.
+ *
+ */
+
 class Solution {
 public:
     int networkDelayTime(vector<vector<int>>& times, int N, int K) {
