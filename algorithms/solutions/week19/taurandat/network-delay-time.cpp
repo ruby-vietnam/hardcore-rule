@@ -3,19 +3,36 @@ public:
     int networkDelayTime(vector<vector<int>>& times, int N, int K) {
         int edges = times.size();
 
-        vector<int> dist(N+1);
-        for(int i = 0; i <= N; i++) {
-            dist[i] = INT_MAX;
-        }   dist[K] = 0;
+        vector<vector<pair<int, int>>> graph(N+1);
+        for (auto& edge: times) {
+            int source = edge[0];
+            int target = edge[1];
+            int weight = edge[2];
 
-        for(int i = 0; i <= N - 1; i++) {
-            for(auto &edge: times) {
-                int source = edge[0];
-                int target = edge[1];
-                int weight = edge[2];
+            graph[source].push_back(make_pair(target, weight));
+        }
 
-                if(dist[source] != INT_MAX && dist[source] + weight < dist[target]) {
-                    dist[target] = dist[source] + weight;
+        vector<int> dist(N+1, INT_MAX);
+        dist[K] = 0;
+
+        priority_queue <pair<int, int>> q;
+        q.push(make_pair(K, 0));
+        while (!q.empty()) {
+            int nodeFrom = q.top().first;
+            int cWeight = q.top().second;
+
+            q.pop();
+            if (cWeight > dist[nodeFrom]) {
+                continue;
+            }
+
+            for (auto& node: graph[nodeFrom]) {
+                int nodeTo = node.first;
+                int weight = node.second;
+
+                if (dist[nodeFrom] + weight < dist[nodeTo]) {
+                    dist[nodeTo] = dist[nodeFrom] + weight;
+                    q.push(make_pair(nodeTo, -dist[nodeTo]));
                 }
             }
         }
