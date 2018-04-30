@@ -6,30 +6,30 @@ func plusOne(digits []int) []int {
 	if digitLen == 0 {
 		return []int{}
 	}
-	tmp, sign := digits[:], 0
+	sign := 0
 	for i := digitLen - 1; i >= 0; i-- {
 		if sign == 1 {
-			tmp[i]++
-			if tmp[i] > 9 {
-				tmp[i] = 0
+			digits[i]++
+			if digits[i] > 9 {
+				digits[i] = 0
 				sign = 1
 			} else {
 				sign = 0
 				break
 			}
 		} else {
-			if tmp[i] == 9 {
-				tmp[i] = 0
+			if digits[i] == 9 {
+				digits[i] = 0
 				sign = 1
 			} else {
-				tmp[i] = tmp[i] + 1
+				digits[i] = digits[i] + 1
 				break
 			}
 		}
 	}
 	if sign == 1 {
-		tmp = append([]int{1}, tmp...)
+		digits = append([]int{1}, digits...)
 	}
-	return tmp
+	return digits
 }
 ```
