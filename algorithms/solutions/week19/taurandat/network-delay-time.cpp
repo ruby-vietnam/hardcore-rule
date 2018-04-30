@@ -11,8 +11,6 @@
 class Solution {
 public:
     int networkDelayTime(vector<vector<int>>& times, int N, int K) {
-        int edges = times.size();
-
         vector<vector<pair<int, int>>> graph(N+1);
         for (auto& edge: times) {
             int source = edge[0];
