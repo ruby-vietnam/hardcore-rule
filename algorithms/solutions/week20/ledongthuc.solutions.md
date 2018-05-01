@@ -50,3 +50,33 @@ func reverse(a []int) {
     }
 }
 ```
+
+Problem 2:
+
+https://leetcode.com/problems/string-to-integer-atoi/description
+
+```go
+func myAtoi(str string) int {
+    var result string
+    for _, r := range str {
+        if ((r == '-' || r == '+') && len(result) == 0) ||
+            unicode.IsDigit(r){
+            result += string(r)
+            continue
+        }
+        if r == ' ' && len(result) == 0 {
+            continue
+        }
+        if len(result) == 0 {
+            return 0
+        } else {
+            break
+        }
+    }
+    if result == "-" || result == "+" {
+        return 0
+    }
+    i, _ := strconv.ParseInt(result, 10, 32)
+    return int(i)
+}
+```
