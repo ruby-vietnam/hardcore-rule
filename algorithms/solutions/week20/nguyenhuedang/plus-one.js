@@ -15,6 +15,6 @@ var plusOne = function(digits) {
   return (unit < 9)
     // Easy case
     ?  [...leads, unit + 1]
-    // Recursive calla
+    // Recursive call
     : [...plusOne(leads), 0];
 };

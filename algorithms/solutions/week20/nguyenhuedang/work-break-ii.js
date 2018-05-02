@@ -3,7 +3,6 @@
  * @param {string[]} wordDict
  * @return {string[]}
  */
-
 var wordBreak = function(s, wordDict) {
   // For saving result
   const cache = {};

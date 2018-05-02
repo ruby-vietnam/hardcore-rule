@@ -2,7 +2,6 @@
  * @param {number[][]} matrix
  * @return {number}
  */
-
 var longestIncreasingPath = function(matrix) {
   let max = 0;
 
