@@ -19,9 +19,8 @@ int* plusOne(int* digits, int digitsSize, int* returnSize) {
     } while(digitsSize && incr);
     
     if (incr) {
-        memcpy(digits + 1, digits, (*returnSize) * sizeof(int));
+        digits[(*returnSize)++] = 0;
         digits[0] = incr;
-        (*returnSize)++;
     }
     return digits;
 }
