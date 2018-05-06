@@ -9,13 +9,13 @@ defmodule Main do
     new_head = head + temp
 
     if new_head > 9 do
-      _plus_one(tail, [0 | arr], 1)
+      _plus_one(tail, [rem(new_head, 10) | arr], div(new_head, 10))
     else
       _plus_one(tail, [new_head | arr], 0)
     end
   end
 
-  defp _plus_one([], arr, temp) when temp == 1 do
+  defp _plus_one([], arr, temp) when temp > 0 do
     [temp | arr]
   end
 
