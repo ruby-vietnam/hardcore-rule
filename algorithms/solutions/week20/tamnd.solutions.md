@@ -84,3 +84,43 @@ func myAtoi(str string) int {
     
 }
 ```
+
+### Problem 4 - [Word Break II](https://leetcode.com/problems/word-break-ii/description/)
+
+Status:
+```
+  ✔ Accepted
+  ✔ 39/39 cases passed (4 ms)
+```
+
+Code:
+```go
+func wordBreak(s string, wordDict []string) []string {
+    return wordBreakMemo(s, wordDict, map[string][]string{})
+}
+
+// wordBreakMemo computes word break solutions, using `memo` for memorize all solutions with given input string.
+func wordBreakMemo(s string, dict []string, memo map[string][]string) []string {
+    if ret, found := memo[s]; found {
+        return ret
+    }
+    
+    ret := make([]string, 0)
+    for _, word := range dict {
+        if !strings.HasPrefix(s, word) {
+            continue
+        }
+        if len(s) == len(word) {
+            ret = append(ret, word)
+        } else {
+            solutions := wordBreakMemo(s[len(word):], dict, memo) // compute solutions for the rest
+            for _, item := range solutions {
+                item = word + " " + item // Build solution for s
+                ret = append(ret, item)
+            }
+        }
+    }
+    memo[s] = ret
+    return ret
+}
+```
