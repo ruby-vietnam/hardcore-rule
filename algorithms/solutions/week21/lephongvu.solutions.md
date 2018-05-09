@@ -36,3 +36,58 @@ public:
     }
 };
 ```
+
+# Bai 2 : https://leetcode.com/problems/encode-and-decode-tinyurl/description/
+```
+class Solution {
+public:
+
+    // Encodes to a string with length is 6. Include number, lower case char and upper case char.
+    unordered_map<long long, string> db ;
+   
+    
+    string encode(string longUrl) {
+        // Calculate a number reperset for URL
+         char char_map[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        srand (time(NULL));
+        long long y = 0;
+        
+       
+           do
+        {
+            y = rand() % 1000000;
+        } while (db.find(y) != db.end());
+        db[y] = longUrl;       
+        
+        // Short the number to character
+        string shortUrl = "";
+        while(y)
+        {
+            shortUrl.push_back(char_map[y%62]);
+            y /= 62;
+        }
+        std::reverse(shortUrl.begin(), shortUrl.end());
+        return shortUrl;
+        
+    }
+
+    // Decodes a shortened URL to its original URL.
+    string decode(string shortUrl) {
+        char char_map[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        long long id = 0;
+ 
+        for (int i=0; i < shortUrl.length(); i++)
+        {
+            if ('a' <= shortUrl[i] && shortUrl[i] <= 'z')
+              id = id*62 + shortUrl[i] - 'a';
+            if ('A' <= shortUrl[i] && shortUrl[i] <= 'Z')
+              id = id*62 + shortUrl[i] - 'A' + 26;
+            if ('0' <= shortUrl[i] && shortUrl[i] <= '9')
+              id = id*62 + shortUrl[i] - '0' + 52;
+        }
+        return db[id];
+        
+    }
+};
+
+```
