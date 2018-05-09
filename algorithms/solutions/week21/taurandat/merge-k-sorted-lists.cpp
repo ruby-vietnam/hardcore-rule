@@ -4,8 +4,8 @@
  *
  * 131 / 131 test cases passed.
  * Status: Accepted
- * Runtime: 31 ms
- * Your runtime beats 66.84 % of cpp submissions.
+ * Runtime: 29 ms
+ * Your runtime beats 92.26 % of cpp submissions.
  *
  */
 
@@ -20,78 +20,39 @@
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        priority_queue<int, std::vector<int>, std::greater<int>> q;
+        ListNode* result = new ListNode(0);
 
-        for(auto list: lists) {
-            while(list != NULL) {
-                q.push(list->val);
-                list = list->next;
-            }
-        }
+        auto cmp = [](const pair<int, int>& lhs, const pair<int, int>& rhs) {
+            return lhs.second > rhs.second;
+        };
 
-        if(q.empty()) return NULL;
-
-        ListNode* tail;
-        ListNode* result = new ListNode(q.top()); q.pop();
-        tail = result;
-        while(!q.empty()) {
-            tail->next = new ListNode(q.top());
-            tail = tail->next;
-            q.pop();
-        }
-
-        return result;
-    }
-
-    /*
-     *
-     * use O(1) additional memory space
-     * still got Accepted with 563 ms runtime
-     *
-     */
-    ListNode* memoryOptimizedMergeKLists(vector<ListNode*>& lists) {
-        pair<int, int> minMark = minStream(lists);
-
-        int minIdx = minMark.first;
-        int minVal = minMark.second;
-        if (minIdx == -1) return NULL;
-
-        ListNode* result = new ListNode(minVal);
-        lists[minIdx] = lists[minIdx]->next;
-
-        ListNode* tail;
-        tail = result;
-        while (true) {
-            pair<int, int> minMark = minStream(lists);
-            int minIdx = minMark.first;
-            int minVal = minMark.second;
-
-            if(minIdx == -1) break;
-
-            tail->next = new ListNode(minVal);
-            tail = tail->next;
-            lists[minIdx] = lists[minIdx]->next;
-        }
-
-        return result;
-    }
-
-private:
-    pair<int, int> minStream(vector<ListNode*>& lists) {
-        int minVal = numeric_limits<int>::max();
-        int minIdx = -1;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> q(cmp);
 
         for(int i = 0; i < lists.size(); i++) {
-            if(lists[i] == NULL) continue;
-
-            int currentVal = lists[i]->val;
-
-            if(currentVal < minVal) {
-                minVal = currentVal;
-                minIdx = i;
+            if(lists[i] != nullptr) {
+                int val = lists[i]->val;
+                q.push(make_pair(i, val));
+                lists[i] = lists[i]->next;
             }
         }
 
-        return make_pair(minIdx, minVal);
+        ListNode* tail = result;
+        while(!q.empty()) {
+            int idx = q.top().first;
+            int val = q.top().second;
+
+            tail->next = new ListNode(val);
+            tail = tail->next;
+
+            q.pop();
+
+            if (lists[idx] != nullptr) {
+                int val = lists[idx]->val;
+                q.push(make_pair(idx, val));
+                lists[idx] = lists[idx]->next;
+            }
+        }
+
+        return result->next;
     }
 };
