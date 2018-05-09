@@ -73,7 +73,6 @@ public:
 
     // Decodes a shortened URL to its original URL.
     string decode(string shortUrl) {
-        char char_map[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         long long id = 0;
  
         for (int i=0; i < shortUrl.length(); i++)
