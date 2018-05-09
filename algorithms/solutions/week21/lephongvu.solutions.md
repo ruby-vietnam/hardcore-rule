@@ -1,5 +1,6 @@
 # Bai 1: https://leetcode.com/problems/valid-anagram/description/
-
+You are here! 
+Your runtime beats 99.39 % of cpp submissions
 ```
 class Solution {
 public:
