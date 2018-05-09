@@ -90,3 +90,59 @@ public:
 };
 
 ```
+
+# Bai 3: https://leetcode.com/problems/merge-k-sorted-lists/description/
+beat 92%
+
+```
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+
+    
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        int k = lists.size();
+        ListNode dummy = ListNode(0);
+        ListNode *h1 = &dummy;
+
+        auto cmp = [](pair<int,int> left, pair<int,int> right) { return left.first > right.first;};
+        std::priority_queue<pair<int, int>, std::vector<pair<int,int>>, decltype(cmp)> q(cmp);
+               
+        for(int i = 0; i < k; i++)
+        {
+            if(lists[i] != nullptr)
+            {
+                pair<int,int> P {lists[i]->val, i};
+                q.push(P);
+                lists[i] = lists[i]->next;
+            }
+        }
+        
+        // Get top
+        while ( !q.empty())
+        {
+            ListNode *temp = new ListNode(q.top().first);
+            h1->next = temp;
+            h1 = temp;
+            int id = q.top().second;
+            q.pop();               
+            if(lists[id] != nullptr)
+            {
+                int temp = lists[id]->val;
+                pair<int, int> P {temp, id};
+                q.push(P);
+                lists[id] = lists[id]->next;
+            }   
+        }
+
+        return dummy.next;
+    }
+};
+```
