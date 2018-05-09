@@ -42,4 +42,56 @@ public:
 
         return result;
     }
+
+    /*
+     *
+     * use O(1) additional memory space
+     * still got Accepted with 563 ms runtime
+     *
+     */
+    ListNode* memoryOptimizedMergeKLists(vector<ListNode*>& lists) {
+        pair<int, int> minMark = minStream(lists);
+
+        int minIdx = minMark.first;
+        int minVal = minMark.second;
+        if (minIdx == -1) return NULL;
+
+        ListNode* result = new ListNode(minVal);
+        lists[minIdx] = lists[minIdx]->next;
+
+        ListNode* tail;
+        tail = result;
+        while (true) {
+            pair<int, int> minMark = minStream(lists);
+            int minIdx = minMark.first;
+            int minVal = minMark.second;
+
+            if(minIdx == -1) break;
+
+            tail->next = new ListNode(minVal);
+            tail = tail->next;
+            lists[minIdx] = lists[minIdx]->next;
+        }
+
+        return result;
+    }
+
+private:
+    pair<int, int> minStream(vector<ListNode*>& lists) {
+        int minVal = numeric_limits<int>::max();
+        int minIdx = -1;
+
+        for(int i = 0; i < lists.size(); i++) {
+            if(lists[i] == NULL) continue;
+
+            int currentVal = lists[i]->val;
+
+            if(currentVal < minVal) {
+                minVal = currentVal;
+                minIdx = i;
+            }
+        }
+
+        return make_pair(minIdx, minVal);
+    }
 };
