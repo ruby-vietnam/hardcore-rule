@@ -30,7 +30,7 @@ func isAnagram(s string, t string) bool {
 
 ```
   ✔ Accepted
-  ✔ 34/34 cases passed (5 ms)
+  ✔ 48/48 cases passed (12 ms)
 ```
 
 ```java
