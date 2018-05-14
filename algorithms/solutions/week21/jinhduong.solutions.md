@@ -6,11 +6,14 @@
  * @return {boolean}
  */
 var isAnagram = function (s, t) {
-    if (s.length !== t.length) return -1;
-    for (let i = 0, l = s.length - 1; i <= l; i++) {
-        if (s[i] !== t[l - i]) return -1;
-        else if (i === l - i) return 1;
-    }
-    return 1;
+    if (s.length !== t.length) return false;
+
+    const s1 = Array.from(s).sort();
+    const t1 = Array.from(t).sort();
+
+    for (let i = 0, l = s1.length - 1; i <= l; i++)
+        if (s1[i] !== t1[i]) return false;
+
+    return true;
 };
 ```
