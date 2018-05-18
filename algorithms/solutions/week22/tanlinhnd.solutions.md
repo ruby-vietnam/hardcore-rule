@@ -37,3 +37,11 @@ func majorityElement(nums []int) int {
 	return data
 }
 ```
+
+# Problem 2: [Bulb Switcher](https://leetcode.com/problems/bulb-switcher/description/)
+
+```go
+func bulbSwitch(n int) int {
+    return int(math.Sqrt(float64(n)))
+}
+```
