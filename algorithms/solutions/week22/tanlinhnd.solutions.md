@@ -1,4 +1,4 @@
-# Problem 1: ()[]
+# Problem 1: [Majority Element](https://leetcode.com/problems/majority-element/description/)
 
 ## Solution 1:
 ```go
