@@ -2,7 +2,7 @@
 
 https://leetcode.com/problems/majority-element/description/
 
-```
+```C
 int majorityElement(int* nums, int n) {
     int count = 0, major;
     for (int i=0; i<n; i++) {
