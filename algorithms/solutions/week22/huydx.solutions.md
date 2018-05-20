@@ -1,6 +1,6 @@
 # Problem 1
 
-```
+```java
 class Solution {
     /** naive
     public int majorityElement(int[] nums) {
@@ -45,7 +45,7 @@ class Solution {
 # Problem 3
 Idea: traverse both list while maintain a counter to see what current order of current element is. Stop when the counter reach middle of the list length.
 
-```
+```java
 import static java.util.Arrays.*;
 
 class Solution {
