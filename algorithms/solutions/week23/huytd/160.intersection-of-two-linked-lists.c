@@ -5,12 +5,10 @@
  *
  * https://leetcode.com/problems/intersection-of-two-linked-lists/description/
  *
- * ------------------------------------------------
  * Status:
- * ✔ Accepted
- * ✔ 42/42 cases passed (28 ms)
- * ✔ Your runtime beats 44.74 % of c submissions
- * ------------------------------------------------
+ *  ✔ Accepted
+ *  ✔ 42/42 cases passed (28 ms)
+ *  ✔ Your runtime beats 44.74 % of c submissions
  */
 
 /*
