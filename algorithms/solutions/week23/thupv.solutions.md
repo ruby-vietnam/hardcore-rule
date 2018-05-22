@@ -1,14 +1,13 @@
-/*
- *
- * Link: https://leetcode.com/problems/intersection-of-two-linked-lists
- *
+
+Link: https://leetcode.com/problems/intersection-of-two-linked-lists
+
  * 42 / 42 test cases passed.
  * Status: Accepted
  * Runtime: 88 ms
  * Your runtime beats 97.70 % of javascript submissions.
- *
- */
 
+
+```javascript
 var getIntersectionNode = function(headA, headB) {
   var diff = 0
   var nodeA = headA, nodeB = headB;
@@ -44,19 +43,17 @@ var getIntersectionNode = function(headA, headB) {
   return null;
 
 };
+```
 
+Link: https://leetcode.com/problems/simplify-path/description/
 
-/*
- *
- * Link: https://leetcode.com/problems/simplify-path/description/
- *
  * 252 / 252 test cases passed.
  * Status: Accepted
  * Runtime: 64 ms
  * Your runtime beats 98.55 % of javascript submissions.
- *
- */
 
+
+```javascript
 function Stack(){
   this.data = [];
   this.push = function(str){
@@ -86,3 +83,4 @@ var simplifyPath = function(path) {
 
   return str.length > 1 ? str.slice(0, -1): str;
 };
+```
