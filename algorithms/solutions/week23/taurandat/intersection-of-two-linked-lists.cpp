@@ -20,8 +20,6 @@
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        ListNode *mergePoint = nullptr;
-
         int lengthA = getLength(headA);
         int lengthB = getLength(headB);
 
@@ -35,17 +33,12 @@ public:
             headA = headA->next;
         }
 
-        while(headA != nullptr && headB != nullptr) {
-            if(headA->val == headB->val) {
-                mergePoint = headA;
-                break;
-            }
-
+        while(headA != nullptr && headB != nullptr && headA->val != headB->val) {
             headA = headA->next;
             headB = headB->next;
         }
 
-        return mergePoint;
+        return headA;
     }
 
 private:
