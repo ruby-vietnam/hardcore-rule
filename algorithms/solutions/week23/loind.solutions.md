@@ -17,9 +17,7 @@ public class Solution {
             myMap.put(headA.val, 1);
             headA = headA.next;
         }
-        if (myMap.get(headB.val) != null) {
-            return headB;
-        }
+
         while (headB != null){
             if (myMap.get(headB.val) != null) {
                 return headB;
