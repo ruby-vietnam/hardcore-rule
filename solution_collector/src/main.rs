@@ -17,9 +17,9 @@ fn main() -> Result<(), Box<Error>> {
     let token    = env::var("GITHUB_TOKEN").expect("GITHUB_TOKEN is not set");
     let owner    = env::var("OWNER").unwrap_or(String::from("ruby-vietnam"));
     let repo     = env::var("REPO").unwrap_or(String::from("hardcore-rule"));
-    let mode_str = env::args().next().unwrap_or("preview");
+    let mode_str = env::args().next().unwrap_or(String::from("preview"));
 
-    mode = if mode_str == "merge" {
+    let mode = if mode_str == "merge" {
         Mode::Merge
     } else {
         Mode::Preview
@@ -33,10 +33,10 @@ fn main() -> Result<(), Box<Error>> {
         .pulls()
         .execute::<Value>().unwrap();
 
-    for pull in pulls.unwrap().as_array()? {
+    for pull in pulls.unwrap().as_array().unwrap() {
         match mode {
             Mode::Preview => {
-                let solved_str = pull["body"].as_str()?;
+                let solved_str = pull["body"].as_str().unwrap();
                 let mut summary = String::new();
                 for line in solved_str.split("\r\n") {
                     if line.contains("Problem") {
@@ -44,11 +44,18 @@ fn main() -> Result<(), Box<Error>> {
                         summary.push_str(" | ");
                     }
                 }
-                write!(&mut summary, "Owner: {}", pull["user"]["login"].as_str()?).unwrap();
+                write!(&mut summary, "Owner: {}", pull["user"]["login"].as_str().unwrap()).unwrap();
                 println!("{}", summary);
             },
             Mode::Merge => {
-                client.put().repos().owner(&owner).repo(&repo).pulls().number(pull["number"].as_str()?).merge().execute()::<Value>().unwrap();
+                client.get()
+                    .repos()
+                    .owner(&owner)
+                    .repo(&repo)
+                    .pulls()
+                    .number(pull["number"].as_str().unwrap())
+                    .merge()
+                    .execute::<Value>().unwrap();
             }
         }
     }
