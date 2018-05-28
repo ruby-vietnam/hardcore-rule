@@ -23,3 +23,28 @@ var getIntersectionNode = function(headA, headB) {
   return null;
 };
 ```
+
+## Problem 2
+
+```
+def simplify_path(path)
+  folders = path.split('/')
+  result = []
+
+  folders.each do |folder|
+    if folder == '' || folder == '.'
+      next
+    elsif folder == '..'
+      result.pop
+    else
+      result.push(folder)
+    end
+  end
+
+  if result.empty?
+    '/'
+  else
+    ([''] + result).join('/')
+  end
+end
+```
