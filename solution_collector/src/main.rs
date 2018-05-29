@@ -8,6 +8,7 @@ use std::env;
 use github_rs::client::{Github, Executor};
 use serde_json::Value;
 
+#[derive(Debug)]
 enum Mode {
     Preview,
     Merge
@@ -17,13 +18,16 @@ fn main() -> Result<(), Box<Error>> {
     let token    = env::var("GITHUB_TOKEN").expect("GITHUB_TOKEN is not set");
     let owner    = env::var("OWNER").unwrap_or(String::from("ruby-vietnam"));
     let repo     = env::var("REPO").unwrap_or(String::from("hardcore-rule"));
-    let mode_str = env::args().next().unwrap_or(String::from("preview"));
+    let mut args = env::args();
+    args.next();
+    let mode_str = args.next().unwrap_or(String::from("preview"));
 
     let mode = if mode_str == "merge" {
         Mode::Merge
     } else {
         Mode::Preview
     };
+    println!("Running mode: {:?}", mode);
 
     let client = Github::new(token).expect("Invalid token");
     let (_, _, pulls)  = client.get()
@@ -48,14 +52,12 @@ fn main() -> Result<(), Box<Error>> {
                 println!("{}", summary);
             },
             Mode::Merge => {
-                client.get()
-                    .repos()
-                    .owner(&owner)
-                    .repo(&repo)
-                    .pulls()
-                    .number(pull["number"].as_str().unwrap())
-                    .merge()
+                let number_str = pull["number"].as_u64().unwrap().to_string();
+                let endpoint = format!("/repos/{}/{}/pulls/{}/merge", owner, repo, number_str);
+                let result = client.put("")
+                    .custom_endpoint(&endpoint)
                     .execute::<Value>().unwrap();
+                println!("Merging {}. Result: {:?}", number_str, result);
             }
         }
     }
