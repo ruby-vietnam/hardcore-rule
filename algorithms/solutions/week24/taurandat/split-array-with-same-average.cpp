@@ -4,7 +4,7 @@
  *
  * 88 / 88 test cases passed.
  * Status: Accepted
- * Runtime: 98 ms
+ * Runtime: 95 ms
  * Your runtime beats 44.61 of cpp submissions.
  *
  */
@@ -21,13 +21,11 @@ public:
         vector<pair<int, int>> numbers = normalize(A);
 
         set<pair<int, int>> lhs = generate(vector<pair<int, int>>(numbers.begin(), numbers.begin() + h));
-
         if (lhs.find(make_pair(0, 1)) != lhs.end()) {
             return true;
         }
 
         set<pair<int, int>> rhs = generate(vector<pair<int, int>>(numbers.begin() + h, numbers.end()));
-
         if (rhs.find(make_pair(0, 1)) != rhs.end()) {
             return true;
         }
@@ -103,14 +101,27 @@ private:
             denominator = t_denominator / gcd(t_numerator, t_denominator);
         }
 
+        if ((numerator > 0 && denominator < 0) || (numerator < 0 && denominator < 0)) {
+            numerator = -numerator;
+            denominator = -denominator;
+        }
+
         return make_pair(numerator, denominator);
     }
 
     pair<int, int> average(vector<int> numbers) {
-        int numerator = sum(numbers);
+        int _sum = sum(numbers);
         int n = numbers.size();
 
-        return make_pair(numerator / gcd(numerator, n), n / gcd(numerator, n));
+        int numerator = _sum / gcd(_sum, n);
+        int denominator = n / gcd(_sum, n);
+
+        if ((numerator > 0 && denominator < 0) || (numerator < 0 && denominator < 0)) {
+            numerator = -numerator;
+            denominator = -denominator;
+        }
+
+        return make_pair(numerator, denominator);
     }
 
     vector<pair<int, int>> normalize(vector<int>& numbers) {
