@@ -4,7 +4,7 @@
  *
  * 88 / 88 test cases passed.
  * Status: Accepted
- * Runtime: 95 ms
+ * Runtime: 94 ms
  * Your runtime beats 44.61 of cpp submissions.
  *
  */
@@ -132,8 +132,16 @@ private:
         vector<pair<int, int>> normalized_numbers;
         int n = numbers.size();
         for (int i = 0; i < n; i++) {
-            int numerator = numbers[i] * b - a;
-            normalized_numbers.push_back(make_pair(numerator / gcd(numerator, b), b / gcd(numerator, b)));
+            int t = numbers[i] * b - a;
+            int numerator = t / gcd(t, b);
+            int denominator = b / gcd(t, b);
+
+            if ((numerator > 0 && denominator < 0) || (numerator < 0 && denominator < 0)) {
+                numerator = -numerator;
+                denominator = -denominator;
+            }
+
+            normalized_numbers.push_back(make_pair(numerator, denominator));
         }
 
         return normalized_numbers;
