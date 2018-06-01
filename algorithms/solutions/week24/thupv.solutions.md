@@ -64,3 +64,38 @@ def swap(nums, i, j)
   nums
 end
 ```
+
+
+Link: https://leetcode.com/problems/coin-change
+
+ * 182 / 182 test cases passed.
+ * Status: Accepted
+ * Runtime: 656 ms
+ 
+ 
+```ruby
+# @param {Integer[]} coins
+# @param {Integer} amount
+# @return {Integer}
+def coin_change(coins, amount)
+  dp = []
+  i = 0
+  while i <= amount do
+    dp << amount + 1
+	i = i + 1
+  end
+  dp[0] = 0
+  i = 1
+  while i <= amount do
+	j = 0
+    while j < coins.count do
+      if coins[j] <= i
+		dp[i] = [dp[i], dp[i-coins[j]] + 1].min
+	  end
+	  j = j + 1
+    end
+	i = i + 1
+  end
+  dp[amount] > amount ? -1 : dp[amount]
+end
+```
