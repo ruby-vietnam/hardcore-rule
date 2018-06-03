@@ -63,7 +63,7 @@ fn print_report(client: Github, owner: String, repo: String) {
 
     for (week, summary) in summaries.iter() {
         println!("Week {}: ", week);
-        println!("{}", summary);
+        print!("{}", summary);
         println!("=========================");
     }
 }
@@ -72,7 +72,7 @@ fn merge_pull_request(client: Github, owner: String, repo: String) {
     let mut page = 1;
 
     loop {
-        let merged = false;
+        let mut merged = false;
         let endpoint = format!("repos/{}/{}/pulls?page={}", owner, repo, page);
         println!("Fetching Page {}", page);
 
@@ -84,7 +84,8 @@ fn merge_pull_request(client: Github, owner: String, repo: String) {
         let pulls = pulls.as_array().unwrap();
         if pulls.len() == 0 { break }
 
-        for pull in pulls.as_array().unwrap() {
+        for pull in pulls {
+            let solved_str = pull["body"].as_str().unwrap();
             if !solved_str.contains("Problem") {
                 continue;
             }
@@ -96,7 +97,7 @@ fn merge_pull_request(client: Github, owner: String, repo: String) {
                 .custom_endpoint(&endpoint)
                 .execute::<Value>().unwrap();
 
-            let merged = true;
+            merged = true;
             println!("Result: {:?}", result);
         }
         // There's no PR that can be merged from this page, move to next one
