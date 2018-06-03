@@ -19,6 +19,9 @@ func judgeSquareSum(c int) bool {
 
 ```go
   func judgeSquareSum(c int) bool {
+      if c == 0 {
+        return true
+      }
       for c%2 == 0 {
         c = c/2
       }
