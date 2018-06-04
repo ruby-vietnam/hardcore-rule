@@ -1,3 +1,4 @@
+#[macro_use]
 extern crate serde_json;
 extern crate github_rs;
 extern crate regex;
@@ -6,6 +7,7 @@ use std::io::Error;
 use std::fmt::Write;
 
 use std::env;
+use github_rs::StatusCode;
 use github_rs::client::{Github, Executor};
 use serde_json::Value;
 use regex::Regex;
@@ -93,12 +95,15 @@ fn merge_pull_request(client: Github, owner: String, repo: String) {
             let endpoint = format!("repos/{}/{}/pulls/{}/merge", owner, repo, number_str);
             println!("Merging {}. Endpoint: {}", number_str, endpoint);
 
-            let result = client.put("")
+            let body = json!({});
+            let (_, result, response) = client.put(body)
                 .custom_endpoint(&endpoint)
                 .execute::<Value>().unwrap();
 
-            merged = true;
-            println!("Result: {:?}", result);
+            if result == StatusCode::Ok {
+                merged = true;
+            }
+            println!("Result: {:?}. Response: {}", result, response.unwrap_or(json!(null)));
         }
         // There's no PR that can be merged from this page, move to next one
         if !merged {
