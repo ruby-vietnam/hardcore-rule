@@ -2,5 +2,5 @@
 
 - Easy: https://leetcode.com/problems/keyboard-row/description/
 - Medium: https://leetcode.com/problems/friend-circles/description/
-- Hard: https://leetcode.com/problems/valid-number/description/
+- Hard: http://codeforces.com/contest/892/problem/C
 - Bonus: http://vn.spoj.com/problems/QMAX/
