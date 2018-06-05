@@ -156,6 +156,7 @@ func (c *pride) solve() int {
 				if i-j < min {
 					min = i - j
 				}
+				break
 			}
 		}
 	}
