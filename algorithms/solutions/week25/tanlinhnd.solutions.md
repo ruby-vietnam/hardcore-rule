@@ -42,3 +42,36 @@ func IsValid(s string) bool {
 	return true
 }
 ```
+
+# Problem 2: [Friend Circles](https://leetcode.com/problems/friend-circles/description/)
+
+```go
+var visited = make([]int, 100)
+
+func findCircleNum(M [][]int) int {
+    ln := len(M)
+    if ln == 0 {
+        return 0
+    }
+    
+    count := 0
+    
+    for i := 0; i < ln; i++ {
+        if visited[i] == 0 {
+            visited[i] = 1
+            dfs(M, i)
+            count++
+        }
+    }
+    return count
+}
+
+func dfs(M [][]int, i int) {
+    for j := 0; j < len(M); j++ {
+        if M[i][j] == 1 && visited[j] == 0 {
+            visited[j] = 1
+            dfs(M, j)
+        }
+    }
+}
+```
