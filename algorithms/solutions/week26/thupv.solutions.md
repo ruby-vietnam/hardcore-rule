@@ -20,3 +20,42 @@ def find_the_difference(s, t)
   end
 end
 ```
+
+## Problem 2
+Link: https://leetcode.com/problems/binary-tree-level-order-traversal
+
+ * 34 / 34 test cases passed.
+ * Status: Accepted
+ * Runtime: 40 ms
+ 
+```ruby
+# Definition for a binary tree node.
+# class TreeNode
+#     attr_accessor :val, :left, :right
+#     def initialize(val)
+#         @val = val
+#         @left, @right = nil, nil
+#     end
+# end
+
+# @param {TreeNode} root
+# @return {Integer[][]}
+def level_order(root)
+  stack = []
+  result = []
+  stack << {node: root, level: 0}
+  while !stack.empty?
+    node_with_level = stack.pop
+    next if node_with_level[:node].nil?
+    if result[node_with_level[:level]].nil?
+      result << [node_with_level[:node].val]
+    else
+      result[node_with_level[:level]] << node_with_level[:node].val
+    end
+    
+    stack << {node: node_with_level[:node].right, level: node_with_level[:level] + 1}
+    stack << {node: node_with_level[:node].left, level: node_with_level[:level] + 1}
+  end
+  result
+end
+```
