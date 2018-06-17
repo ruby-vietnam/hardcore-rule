@@ -41,6 +41,55 @@ func traverse(root *TreeNode, depth int, result [][]int) [][]int {
 }
 ```
 
+## Problem 3
+
+```go
+func numSimilarGroups(A []string) int {
+    parent := make(map[string]string)
+    n := len(A)
+    for i := 0; i < n; i++ {
+        if _, found := parent[A[i]]; found {
+            continue
+        }
+        parent[A[i]] = A[i]
+        for j := 0; j < i; j++ {
+            if similar(A[i], A[j]) && parent[A[j]] != A[i] {
+                root := getRoot(A[j], parent)
+                parent[root] = A[i]
+            }
+        }
+    }
+    count := 0
+    for k, v := range parent {
+        if k == v {
+            count++
+        }
+    }
+    return count
+}
+
+func getRoot(j string, parent map[string]string) string {
+    if j != parent[j] {
+        return getRoot(parent[j], parent)
+    }
+    return parent[j]
+}
+
+func similar(a string, b string) bool {
+    n := len(a)
+    if len(b) != n {
+        return false
+    }
+    count := 0
+    for i := 0; i < n; i++ {
+        if a[i] != b[i] {
+            count++
+        }
+    }
+    return count == 2
+}
+```
+
 ## Problem 4
 
 ```go
