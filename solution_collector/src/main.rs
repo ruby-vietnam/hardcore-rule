@@ -70,7 +70,7 @@ fn print_report(client: Github, owner: String, repo: String) {
     }
 }
 
-fn merge_pull_request(client: Github, owner: String, repo: String) {
+fn merge_pull_request(client: Github, owner: String, repo: String, week: String) {
     let mut page = 1;
 
     loop {
@@ -90,6 +90,10 @@ fn merge_pull_request(client: Github, owner: String, repo: String) {
             let solved_str = pull["body"].as_str().unwrap();
             if !solved_str.contains("Problem") {
                 continue;
+            }
+            let w = get_week(pull["title"].as_str().unwrap());
+            if w != week && w != "" {
+                break
             }
             let number_str = pull["number"].as_u64().unwrap().to_string();
             let endpoint = format!("repos/{}/{}/pulls/{}/merge", owner, repo, number_str);
@@ -119,6 +123,7 @@ fn main() -> Result<(), Box<Error>> {
     let mut args = env::args();
     args.next();
     let mode_str = args.next().unwrap_or(String::from("preview"));
+    let week = args.next().unwrap_or(String::from(""))
 
     let mode = if mode_str == "merge" {
         Mode::Merge
@@ -133,7 +138,7 @@ fn main() -> Result<(), Box<Error>> {
             print_report(client, owner, repo);
         },
         Mode::Merge => {
-            merge_pull_request(client, owner, repo);
+            merge_pull_request(client, owner, repo, week);
         }
     }
     // println!("Pulls: {:?}", pulls);
