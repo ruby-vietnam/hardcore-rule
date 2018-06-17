@@ -22,8 +22,8 @@ func main() {
 	// fmt.Println(levelOrder(root))
 
 	// Problem 3
-	fmt.Println(numSimilarGroups([]string{"tars", "rats", "arts", "star"}))
-	fmt.Println(numSimilarGroups([]string{"jvhpg", "jhvpg", "hpvgj", "hvpgj", "vhgjp"}))
+	fmt.Println(numSimilarGroups([]string{"tars", "rats", "arts", "star"}) == 2)
+	fmt.Println(numSimilarGroups([]string{"jvhpg", "jhvpg", "hpvgj", "hvpgj", "vhgjp"}) == 3)
 	fmt.Println(numSimilarGroups([]string{
 		"kccomwcgcs",
 		"socgcmcwkc",
@@ -35,8 +35,8 @@ func main() {
 		"coswmccgkc",
 		"kowcccmsgc",
 		"kgcomwcccs",
-	}))
-	fmt.Println(numSimilarGroups([]string{"blw", "bwl", "wlb"}))
+	}) == 5)
+	fmt.Println(numSimilarGroups([]string{"blw", "bwl", "wlb"}) == 1)
 	fmt.Println(numSimilarGroups([]string{
 		"qihcochwmglyiggvsqqfgjjxu",
 		"gcgqxiysqfqugmjgwclhjhovi",
@@ -63,5 +63,5 @@ func main() {
 		"ojjycmqshgglwicfqguxvihgq",
 		"sijvumghqwqioclcggxgyhfjq",
 		"gglhhifwvqgqcoyumcgjjisqx",
-	}))
+	}) == 11)
 }

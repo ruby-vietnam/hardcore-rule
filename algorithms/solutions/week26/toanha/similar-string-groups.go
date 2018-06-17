@@ -1,15 +1,37 @@
 package main
 
 func numSimilarGroups(A []string) int {
-	var groupCount = len(A)
+	var similarWords = map[string]string{}
+
 	for i := 0; i < len(A); i++ {
+		if _, ok := similarWords[A[i]]; ok {
+			continue
+		}
+		similarWords[A[i]] = A[i]
+
 		for j := 0; j < i; j++ {
-			if isSimilar(A[i], A[j]) {
-				groupCount--
+			if isSimilar(A[i], A[j]) && similarWords[A[j]] != A[i] {
+				root := getPreviousWord(similarWords, A[j])
+				similarWords[root] = A[i]
+				continue
 			}
 		}
 	}
+
+	var groupCount int
+	for k, v := range similarWords {
+		if k == v {
+			groupCount++
+		}
+	}
 	return groupCount
+}
+
+func getPreviousWord(words map[string]string, s string) string {
+	if s == words[s] {
+		return s
+	}
+	return getPreviousWord(words, words[s])
 }
 
 func isSimilar(a, b string) bool {
