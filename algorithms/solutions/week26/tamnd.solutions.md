@@ -40,3 +40,22 @@ func traverse(root *TreeNode, depth int, result [][]int) [][]int {
     return result
 }
 ```
+
+## Problem 4
+
+```go
+func numberOfArithmeticSlices(A []int) int {
+    ret := 0
+    n := len(A)
+    m := make([]map[int]int, n)
+    for i := 0; i < n; i++ {
+        m[i] = make(map[int]int)
+        for j := 0; j < i; j++ {
+            d := A[i] - A[j]
+            ret += m[j][d]
+            m[i][d] = m[i][d] + m[j][d] + 1
+        }
+    }
+    return ret
+}
+```
