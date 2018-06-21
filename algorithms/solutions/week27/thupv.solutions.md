@@ -24,9 +24,9 @@ def subdomain_visits(cpdomains)
 		result_hash[splitted_domains[0]] += number.to_i
     end
     result = [];
-	result_hash.each do |key, value|
-		result << "#{value} #{key}"
-	end
-	result
+    result_hash.each do |key, value|
+        result << "#{value} #{key}"
+    end
+    result
 end
 ```
