@@ -54,3 +54,35 @@ def dirReduc(arr)
   smart_dir
 end
 ```
+
+## Problem 3
+
+Link: https://leetcode.com/problems/chalkboard-xor-game/description/
+
+ * 168 / 168 test cases passed.
+ * Status: Accepted
+ * Runtime: 44ms
+```ruby
+# @param {Integer[]} nums
+# @return {Boolean}
+def xor_game(nums)
+  after_xor = nums.reduce(0) {|cum, num| cum ^ num}
+
+  return true if after_xor == 0
+
+  risky_attemps = count_1_bits(after_xor)
+  safe_attemps = nums.size - risky_attemps
+
+  return risky_attemps.even? if safe_attemps.even?
+  risky_attemps.odd?
+end
+
+def count_1_bits(num)
+  count = 0
+  while num != 0
+    num &= num - 1
+    count += 1
+  end
+  count
+end
+```
