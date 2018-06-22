@@ -30,6 +30,25 @@ func subdomainVisits(cpdomains []string) (result []string) {
 
 Problem 2:
 
+```go
+func dirReduc(input map[string]string) map[string]string {
+	mapping := map[string]string {
+		"NORTH": "SOUTH",
+		"SOUTH": "NORTH",
+		"EAST": "WEST",
+		"WEST": "EAST",
+	}
+	var stack []string
+	for _, item := range input {
+		if len(stack) > 0 && mapping[item] == stack[len(stack)-1] {
+			stack = stack[:len(stack)-1]
+		} else {
+			stack = append(stack, item)
+		}
+	}
+}
+```
+
 Problem 3:
 
 https://leetcode.com/problems/chalkboard-xor-game/solution/
