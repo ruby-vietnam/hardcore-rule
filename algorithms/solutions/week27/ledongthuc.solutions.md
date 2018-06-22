@@ -27,3 +27,37 @@ func subdomainVisits(cpdomains []string) (result []string) {
     return
 }
 ```
+
+Problem 2:
+
+Problem 3:
+
+https://leetcode.com/problems/chalkboard-xor-game/solution/
+
+```go
+func xorGame(nums []int) bool {
+    /*
+     * With len of nums's even, Alice will try to pick a item in list and the remaining will be odd XOR of them should be != 0
+     * Next turn, Bob will do the same to make sure the even remaining item have XOR !=0
+     * Finally, last item, Bod will pick and the remaining = []. XOR will be 0 => Alice win
+     */
+    length :=len(nums)
+    if length % 2 ==0 {
+        return true
+    }
+    
+    /*
+     * If init list have XOR == 0 => Alice win also
+     */ 
+    checking := nums[0]
+    for index := 1; index < length; index++ {
+            checking ^= nums[index];
+    }
+    if checking == 0 {
+        return true
+    }
+    
+    return false
+    // Another cases, Alice have able to be fail
+}
+```
