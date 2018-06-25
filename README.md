@@ -1,7 +1,7 @@
 
 # Ruby-VN hardcore rule
 
-![](http://y2qhn3k1en71o0wc72ishks11tz.wpengine.netdna-cdn.com/wp-content/uploads/2016/03/Hard-Things.jpg)
+![hard-thing](http://y2qhn3k1en71o0wc72ishks11tz.wpengine.netdna-cdn.com/wp-content/uploads/2016/03/Hard-Things.jpg)
 
 # Why
 
