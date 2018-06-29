@@ -25,3 +25,29 @@ func checkPossibility(nums []int) bool {
     return true
 }
 ```
+
+Problem 2:
+
+https://leetcode.com/problems/permutations/description/
+
+```go
+func permute(nums []int) [][]int {
+    return permuteP([][]int{[]int{}}, nums) 
+}
+
+func permuteP(current [][]int, rest []int) (result [][]int) {
+    if len(rest) == 0 {
+        return current
+    }
+    for cIndex, _ := range current {
+        for rIndex, _ := range rest {
+            temp := append(current[cIndex], rest[rIndex])
+            newRest := append([]int{}, rest[:rIndex]...)
+            newRest = append(newRest, rest[rIndex+1:]...)
+            result = append(result, permuteP([][]int{temp}, newRest)...)
+        }
+    }
+    
+    return result
+}
+```
