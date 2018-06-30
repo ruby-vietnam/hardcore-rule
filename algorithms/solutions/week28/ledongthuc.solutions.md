@@ -51,3 +51,40 @@ func permuteP(current [][]int, rest []int) (result [][]int) {
     return result
 }
 ```
+
+Problem 3:
+
+https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/
+
+```go
+public class Codec {
+    public String serialize(TreeNode root) {
+        return serialize(root, new StringBuilder()).toString();
+    }
+
+    private StringBuilder serialize(TreeNode root, StringBuilder stringBuilder) {
+        if (root == null) {
+            return stringBuilder.append("#####").append("@@@@@");
+        }
+        stringBuilder.append(root.val).append("@@@@@");
+        serialize(root.left, stringBuilder);
+        serialize(root.right, stringBuilder);
+        return stringBuilder;
+    }
+
+    public TreeNode deserialize(String data) {
+        return deserialize(new LinkedList<>(Arrays.asList(data.split("@@@@@"))));
+    }
+
+    private TreeNode deserialize(LinkedList<String> stack) {
+        String cur = stack.pop();
+        if (cur.equals("#####")) {
+            return null;
+        }
+        TreeNode treeNode = new TreeNode(Integer.valueOf(cur));
+        treeNode.left = deserialize(stack);
+        treeNode.right = deserialize(stack);
+        return treeNode;
+    }
+}
+```
