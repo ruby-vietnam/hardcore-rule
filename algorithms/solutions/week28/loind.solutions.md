@@ -3,18 +3,18 @@
 ```ruby
 def check_possibility(nums)
   count = 0
-  l = 0
-  r = nums.size - 1
+  n = nums.size - 1
 
-  while l < r
-    if nums[l] <= nums[r]
-      l += 1
-      r -= 1
-    else
+  n.times do |i|
+    if nums[i] > nums[i+1]
       count += 1
+      if i > 0 && nums[i + 1] < nums[i - 1]
+        nums[i + 1] = nums[i]
+      else
+        nums[i] = nums[i + 1]
+      end
     end
-    return false if count > 1
   end
-  true
+  count <= 1
 end
 ```
