@@ -21,13 +21,24 @@ end
 ## Problem 2
 
 ```ruby
+def generate(n, nums, permutations)
+  return permutations << nums.dup if n == 1
+  0.upto(n-1) do |i|
+    generate(n-1, nums, permutations)
+    if n.even?
+      nums[n-1], nums[i] = nums[i], nums[n-1]
+    else
+      nums[n-1], nums[0] = nums[0], nums[n-1]
+    end
+  end
+end
+
 # @param {Integer[]} nums
 # @return {Integer[][]}
 def permute(nums)
-  return [nums] if nums.size == 1
-  nums.map do |num|
-    permute(nums - [num]).map{|per| [num] + per}
-  end.flatten(1)
+  permutations = []
+  generate(nums.size, nums, permutations)
+  permutations
 end
 ```
 
