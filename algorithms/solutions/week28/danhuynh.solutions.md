@@ -30,3 +30,70 @@ def permute(nums)
   end.flatten(1)
 end
 ```
+
+## Problem 3
+```ruby
+# Encodes a tree to a single string.
+#
+# @param {TreeNode} root
+# @return {string}
+def serialize(root)
+  return '' unless root
+  root.val.to_s + ',' + serialize(root.left) + ',' + serialize(root.right)
+end
+
+# Decodes your encoded data to tree.
+#
+# @param {string} data
+# @return {TreeNode}
+def deserialize(data)
+  data = data.split(',') if data.is_a? String
+  value = data.shift
+  return nil if value == '' || value == nil
+  node = TreeNode.new(value)
+  node.left = deserialize(data)
+  node.right = deserialize(data)
+  return node
+end
+
+```
+
+## Problem 4
+```ruby
+class MedianFinder
+  # initialize your data structure here.
+  def initialize()
+    @numbers = []
+  end
+
+  #  :type num: Integer
+  #  :rtype: Void
+  def add_num(num)
+    return @numbers << num if @numbers.size == 0
+    low = 0
+    high = @numbers.size - 1
+    mid = nil
+
+    while low <= high
+      mid = (low + high) / 2
+      if num == @numbers[mid]
+        break
+      elsif num < @numbers[mid]
+        high = mid - 1
+      else
+        low = mid + 1
+      end
+    end
+
+    return @numbers.insert(mid+1, num) if @numbers[mid] <= num
+    @numbers.insert(mid, num)
+  end
+
+  # :rtype: Float
+  def find_median()
+    size = @numbers.size
+    return @numbers[size/2].to_f if size.odd?
+    return (@numbers[size/2 - 1] + @numbers[size/2]) / 2.0
+  end
+end
+```
