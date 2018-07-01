@@ -28,3 +28,4 @@
 - minhnt95
 - kiennt
 - ldhnam
+- k-i-k-ichi
