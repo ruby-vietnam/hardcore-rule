@@ -22,7 +22,7 @@
 - taurandat
 - thupv
 - tanlinhnd
-- ledongthuc
+- ledongthuc - @ledongthuc
 - danhuynhdev
 - huydx
 - minhnt95
