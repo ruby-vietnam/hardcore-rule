@@ -17,7 +17,7 @@
 - linxGnu
 - manhdaovan
 - Vuta
-- hieuk09
+- hieuk09 - @hieuk09
 - phantrinh
 - taurandat
 - thupv
