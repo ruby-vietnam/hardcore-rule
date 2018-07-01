@@ -9,7 +9,7 @@
 - duythinht
 - vthang95
 - nhantv94
-- qcam
+- qcam — @HQC
 - philuu265
 - trancongduy
 - thaod
