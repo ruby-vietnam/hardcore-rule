@@ -28,3 +28,4 @@
 - minhnt95
 - kiennt
 - ldhnam
+- trancongduy - @duytranc
