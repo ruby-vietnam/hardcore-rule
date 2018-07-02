@@ -27,7 +27,8 @@
 - huydx
 - minhnt95
 - kiennt
-- ldhnam
+- ldhnam - @ldhnam
+- duythinht - @duythinht
 - hieutm211 - @hieutm211
 - trancongduy - @duytranc
 - trietphm - @triet
