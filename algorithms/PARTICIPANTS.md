@@ -29,3 +29,4 @@
 - kiennt
 - ldhnam
 - trancongduy - @duytranc
+- trietphm - @triet
