@@ -3,7 +3,7 @@
 - dzungdev - @dzungdev
 - rubikill
 - longkt90
-- tamnd
+- tamnd - @gopher
 - RuniVN
 - nguyen7thai
 - duythinht
