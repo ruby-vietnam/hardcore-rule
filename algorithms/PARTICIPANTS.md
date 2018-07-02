@@ -1,15 +1,15 @@
 - thongbeo
 - unrealhoang - @u
-- dzungdev
+- dzungdev - @dzungdev
 - rubikill
 - longkt90
-- tamnd
+- tamnd - @gopher
 - RuniVN
 - nguyen7thai
 - duythinht
 - vthang95
 - nhantv94
-- qcam
+- qcam — @HQC
 - philuu265
 - trancongduy
 - thaod
@@ -17,15 +17,18 @@
 - linxGnu
 - manhdaovan
 - Vuta
-- hieuk09
+- hieuk09 - @hieuk09
 - phantrinh
 - taurandat
 - thupv
 - tanlinhnd
-- ledongthuc
+- ledongthuc - @ledongthuc
 - danhuynhdev
 - huydx
 - minhnt95
 - kiennt
-- ldhnam
-- duythinht
+- ldhnam - @ldhnam
+- duythinht - @duythinht
+- hieutm211 - @hieutm211
+- trancongduy - @duytranc
+- trietphm - @triet
