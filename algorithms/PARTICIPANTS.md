@@ -1,6 +1,6 @@
 - thongbeo
 - unrealhoang - @u
-- dzungdev
+- dzungdev - @dzungdev
 - rubikill
 - longkt90
 - tamnd
