@@ -28,5 +28,6 @@
 - minhnt95
 - kiennt
 - ldhnam
+- hieutm211 - @hieutm211
 - trancongduy - @duytranc
 - trietphm - @triet
