@@ -27,6 +27,7 @@
 - huydx
 - minhnt95
 - kiennt
+- dautroc - @loind
 - ldhnam - @ldhnam
 - duythinht - @duythinht
 - hieutm211 - @hieutm211
