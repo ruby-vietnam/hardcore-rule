@@ -28,7 +28,7 @@ fn get_week(title: &str) -> u64 {
     }
 }
 
-fn print_report(client: Github, owner: String, repo: String) {
+fn print_report(client: Github, owner: String, repo: String, w: u64) {
     let mut summaries: HashMap<u64, String> = HashMap::new();
     let mut page = 1;
 
@@ -50,14 +50,26 @@ fn print_report(client: Github, owner: String, repo: String) {
                 continue;
             }
             let week = get_week(pull["title"].as_str().unwrap());
+            if w != week {
+                continue;
+            }
             let mut summary = summaries.entry(week).or_insert(String::new());
+            let mut account = "";
             for line in solved_str.split("\r\n") {
+                if line.contains("SlackAcc") {
+                    let v: Vec<&str> = line.split(':').collect();
+                    account = v[1].trim();
+                }
                 if line.contains("Problem") {
                     summary.push_str(line);
                     summary.push_str(" | ");
                 }
             }
-            write!(&mut summary, "Owner: {}\n", pull["user"]["login"].as_str().unwrap()).unwrap();
+            if account.len() > 1 {
+                write!(&mut summary, "Owner: {}\n", account).unwrap();
+            } else {
+                write!(&mut summary, "Owner: {}\n", pull["user"]["login"].as_str().unwrap()).unwrap();
+            }
         }
 
         page += 1;
@@ -70,7 +82,7 @@ fn print_report(client: Github, owner: String, repo: String) {
     }
 }
 
-fn merge_pull_request(client: Github, owner: String, repo: String) {
+fn merge_pull_request(client: Github, owner: String, repo: String, week: u64) {
     let mut page = 1;
 
     loop {
@@ -89,6 +101,10 @@ fn merge_pull_request(client: Github, owner: String, repo: String) {
         for pull in pulls {
             let solved_str = pull["body"].as_str().unwrap();
             if !solved_str.contains("Problem") {
+                continue;
+            }
+            let w = get_week(pull["title"].as_str().unwrap());
+            if week != w {
                 continue;
             }
             let number_str = pull["number"].as_u64().unwrap().to_string();
@@ -119,6 +135,7 @@ fn main() -> Result<(), Box<Error>> {
     let mut args = env::args();
     args.next();
     let mode_str = args.next().unwrap_or(String::from("preview"));
+    let week = args.next().unwrap_or(String::from("0")).parse::<u64>().unwrap();
 
     let mode = if mode_str == "merge" {
         Mode::Merge
@@ -130,10 +147,10 @@ fn main() -> Result<(), Box<Error>> {
     let client = Github::new(token).expect("Invalid token");
     match mode {
         Mode::Preview => {
-            print_report(client, owner, repo);
+            print_report(client, owner, repo, week);
         },
         Mode::Merge => {
-            merge_pull_request(client, owner, repo);
+            merge_pull_request(client, owner, repo, week);
         }
     }
     // println!("Pulls: {:?}", pulls);
