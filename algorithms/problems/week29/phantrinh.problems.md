@@ -1,0 +1,4 @@
+- Problem 1: https://leetcode.com/problems/count-and-say/description/
+- Problem 2: https://www.spoj.com/problems/ELEVTRBL/
+- Problem 3: http://codeforces.com/problemset/problem/960/B
+- Bonus: https://www.hackerrank.com/challenges/stone-piles/problem
