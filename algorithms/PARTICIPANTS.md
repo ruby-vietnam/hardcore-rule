@@ -1,9 +1,9 @@
 - thongbeo
 - unrealhoang - @u
-- dzungdev
+- dzungdev - @dzungdev
 - rubikill
 - longkt90
-- tamnd
+- tamnd - @gopher
 - RuniVN
 - nguyen7thai
 - duythinht
@@ -22,9 +22,15 @@
 - taurandat
 - thupv
 - tanlinhnd
-- ledongthuc
+- ledongthuc - @ledongthuc
 - danhuynhdev
 - huydx
 - minhnt95
 - kiennt
-- ldhnam
+- k-i-k-ichi - @bachh
+- dautroc - @loind
+- ldhnam - @ldhnam
+- duythinht - @duythinht
+- hieutm211 - @hieutm211
+- trancongduy - @duytranc
+- trietphm - @triet
