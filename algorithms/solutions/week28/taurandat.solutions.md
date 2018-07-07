@@ -1,3 +1,6 @@
+# permutations
+
+```go
 func permute(num []int) [][]int{
     var helper func([]int, int)
     res := [][]int{}
@@ -26,3 +29,4 @@ func permute(num []int) [][]int{
 	helper(num, len(num))
     return res
 }
+```

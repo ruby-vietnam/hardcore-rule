@@ -1,5 +1,6 @@
 # https://leetcode.com/problems/non-decreasing-array/description/
 
+```ruby
 def non_decreasing_array?(nums)
   0.upto(nums.size - 2) do |idx|
     return false if nums[idx] > nums[idx + 1]
@@ -27,3 +28,4 @@ def check_possibility(nums)
 
   true
 end
+```
