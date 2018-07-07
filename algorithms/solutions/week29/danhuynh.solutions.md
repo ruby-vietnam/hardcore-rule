@@ -41,7 +41,7 @@ def find_optimal_move(moves_left, start, goal)
   if optimal_move.abs <= moves_left
     moves_left -= optimal_move.abs
   else
-    optimal_move = moves_left * optimal_move/optimal_move
+    optimal_move = moves_left * optimal_move / optimal_move
     moves_left = 0
   end
   [optimal_move, moves_left]
@@ -61,4 +61,69 @@ def minimize_error(n, k1, k2, arr1, arr2)
   end
   0.upto(n-1).reduce(0){|sum, i| sum + (arr1[i] - arr2[i]) ** 2}
 end
+```
+
+## Problem 4
+```ruby
+require 'set'
+
+@memorize_hash = {}
+
+def cal_mex(set)
+  (0..Float::INFINITY).each do |i|
+    return i unless set.include?(i)
+  end
+end
+
+def possible_moves(start, stone_count, previous_moves, moves)
+  (start..(stone_count/2)).each do |i|
+    if stone_count - i > i
+      moves << previous_moves + [i, stone_count - i]
+      possible_moves(i + 1, stone_count - i, previous_moves + [i], moves)
+    end
+  end
+end
+
+def cal_grundy(stone_count)
+  return 0 if stone_count <= 2
+  return 1 if stone_count == 3
+  return @memorize_hash[stone_count] if @memorize_hash[stone_count]
+
+  set = Set.new
+
+  moves = []
+  possible_moves(1, stone_count, [], moves)
+  moves.each do |moves|
+    grundy = moves.reduce(0){|sum, stones| sum ^ cal_grundy(stones)}
+    set.add(grundy)
+  end
+
+  @memorize_hash[stone_count] = cal_mex(set)
+  @memorize_hash[stone_count]
+end
+
+#
+# Complete the stonePiles function below.
+#
+def stonePiles(arr)
+  sum_grundy = arr.reduce(0){|sum, stone_count| sum ^ cal_grundy(stone_count)}
+  sum_grundy > 0 ? 'ALICE' : 'BOB'
+end
+
+fptr = File.open(ENV['OUTPUT_PATH'], 'w')
+
+t = gets.to_i
+
+t.times do |t_itr|
+    arr_count = gets.to_i
+
+    arr = gets.rstrip.split(' ').map(&:to_i)
+
+    result = stonePiles arr
+
+    fptr.write result
+    fptr.write "\n"
+end
+
+fptr.close()
 ```
