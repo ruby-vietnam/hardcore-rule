@@ -1,3 +1,6 @@
+# non_decreasing_array
+
+```ruby
 def check_possibility(nums)
   count = 0
 
@@ -18,3 +21,4 @@ def check_possibility(nums)
 
   true
 end
+```

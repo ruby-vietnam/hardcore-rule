@@ -1,3 +1,6 @@
+# serde_bintree
+
+```ruby
 # Definition for a binary tree node.
 # class TreeNode
 #     attr_accessor :val, :left, :right
@@ -39,3 +42,4 @@ end
 
 # Your functions will be called as such:
 # deserialize(serialize(data))
+```
