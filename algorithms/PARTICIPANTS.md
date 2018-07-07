@@ -24,7 +24,7 @@
 - tanlinhnd
 - ledongthuc - @ledongthuc
 - danhuynhdev
-- huydx
+- huydx - @h
 - minhnt95
 - kiennt
 - k-i-k-ichi - @bachh
