@@ -39,3 +39,33 @@ public static void main(String[] args) {
     
   }
 ```
+
+Problem1: https://leetcode.com/problems/count-and-say/description/
+
+The pattern is at the current nth number, we read off the prevous n-1 number. So we can use recursive and base case is when n == 1 then we return 1
+
+Time complexity is: O(n^2) as we need to loop through each character in string of n-1 number to generate the current nth number.
+
+```java
+public String countAndSay(int n) {
+    if (n == 1) {
+        return "1";
+    }
+    String previousWord = countAndSay(n-1);
+    char[] ch = previousWord.toCharArray();
+    StringBuilder sb = new StringBuilder("");
+    char curChar = ch[0];
+    int curCharCount = 1;
+    for (int i = 1; i < ch.length; i++) {
+        if (ch[i] == curChar) {
+            curCharCount++;
+        } else {
+            sb.append(curCharCount).append(curChar);
+            curChar = ch[i];
+            curCharCount = 1;
+        }
+    }
+    sb.append(curCharCount).append(curChar);
+    return sb.toString();
+}
+```
