@@ -23,6 +23,27 @@ end
 
 ## Problem 2
 ```ruby
+def find_route(floors, start, goal, up, down)
+  queue = []
+  visited = array.new(floors+1) {false}
+  queue << [start, 0]
+  step = 0
+  while queue.size > 0
+    current_floor, steps = queue.shift
+    visited[current_floor] = true
+    return steps if current_floor == goal
+    up_floor = current_floor + up
+    queue << [up_floor, steps + 1] if up_floor <= floors && !visited[up_floor]
+    down_floor = current_floor - down
+    queue << [down_floor, steps + 1] if down_floor > 0 && !visited[down_floor]
+    return steps + 1 if down_floor == goal || up_floor == goal
+  end
+  false
+end
+
+f, s, g, u, d = gets.rstrip.split(' ').map(&:to_i)
+
+puts(find_route(f, s, g, u, d) || 'use the stairs')
 ```
 
 ## Problem 3
