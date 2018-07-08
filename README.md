@@ -4,7 +4,6 @@
 ![hard-thing](http://y2qhn3k1en71o0wc72ishks11tz.wpengine.netdna-cdn.com/wp-content/uploads/2016/03/Hard-Things.jpg)
 
 # Why
-
 To improve ourself, we need a space for everyone research/discuss about things that is hard, and not normally able to face in everyday work. As you can see in above image, hard things's value is much more than easy things. You only live once, so why bother doing things that anybody can do????
 
 Hardthings vary from people to people, but as long-time member of ruby-vn, I think the below list is suitable for us right now. You can make a PR for things that you think is suitable:
@@ -49,7 +48,6 @@ Big idea
 - When you register a topic and fail to deliver that you MUST pay 10$. This money will be used to purchase ACM account for paper reading purpose.
 - Contact @huydx to join room
 
-# FAQ
 
 - You scare to join
   - me too, so there's no need to scare :)
