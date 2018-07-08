@@ -15,7 +15,7 @@
 - thaod
 - huytd
 - linxGnu
-- manhdaovan
+- manhdaovan - @manhdv
 - Vuta
 - hieuk09 - @hieuk09
 - phantrinh
