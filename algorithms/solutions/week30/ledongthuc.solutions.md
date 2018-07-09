@@ -18,3 +18,25 @@ func miniMaxSum(arr []int32) {
     fmt.Printf("%d %d", (total-int64(max)), (total-int64(min)))
 }
 ```
+
+Problem 2:
+
+https://www.hackerrank.com/challenges/sparse-arrays/problem
+
+```go
+func matchingStrings(strings []string, queries []string) (r []int32) {
+    qMap := make(map[string]int32)
+    for _, q := range queries {
+        qMap[q] = 0
+    }
+    for _, s := range strings {
+        if c, ok := qMap[s]; ok {
+            qMap[s] = c + 1
+        }
+    }
+    for _, q := range queries {
+        r = append(r, qMap[q])
+    }
+    return
+}
+```
