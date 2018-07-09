@@ -1,0 +1,4 @@
+- Problem 1: https://www.hackerrank.com/challenges/mini-max-sum/problem 
+- Problem 2: https://www.hackerrank.com/challenges/sparse-arrays/problem
+- Problem 3: http://codeforces.com/problemset/problem/1000/E
+- Bonus: https://leetcode.com/problems/median-of-two-sorted-arrays/description/
