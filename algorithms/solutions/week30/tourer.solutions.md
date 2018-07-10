@@ -13,3 +13,21 @@ static void miniMaxSum(int[] arr) {
     System.out.println(min + " " + max);
 }
 ```
+## [Sparse Arrays](https://www.hackerrank.com/challenges/sparse-arrays/problem)
+```java
+static int[] matchingStrings(String[] strings, String[] queries) {
+    Map<String, Integer> map = new HashMap<>();
+    for(int i = 0; i < strings.length; i++) {
+        int count = 0;
+        if(map.containsKey(strings[i])) {
+            count = map.get(strings[i]);
+        }
+        map.put(strings[i], count + 1);
+    }
+    int[] res = new int[queries.length];
+    for(int i = 0; i < queries.length; i++) {
+        res[i] = Optional.ofNullable(map.get(queries[i])).orElse(0);
+    }
+    return res;
+}
+```
