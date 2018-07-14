@@ -1,14 +1,17 @@
 ## [Problem 1: HackerRank: Mini-Max Sum](https://www.hackerrank.com/challenges/mini-max-sum/problem)
-      
+
+```python
   def miniMaxSum(arr):
       arr.sort()
       total = sum(arr)
       minSum = total - arr[-1]
       maxSum = total - arr[0]
       print(minSum, maxSum)
+```
 
 ## [Problem 2: HackerRank: Sparse Arrays](https://www.hackerrank.com/challenges/sparse-arrays/problem)
-      
+
+```python
   def matchingStrings(strings, queries):
       # brute force: traverse queries:
       # for each query, check how many strings matched. Append the result into a result array. 
@@ -20,6 +23,6 @@
                   count += 1 
           res.append(count)
       return res 
-
+```
 
 
