@@ -1,6 +1,6 @@
 # Algorithm Zone
 
-How we work?
+## How we work?
 
 1. Each week, a moderator will be chosen to:
 
@@ -22,3 +22,7 @@ How we work?
 
 - don't summit any solutions in one week **OR**
 - don't join any discussion
+
+## Chatroom
+- algorithm-input: general discussion for every technical things (algorithm, OS, FP..)
+- algorithm-output: discussion for homework only
