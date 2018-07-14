@@ -13,6 +13,9 @@ How we work?
 
 - submit code and peer-review (create a PR to this repo under `algorithms/solutions/` folder)
 - only submit solution after **3 days**, do not ask for solution before you show something to prove that you have done your homework
+- Exception: You could choose one of the following ways to do instead of doing algorithm homework:
+ - Blogging (not trivial stuff, another members will evalulate that your blog is worth a replacement or not)
+ - OSS (OpenSource contribution)
 
 3. For people who does not follow the rule, they will have to pay 200000 VND (or
    10 USD) to the admin (using [paypal](https://paypal.me/hieuk09)). The penalty is for people who:
