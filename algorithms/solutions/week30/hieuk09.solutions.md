@@ -9,3 +9,17 @@ def miniMaxSum(arr)
   puts "#{sum - max} #{sum - min}"
 end
 ```
+
+## Problem 2
+
+```ruby
+def matchingStrings(strings, queries)
+  hash = Hash.new { 0 }
+  hash = strings.inject(hash) do |result, string|
+    result[string] += 1
+    result
+  end
+
+  queries.map { |string| hash[string] }
+end
+```
