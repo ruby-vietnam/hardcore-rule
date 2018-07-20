@@ -20,7 +20,7 @@
 - hieuk09 - @hieuk09
 - phantrinh
 - taurandat
-- thupv
+- thupv - @thupv
 - tanlinhnd
 - ledongthuc - @ledongthuc
 - danhuynhdev
