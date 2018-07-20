@@ -133,7 +133,109 @@ func dynamicPrograming(root *TreeNode) (v1 int, v2 int) {
 }
 ```
 
-## Problem 3 - [Shortest Subarray with Sum at Least K](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/description/)
+## Problem 3 - [Kefa and Dishes](http://codeforces.com/contest/580/problem/D)
+
+```rust
+use std::boxed::Box;
+use std::io;
+
+const LIMIT_N: usize = 18;
+
+// This macro I found at: https://users.rust-lang.org/t/reading-and-parsing-a-line-from-stdin-containing-3-integers/7265/2
+macro_rules! parse_line {
+    ($($t: ty),+) => ({
+        let mut a_str = String::new();
+        io::stdin().read_line(&mut a_str).expect("read error");
+        let mut a_iter = a_str.split_whitespace();
+        (
+            $(
+            a_iter.next().unwrap().parse::<$t>().expect("parse error"),
+            )+
+        )
+    })
+}
+
+fn read_integers<T>() -> Box<Vec<T>>
+where
+    T: std::str::FromStr,
+    <T as std::str::FromStr>::Err: std::fmt::Debug,
+{
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Expect integers");
+    let v = input
+        .trim()
+        .split(' ')
+        .map(|a| a.parse::<T>())
+        .map(|a| a.expect("Expect integers"))
+        .collect::<Vec<T>>();
+    Box::from(v)
+}
+
+fn read_input() -> (usize, u32, Box<Vec<u64>>, [[u64; LIMIT_N]; LIMIT_N]) {
+    // first line
+    let (n, m, k) = parse_line!(usize, u32, u16);
+
+    // second line
+    let dishes = read_integers::<u64>();
+
+    // edges
+    let mut rules = [[0 as u64; LIMIT_N]; LIMIT_N];
+    for _ in 0..k {
+        let (u, v, w) = parse_line!(usize, usize, u64);
+        rules[u - 1][v - 1] = w;
+    }
+
+    (n, m, dishes, rules)
+}
+
+fn solve(n: usize, m: u32, dishes: Box<Vec<u64>>, rules: [[u64; LIMIT_N]; LIMIT_N]) -> u64 {
+    let limit = 1 << n;
+
+    let mut f = vec![vec![0 as u64; LIMIT_N]; limit];
+    let mut new_state: usize;
+    let mut current_state_val: u64;
+    let mut max: u64 = 0;
+
+    for i in 0..n {
+        f[1 << i][i] = dishes[i];
+        if max < dishes[i] {
+            max = dishes[i];
+        }
+    }
+
+    for state in 1..limit {
+        if usize::count_ones(state) < m {
+            for i in 0..n {
+                if (state >> i) & 1 == 1 {
+                    current_state_val = f[state][i];
+                    for j in 0..n {
+                        if (state >> j) & 1 == 0 {
+                            new_state = state | (1 << j);
+
+                            if f[new_state][j] < current_state_val + dishes[j] + rules[i][j] {
+                                f[new_state][j] = current_state_val + dishes[j] + rules[i][j];
+                                if max < f[new_state][j] {
+                                    max = f[new_state][j];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    max
+}
+
+fn main() {
+    let (n, m, dishes, rules) = read_input();
+    let result = solve(n, m, dishes, rules);
+    print!("{}", result);
+}
+```
+
+## Problem 4 - [Shortest Subarray with Sum at Least K](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/description/)
 
 * Solution 1: Fenwick tree
 
