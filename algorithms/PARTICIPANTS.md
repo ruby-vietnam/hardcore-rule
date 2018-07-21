@@ -16,7 +16,7 @@
 - huytd
 - linxGnu
 - manhdaovan - @manhdv
-- Vuta
+- Vuta - @jerome
 - hieuk09 - @hieuk09
 - phantrinh
 - taurandat - @data.csv
