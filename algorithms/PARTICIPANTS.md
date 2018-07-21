@@ -34,3 +34,4 @@
 - hieutm211 - @hieutm211
 - trancongduy - @duytranc
 - trietphm - @triet
+- hosyvietanh - @andyho
