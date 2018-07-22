@@ -2,7 +2,7 @@
 - unrealhoang - @u
 - dzungdev - @dzungdev
 - rubikill
-- longkt90
+- longkt90 - @longkt90
 - tamnd - @gopher
 - RuniVN
 - nguyen7thai
