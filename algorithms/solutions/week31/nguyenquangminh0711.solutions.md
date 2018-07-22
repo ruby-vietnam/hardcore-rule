@@ -9,6 +9,7 @@ Solutions:
   + Current node value (the path length is 1)
 - After that, we find node with highest sum in all node. However, there is a case that the maximum path would go up and down again. In that case, we just need to compare one more case: (node left sum + node right sum + current node value).
 
+- Complexity: O(2*n) => O(n); n is the number of nodes
 
 ```ruby
 # Definition for a binary tree node.
