@@ -1,4 +1,4 @@
-- thongbeo
+- thongbeo - @thongbeo
 - unrealhoang - @u
 - dzungdev - @dzungdev
 - rubikill
