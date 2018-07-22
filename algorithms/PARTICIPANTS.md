@@ -19,7 +19,7 @@
 - Vuta
 - hieuk09 - @hieuk09
 - phantrinh
-- taurandat
+- taurandat - @data.csv
 - thupv
 - tanlinhnd
 - ledongthuc - @ledongthuc
@@ -34,3 +34,4 @@
 - hieutm211 - @hieutm211
 - trancongduy - @duytranc
 - trietphm - @triet
+- hosyvietanh - @andyho
