@@ -90,9 +90,9 @@ fn parse_problems(body_str: &str) -> Vec<Problem> {
     }).collect()
 }
 
-fn parse_pull_request(pr: Value) -> Option<SubmitEntry> {
+fn parse_pull_request(pr: &Value) -> Option<SubmitEntry> {
     let body_str = pr["body"].as_str().unwrap();
-    let re = Regex::new(r"(?i)Problem").unwrap();
+    let re = Regex::new(r"\[.*\]").unwrap();
     if re.is_match(body_str) {
         let week = get_week(pr["title"].as_str().unwrap());
         let owner = pr["user"]["login"].as_str().unwrap().to_string();
@@ -104,7 +104,7 @@ fn parse_pull_request(pr: Value) -> Option<SubmitEntry> {
 }
 
 fn preview(ctx: Context) {
-    let mut summaries: HashMap<u32, String> = HashMap::new();
+    let mut summaries = HashMap::new();
     let mut page = 1;
 
     loop {
@@ -119,20 +119,9 @@ fn preview(ctx: Context) {
         let pulls = pulls.as_array().unwrap();
         if pulls.len() == 0 { break }
 
-        for pull in pulls {
-            let solved_str = pull["body"].as_str().unwrap();
-            if !solved_str.contains("Problem") {
-                continue;
-            }
-            let week = get_week(pull["title"].as_str().unwrap());
-            let mut summary = summaries.entry(week).or_insert(String::new());
-            for line in solved_str.split("\r\n") {
-                if line.contains("Problem") {
-                    summary.push_str(line);
-                    summary.push_str(" | ");
-                }
-            }
-            write!(&mut summary, "Owner: {}\n", pull["user"]["login"].as_str().unwrap()).unwrap();
+        for pull in pulls.iter().filter_map(|pull| parse_pull_request(pull)) {
+            let mut summary = summaries.entry(pull.week).or_insert(vec![]);
+            summary.push(pull);
         }
 
         page += 1;
@@ -140,7 +129,7 @@ fn preview(ctx: Context) {
 
     for (week, summary) in summaries.iter() {
         println!("Week {}: ", week);
-        print!("{}", summary);
+        print!("{:?}", summary);
         println!("=========================");
     }
 }
