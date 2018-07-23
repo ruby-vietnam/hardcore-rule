@@ -1,8 +1,8 @@
-- thongbeo
+- thongbeo - @thongbeo
 - unrealhoang - @u
 - dzungdev - @dzungdev
 - rubikill
-- longkt90
+- longkt90 - @longkt90
 - tamnd - @gopher
 - RuniVN
 - nguyen7thai
@@ -16,11 +16,11 @@
 - huytd
 - linxGnu
 - manhdaovan - @manhdv
-- Vuta
+- Vuta - @jerome
 - hieuk09 - @hieuk09
 - phantrinh
-- taurandat
 - thupv - @thupv
+- taurandat - @data.csv
 - tanlinhnd
 - ledongthuc - @ledongthuc
 - danhuynhdev
@@ -34,3 +34,5 @@
 - hieutm211 - @hieutm211
 - trancongduy - @duytranc
 - trietphm - @triet
+- hosyvietanh - @andyho
+- nguyenquangminh0711 - @nguyenquangminh0711
