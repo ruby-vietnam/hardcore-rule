@@ -19,8 +19,8 @@
 - Vuta - @jerome
 - hieuk09 - @hieuk09
 - phantrinh
+- thupv - @thupv
 - taurandat - @data.csv
-- thupv
 - tanlinhnd
 - ledongthuc - @ledongthuc
 - danhuynhdev
