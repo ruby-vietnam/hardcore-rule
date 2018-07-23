@@ -44,7 +44,7 @@ fn print_report(client: Github, owner: String, repo: String, w: u64) {
         let pulls = pulls.as_array().unwrap();
         if pulls.len() == 0 { break }
 
-        for pull in pulls {
+        for (index, pull) in pulls.iter().enumerate() {
             let solved_str = pull["body"].as_str().unwrap();
             if !solved_str.contains("Problem") {
                 continue;
@@ -55,6 +55,7 @@ fn print_report(client: Github, owner: String, repo: String, w: u64) {
             }
             let mut summary = summaries.entry(week).or_insert(String::new());
             let mut account = "";
+            write!(&mut summary, "#{}. ", index + 1).unwrap();
             for line in solved_str.split("\r\n") {
                 if line.contains("SlackAcc") {
                     let v: Vec<&str> = line.split(':').collect();
