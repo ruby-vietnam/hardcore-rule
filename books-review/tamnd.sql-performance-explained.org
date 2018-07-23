@@ -23,7 +23,7 @@ Nhưng nếu bạn là 1 trong số ít người muốn (bắt đầu) hiểu t�
 Nhưng nếu bạn muốn hiểu sâu hơn vè các loại indexing khác nhau trong relational database, hoặc muốn 15-20 năm nữa lúc thành quái vật rồi muốn viết 1 bộ query optimizer riêng, thì có lẽ cuốn sách ko đáp ứng được (chỉ đề cập đến b-tree index). 
 
 ** Table of contents
-#+BEGIN_QUOTE
+#+BEGIN_SRC text
     Preface — Why is indexing a development task?
     Anatomy of an Index — What does an index look like?
         The Leaf Nodes — A doubly linked list
@@ -78,5 +78,5 @@ Nhưng nếu bạn muốn hiểu sâu hơn vè các loại indexing khác nhau t
         Insert — cannot take direct benefit from indexes
         Delete — uses indexes for the where clause
         Update — does not affect all indexes of the table
-#+END_QUOTE
+#+END_SRC
 
