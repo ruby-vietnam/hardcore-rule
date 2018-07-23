@@ -13,7 +13,7 @@
 - philuu265
 - trancongduy
 - thaod
-- huytd
+- huytd - @huytd
 - linxGnu
 - manhdaovan - @manhdv
 - Vuta - @jerome
