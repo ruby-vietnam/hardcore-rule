@@ -1,4 +1,4 @@
-## Modern Operating System
+## Modern Operating Systems
 
 ### Info
 ```
@@ -8,6 +8,8 @@ Language: English
 Author: Andrew S. Tanenbaum, Herbert Bos
 Goodread: https://www.goodreads.com/book/show/18762100-modern-operating-systems-4th-edition
 ```
+
+![](https://www.docdroid.net/file/view/WExMQdZ/modern-operating-systems-latest-in-line-with-answers.jpg)
 
 ### Review
 Một cuốn sách nhập môn khá đầy đủ về lý thuyết hệ điều hành. Các khái niệm được giải thích vừa đủ và khá well-done, cuối mỗi chương đều có phần điểm qua 1 số kết quả research, tóm tắt và câu hỏi (tầm khoảng 50-60 câu hỏi mỗi chương, các bạn có thể tự challenge mình bằng cách đọc câu hỏi trước khi dọc nội dung chương :p). Tuy nhiên, cuốn sách chỉ tập trung vào lý thuyết, theo mình nên đọc kết hợp với cuốn Operating Systems: Design and Implementation, với cấu trúc sách gần như tương tự, và tập trung vào cài đặt 1 hệ điều hành cụ thể (Mimix) (source code: https://github.com/gdevic/minix1), hoặc bản mimix 3 mới nhất https://github.com/Stichting-MINIX-Research-Foundation/minix. Nếu bạn ko có thời gian tự cài lại từ đầu, thì có thể đọc hiểu source code, tự build lấy và cài lại từng phần. Do topics cover khá lớn, nên rất khó để tóm tắt nội dung trong vài câu, mình sẽ liệt kê mục lục chi tiết ở dưới.
