@@ -36,3 +36,51 @@ const leafSimilar = (root1, root2) => {
     return true;
 };
 ```
+
+# Problem 2
+
+URL: https://leetcode.com/problems/most-frequent-subtree-sum/description/
+
+```javascript
+/* 
+ * [508] Most Frequent Subtree Sum
+ * Status:
+ *  ✔ Accepted
+ *  ✔ 61/61 cases passed (96 ms)
+ *  ✔ Your runtime beats 16.67 % of javascript submissions
+ */
+ 
+const sum = root => {
+    return root.val + (root.left ? sum(root.left) : 0) + (root.right ? sum(root.right) : 0);
+};
+
+const build = root => {
+    let output = [];
+    let stack = [root];
+    while (stack.length) {
+        let node = stack.pop();
+        if (node.right) stack.push(node.right);
+        if (node.left) stack.push(node.left);
+        output.push(sum(node));
+    }
+    return output;
+};
+
+const findFrequentTreeSum = root => {
+    if (!root) return [];
+    let output = [];
+    let maxFreq = 0;
+    let freq = build(root).reduce((arr, curr) => {
+        if (!arr[curr]) arr[curr] = 0;
+        arr[curr] += 1;
+        if (arr[curr] > maxFreq) maxFreq = arr[curr];
+        return arr;
+    }, {});
+
+    for (let key in freq) {
+        if (freq[key] === maxFreq) output.push(~~key);
+    }
+
+    return output;
+};
+```
