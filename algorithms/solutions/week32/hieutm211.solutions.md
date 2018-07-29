@@ -11,28 +11,27 @@
  * };
  */
 
-void findSequence(TreeNode * root, vector<int>& ans){
-    stack<TreeNode> st;    
-    TreeNode p(0);
-    
-    ans.clear();
-    
-    st.push(*root);
-    while(!st.empty()){
-        p = st.top(); st.pop();
-
-        if (p.left == NULL && p.right == NULL) ans.push_back(p.val);
-        else {
-            if (p.right != NULL) st.push(*p.right);
-            if (p.left != NULL) st.push(*p.left);   
-        }
-    }    
-}
-
 class Solution {
 public:
+    void findSequence(TreeNode * root, vector<int>& ans){
+        stack<TreeNode> st;    
+        TreeNode p(0);
+    
+        ans.clear();
+        
+        st.push(*root);
+        while(!st.empty()){
+            p = st.top(); st.pop();
+
+            if (p.left == NULL && p.right == NULL) ans.push_back(p.val);
+            else {
+                if (p.right != NULL) st.push(*p.right);
+                if (p.left != NULL) st.push(*p.left);   
+            }
+        }    
+    }
+
     bool leafSimilar(TreeNode* root1, TreeNode* root2) {
-        stack<TreeNode> st;
         vector<int> sequence[2];
 
         findSequence(root1, sequence[0]);
