@@ -1,0 +1,82 @@
+#+TITLE: SQL Performance Explained
+
+** Info
+#+BEGIN_QUOTE
+Author: Markus Winand 
+Paperback: 204 pages
+Publisher: Markus Winand (2012)
+Language: English
+Link: https://www.goodreads.com/book/show/17225810-sql-performance-explained
+#+END_QUOTE
+
+[[https://images-na.ssl-images-amazon.com/images/I/51D2JZLEFLL._SX324_BO1,204,203,200_.jpg]]
+
+[[http://www.commitstrip.com/wp-content/uploads/2014/06/Strip-Probl%C3%A8me-dIndex-650-finalenglish.jpg]]
+
+** Review
+Với tinh thần "boring tech first", đầu tiên mình muốn giới thiệu đến cuốn "SQL Performance Explained".
+
+Cuốn sách giới thiệu về SQL indexing, có thể coi như là bản pdf của trang web https://use-the-index-luke.com/. Với việc nhà nhà chuyển sang NoSQL, vì SQL ko [[http://www.mongodb-is-web-scale.com/][web scale]], số ít bám trụ lại thì xài ORM tầng tầng lớp lớp on top SQL, đến mức ko cần quan tâm đến bên dưới SQL được chạy như thế nào, có tối ưu hay ko, thì một cuốn sách về SQL indexing đúng là 1 cuốn... ko dc ai quan tâm :))
+
+Nhưng nếu bạn là 1 trong số ít người muốn (bắt đầu) hiểu tại sao SQL query của mình lại chậm, và index giúp gì cho việc tăng tốc 1 câu query, thì đây là 1 cuốn sách thú vị. Viết cực kì practical, giải thích cặn kẽ query plan của nhiều câu lệnh SQL cụ thể khác nhau, so sánh chi tiết khác nhau giữa Postgres, Oracle, SQL Server và MySQL, cũng có luôn 1 chương nói về Clustering Data và 1 chương nói về Partial Results. Phần phụ lục khá thú vị, là reference về các lệnh để xem execution plan của 1 query cụ thể nào đó. Đây cũng là cuốn sách mình tham khảo khi viết 1 ORM = Go, dựa vào data structure define ngay trong Go để sinh ra optimized database schema + query.
+
+Nhưng nếu bạn muốn hiểu sâu hơn vè các loại indexing khác nhau trong relational database, hoặc muốn 15-20 năm nữa lúc thành quái vật rồi muốn viết 1 bộ query optimizer riêng, thì có lẽ cuốn sách ko đáp ứng được (chỉ đề cập đến b-tree index). 
+
+** Table of contents
+#+BEGIN_SRC text
+    Preface — Why is indexing a development task?
+    Anatomy of an Index — What does an index look like?
+        The Leaf Nodes — A doubly linked list
+        The B-Tree — It's a balanced tree
+        Slow Indexes, Part I — Two ingredients make the index slow
+    The Where Clause — Indexing to improve search performance
+        The Equals Operator — Exact key lookup
+            Primary Keys — Verifying index usage
+            Concatenated Keys — Multi-column indexes
+            Slow Indexes, Part II — The first ingredient, revisited
+        Functions — Using functions in the where clause
+            Case-Insensitive Search — UPPER and LOWER
+            User-Defined Functions — Limitations of function-based indexes
+            Over-Indexing — Avoid redundancy
+        Bind Variables — For security and performance
+        Searching for Ranges — Beyond equality
+            Greater, Less and BETWEEN — The column order revisited
+            Indexing SQL LIKE Filters — LIKE is not for full-text search
+            Index Combine — Why not using one index for every column?
+        Partial Indexes — Indexing selected rows
+        NULL in the Oracle Database — An important curiosity
+            NULL in Indexes — Every index is a partial index
+            NOT NULL Constraints — affect index usage
+            Emulating Partial Indexes — using function-based indexing
+        Obfuscated Conditions — Common anti-patterns
+            Dates — Pay special attention to DATE types
+            Numeric Strings — Don't mix types
+            Combining Columns — use redundant where clauses
+            Smart Logic — The smartest way to make SQL slow
+            Math — Databases don't solve equations
+    Testing and Scalability — About hardware
+        Data Volume — Sloppy indexing bites back
+        System Load — Production load affects response time
+        Response Time and Throughput — Horizontal scalability
+    The Join Operation — Not slow, if done right
+        Nested Loops — About the N+1 selects problem in ORM
+        Hash Join — Requires an entirely different indexing approach
+        Sort-Merge Join ‌— Like a zipper on two sorted sets
+    Clustering Data — To reduce IO
+        Index Filter Predicates Intentionally Used — to tune LIKE
+        Index-Only Scan — Avoiding table access
+        Index-Organized Table — Clustered indexes without tables
+    Sorting and Grouping — Pipelined order by: the third power
+        Indexed Order By — where clause interactions
+        ASC/DESC and NULL FIRST/LAST — changing index order
+        Indexed Group By — Pipelining group by
+    Partial Results — Paging efficiently
+        Selecting Top-N Rows — if you need the first few rows only
+        Fetching The Next Page — The offset and seek methods compared
+        Window-Functions — Pagination using analytic queries
+    Insert, Delete and Update — Indexing impacts on DML statements
+        Insert — cannot take direct benefit from indexes
+        Delete — uses indexes for the where clause
+        Update — does not affect all indexes of the table
+#+END_SRC
+
