@@ -22,6 +22,8 @@ Oh, hình ảnh cuối sách cũng khá thú vị
 - Chapter 5. Turning the database inside out
 
 ** References
+Một ít link tham khảo về event sourcing và cqrs.
+
 - [[https://www.confluent.io/blog/turning-the-database-inside-out-with-apache-samza/][Turning the database inside-out with Apache Samza]]
 - [[https://www.confluent.io/blog/making-sense-of-stream-processing/][Stream processing, event sourcing, reactive, CEP... and making sense of it all]]
 -  Clarified CQRS http://udidahan.com/2009/12/09/clarified-cqrs/
