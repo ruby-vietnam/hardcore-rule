@@ -4,6 +4,7 @@ extern crate serde_json;
 extern crate structopt;
 extern crate github_rs;
 extern crate regex;
+extern crate chrono;
 
 use std::io::Error;
 use std::fmt::Display;
@@ -16,6 +17,9 @@ use serde_json::Value;
 use regex::Regex;
 use std::collections::HashMap;
 use structopt::StructOpt;
+
+use chrono::DateTime;
+use chrono::offset::Utc;
 
 
 #[derive(StructOpt, Debug)]
@@ -67,7 +71,8 @@ struct WeekSubmitPR {
     week: u32,
     number: u32,
     owner: String,
-    entries: Vec<Entry>
+    entries: Vec<Entry>,
+    created_at: DateTime<Utc>,
 }
 
 impl Display for WeekSubmitPR {
@@ -76,12 +81,12 @@ impl Display for WeekSubmitPR {
         for entry in self.entries.iter() {
             write!(f, "{}: ", entry.title)?;
             if entry.done {
-                write!(f, "{:<2}", "✅")?;
-            } else {
                 write!(f, "{:<2}", "X")?;
+            } else {
+                write!(f, "{:<2}", " ")?;
             }
         }
-        write!(f, "]")
+        write!(f, "]. At: {}", self.created_at)
     }
 }
 
@@ -116,7 +121,8 @@ fn parse_pull_request(pr: &Value) -> Option<WeekSubmitPR> {
         let owner = pr["user"]["login"].as_str().unwrap().to_string();
         let entries = parse_entries(body_str);
         let number = pr["number"].as_u64().unwrap() as u32;
-        Some(WeekSubmitPR { week, owner, entries, number })
+        let created_at = pr["created_at"].as_str().unwrap().parse::<DateTime<Utc>>().unwrap();
+        Some(WeekSubmitPR { week, owner, entries, number, created_at })
     } else {
         None
     }
