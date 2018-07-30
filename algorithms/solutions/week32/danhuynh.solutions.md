@@ -80,15 +80,19 @@ def solve(s, f, t, m)
 
   if s < f
     ret = s - 1
-    while ret < t
-      ret += lapse
-    end
+    ret += ((t - ret) / lapse.to_f).ceil * lapse if ret < t
+    # same as this
+    # while ret < t
+    #   ret += lapse
+    # end
     ret += f - s
   else
     ret = lapse - (s - 1)
-    while ret < t
-      ret += lapse
-    end
+    ret += ((t - ret) / lapse.to_f).ceil * lapse if ret < t
+    # same as this
+    # while ret < t
+    #   ret += lapse
+    # end
     ret += s - f
   end
   ret
