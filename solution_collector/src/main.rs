@@ -6,7 +6,8 @@ extern crate github_rs;
 extern crate regex;
 
 use std::io::Error;
-use std::fmt::Write;
+use std::fmt::Display;
+use std::fmt;
 
 use std::env;
 use github_rs::StatusCode;
@@ -16,8 +17,9 @@ use regex::Regex;
 use std::collections::HashMap;
 use structopt::StructOpt;
 
+
 #[derive(StructOpt, Debug)]
-#[structopt(name = "solution_collector")]
+#[structopt(name = "soco")]
 struct Opt {
     #[structopt(subcommand)]
     command: Command
@@ -55,16 +57,32 @@ impl Context {
 }
 
 #[derive(Debug)]
-struct Problem {
+struct Entry {
     title: String,
     done: bool
 }
 
 #[derive(Debug)]
-struct SubmitEntry {
+struct WeekSubmitPR {
     week: u32,
+    number: u32,
     owner: String,
-    problems: Vec<Problem>
+    entries: Vec<Entry>
+}
+
+impl Display for WeekSubmitPR {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "Owner: {:<20}. Entries: [", self.owner)?;
+        for entry in self.entries.iter() {
+            write!(f, "{}: ", entry.title)?;
+            if entry.done {
+                write!(f, "{:<2}", "✅")?;
+            } else {
+                write!(f, "{:<2}", "X")?;
+            }
+        }
+        write!(f, "]")
+    }
 }
 
 fn get_week(title: &str) -> u32 {
@@ -76,28 +94,29 @@ fn get_week(title: &str) -> u32 {
     }
 }
 
-fn parse_problems(body_str: &str) -> Vec<Problem> {
+fn parse_entries(body_str: &str) -> Vec<Entry> {
     let re = Regex::new(r"(?i)\[.*\](.*)").unwrap();
     let re_check_done = Regex::new(r"\[.*[^\s].*\]").unwrap();
     body_str.lines().filter_map(|line| {
         if let Some(cap) = re.captures(line) {
-            let title = cap.get(1).map_or(String::from(""), |m| m.as_str().to_string());
+            let title = cap.get(1).map_or(String::from(""), |m| m.as_str().trim().to_string());
             let done = if re_check_done.is_match(line) { true } else { false };
-            Some(Problem { title, done })
+            Some(Entry { title, done })
         } else {
             None
         }
     }).collect()
 }
 
-fn parse_pull_request(pr: &Value) -> Option<SubmitEntry> {
+fn parse_pull_request(pr: &Value) -> Option<WeekSubmitPR> {
     let body_str = pr["body"].as_str().unwrap();
     let re = Regex::new(r"\[.*\]").unwrap();
     if re.is_match(body_str) {
         let week = get_week(pr["title"].as_str().unwrap());
         let owner = pr["user"]["login"].as_str().unwrap().to_string();
-        let problems = parse_problems(body_str);
-        Some(SubmitEntry { week, owner, problems })
+        let entries = parse_entries(body_str);
+        let number = pr["number"].as_u64().unwrap() as u32;
+        Some(WeekSubmitPR { week, owner, entries, number })
     } else {
         None
     }
@@ -127,9 +146,12 @@ fn preview(ctx: Context) {
         page += 1;
     }
 
-    for (week, summary) in summaries.iter() {
+    for (week, summary) in summaries.iter_mut() {
         println!("Week {}: ", week);
-        print!("{:?}", summary);
+        summary.sort_by_key(|pr| pr.entries.iter().filter(|entry| entry.done).count());
+        for pr in summary.iter().rev() {
+            println!("{}", pr);
+        }
         println!("=========================");
     }
 }
@@ -150,18 +172,12 @@ fn merge_pull_request(ctx: Context, week: u32) {
         let pulls = pulls.as_array().unwrap();
         if pulls.len() == 0 { break }
 
-        for pull in pulls {
-            let solved_str = pull["body"].as_str().unwrap();
-            if !solved_str.contains("Problem") {
+        for pull in pulls.iter().filter_map(|pull| parse_pull_request(pull)) {
+            if pull.week != week {
                 continue;
             }
-            let w = get_week(pull["title"].as_str().unwrap());
-            if week != w {
-                continue;
-            }
-            let number_str = pull["number"].as_u64().unwrap().to_string();
-            let endpoint = format!("repos/{}/{}/pulls/{}/merge", ctx.owner, ctx.repo, number_str);
-            println!("Merging {}. Endpoint: {}", number_str, endpoint);
+            let merge_endpoint = format!("repos/{}/{}/pulls/{}/merge", ctx.owner, ctx.repo, pull.number);
+            println!("Merging {}. Endpoint: {}", pull.number, merge_endpoint);
 
             let body = json!({});
             let (_, result, response) = ctx.client.put(body)
@@ -171,8 +187,10 @@ fn merge_pull_request(ctx: Context, week: u32) {
             if result == StatusCode::Ok {
                 merged = true;
             }
+
             println!("Result: {:?}. Response: {}", result, response.unwrap_or(json!(null)));
         }
+
         // There's no PR that can be merged from this page, move to next one
         if !merged {
             page += 1

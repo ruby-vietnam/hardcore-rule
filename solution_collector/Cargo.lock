@@ -621,7 +621,7 @@ version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
-name = "solution_collector"
+name = "soco"
 version = "0.1.0"
 dependencies = [
  "github-rs 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
