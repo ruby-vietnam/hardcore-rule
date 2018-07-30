@@ -23,7 +23,7 @@
 - taurandat - @data.csv
 - tanlinhnd
 - ledongthuc - @ledongthuc
-- danhuynhdev
+- danhuynhdev - @danhuynh
 - huydx - @h
 - minhnt95
 - kiennt
