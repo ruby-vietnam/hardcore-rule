@@ -27,7 +27,7 @@
 - huydx - @h
 - minhnt95
 - kiennt
-- k-i-k-ichi - @bachh
+- bachhh - @bachh
 - dautroc - @loind
 - ldhnam - @ldhnam
 - duythinht - @duythinht
