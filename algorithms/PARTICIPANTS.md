@@ -10,7 +10,7 @@
 - vthang95
 - nhantv94
 - qcam — @HQC
-- philuu265
+- philuu265 - @tourer
 - trancongduy
 - thaod
 - huytd - @huytd
