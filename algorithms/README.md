@@ -1,5 +1,17 @@
 # Algorithm Zone
 
+## How to join?
+
+1. Add your Github ID into [PARTICIPANTS.md](PARTICIPANTS.md) in the following format:
+
+   ```
+   - <github-id> - @<slack-id>
+   ```
+   
+   Since we're all on Slack, it would be great to have your slack ID added. But it's not a must.
+   
+2. That's all. If you don't put your ID in this file. Your submissions won't be scored.
+
 ## How we work?
 
 1. Each week, a moderator will be chosen to:
@@ -23,6 +35,8 @@
 - don't summit any solutions in one week **OR**
 - don't join any discussion
 
+4. The submissions will be scored as: `Easy = 1`, `Medium = 2`, `Hard = 4`.
+
 ## Chatroom
-- algorithm-input: general discussion for every technical things (algorithm, OS, FP..)
+- algorithm-hangout: general discussion for every technical things (algorithm, OS, FP..)
 - algorithm-output: discussion for homework only
