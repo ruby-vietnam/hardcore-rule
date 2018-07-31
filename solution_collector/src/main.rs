@@ -162,6 +162,26 @@ fn parse_entries(body_str: &str) -> Vec<Entry> {
     }).collect()
 }
 
+/* Return score for an entry with the following rule:
+ *  Problem 1 (Easy)   = 1
+ *  Problem 2 (Medium) = 2
+ *  Problem 3 (Hard)   = 3
+ *  Problem 4 (Bonus)  = 4
+ */
+fn parse_entry_score(entry: &Entry) -> u32 {
+    if !entry.done { return 0; }
+    let re = Regex::new(r"(\d)").unwrap();
+    if let Some(cap) = re.captures(&entry.title) {
+        return cap.get(1).map_or(0, |w| w.as_str().parse::<u32>().unwrap_or(0));
+    }
+    return 0;
+}
+
+/* Sum up the total score for each PR here */
+fn parse_submission_score(pr: &WeekSubmitPR) -> u32 {
+    pr.entries.iter().fold(0u32, |acc, entry| acc + parse_entry_score(&entry))
+}
+
 fn parse_pull_request(pr: &Value) -> Option<WeekSubmitPR> {
     let body_str = pr["body"].as_str().unwrap();
     let re = Regex::new(r"\[.*\]").unwrap();
@@ -185,11 +205,12 @@ fn week_report(ctx: Context, week: u32) {
 
     for (parsing_week, summary) in summaries.iter_mut() {
         if *parsing_week == week {
-            summary.sort_by_key(|pr| pr.entries.iter().filter(|entry| entry.done).count());
+            summary.sort_by_key(|pr| parse_submission_score(pr));
             for pr in summary.iter().rev() {
                 if let Some(index) = non_participants.iter().position(|n| n == &pr.owner) {
                     non_participants.remove(index);
-                    participants.push((&pr.owner).to_owned());
+                    let score = parse_submission_score(&pr);
+                    participants.push(format!("{} \t\t (score = {})", &pr.owner, score));
                 } else {
                     unregistered_participants.push((&pr.owner).to_owned());
                 }
