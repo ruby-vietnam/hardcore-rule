@@ -35,7 +35,7 @@
 - don't summit any solutions in one week **OR**
 - don't join any discussion
 
-4. The submissions will be scored as: `Easy = 1`, `Medium = 2`, `Hard = 4`.
+4. The submissions will be scored as the summary of your solved problems: `Easy = 1`, `Medium = 2`, `Hard = 4`.
 
 ## Chatroom
 - algorithm-hangout: general discussion for every technical things (algorithm, OS, FP..)
