@@ -165,14 +165,18 @@ fn parse_entries(body_str: &str) -> Vec<Entry> {
 /* Return score for an entry with the following rule:
  *  Problem 1 (Easy)   = 1
  *  Problem 2 (Medium) = 2
- *  Problem 3 (Hard)   = 3
- *  Problem 4 (Bonus)  = 4
+ *  Problem 3 (Hard)   = 4
+ *  Problem 4 (Hard)   = 4
  */
 fn parse_entry_score(entry: &Entry) -> u32 {
     if !entry.done { return 0; }
     let re = Regex::new(r"(\d)").unwrap();
     if let Some(cap) = re.captures(&entry.title) {
-        return cap.get(1).map_or(0, |w| w.as_str().parse::<u32>().unwrap_or(0));
+        let num = cap.get(1).map_or(0, |w| w.as_str().parse::<u32>().unwrap_or(0));
+        return match num {
+            3 | 4 => 4,
+            _ => num
+        };
     }
     return 0;
 }
