@@ -24,3 +24,21 @@ public:
     }
 };
 ```
+
+## Problem 2 - [Scheduling (Shortest Job First or SJF)](https://www.codewars.com/kata/scheduling-shortest-job-first-or-sjf)
+
+We can find all elements jobs[i] less than jobs[index] (if jobs[i] equal to jobs[index] we compare i less than index).
+
+Time complexity: O(N)
+
+```cpp
+int SJF(std::vector <int> jobs, int index){
+  // your code here..
+  int sum = 0;
+  for (int i = 0; i < jobs.size(); ++i) {
+    if (jobs[i] < jobs[index] || jobs[i] == jobs[index] && i <= index) 
+      sum += jobs[i];
+  }
+  return sum;
+}
+```
