@@ -19,14 +19,11 @@ Link: https://leetcode.com/problems/middle-of-the-linked-list
 def middle_node(head)
     node = head
     middle_node = head
-    count = 0
     while !node.nil?
-        count += 1
         node = node.next
-        if count == 2
-            middle_node = middle_node.next
-            count = 0
-        end
+        return middle_node if node.nil?
+        node = node.next
+        middle_node = middle_node.next
     end
     middle_node
 end
