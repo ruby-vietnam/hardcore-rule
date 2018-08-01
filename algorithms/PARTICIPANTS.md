@@ -40,5 +40,5 @@
 - vnqthai - @thai
 - MrNinja - @rikimaru
 - lmduc - @mtt
-- Ly Xuan Sang - @lyxuansang91
+- lyxuansang91 - @lyxuansang91
 - viethnguyen - @vietnguyen
