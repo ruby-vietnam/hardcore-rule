@@ -26,3 +26,18 @@ class Solution:
         return slow.next 
 ```
 
+## [Problem 2. Scheduling (Shortest Job First or SJF)](https://www.codewars.com/kata/scheduling-shortest-job-first-or-sjf/train/python)
+
+```python 
+def SJF(jobs, index):
+    #implment Shortest Job First
+    # idea: sort the `jobs` array (stable) with original job indexes memorized. 
+    jobsSortedWithIndexes = sorted(enumerate(jobs), key=lambda x:x[1])
+    res = 0
+    for jobWithIndex in jobsSortedWithIndexes:
+        res += jobWithIndex[1]
+        if jobWithIndex[0] == index:
+            break 
+    return res 
+```
+
