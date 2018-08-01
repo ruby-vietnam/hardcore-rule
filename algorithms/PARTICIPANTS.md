@@ -23,11 +23,11 @@
 - taurandat - @data.csv
 - tanlinhnd
 - ledongthuc - @ledongthuc
-- danhuynhdev
+- danhuynhdev - @danhuynh
 - huydx - @h
 - minhnt95
 - kiennt
-- k-i-k-ichi - @bachh
+- bachhh - @bachh
 - dautroc - @loind
 - ldhnam - @ldhnam
 - duythinht - @duythinht
@@ -37,4 +37,8 @@
 - hosyvietanh - @andyho
 - nguyenquangminh0711 - @nguyenquangminh0711
 - luongvo209 - @luongvo209
+- vnqthai - @thai
+- MrNinja - @rikimaru
+- lmduc - @mtt
+- Ly Xuan Sang - @lyxuansang91
 - viethnguyen - @vietnguyen
