@@ -123,8 +123,7 @@ fn get_participants(ctx: &Context) -> Vec<String> {
         .execute::<Value>().unwrap();
 
     let content = content.unwrap();
-    let content = &content["content"].as_str().unwrap();
-    let content = content.lines().into_iter().fold(String::new(), |acc, line| acc + line);
+    let content = &content["content"].as_str().unwrap().replace("\n", "");
     let decoded = base64::decode(&content).unwrap();
     let content = String::from_utf8(decoded).unwrap();
     let mut result = vec![];
