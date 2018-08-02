@@ -41,3 +41,24 @@ def SJF(jobs, index):
     return res 
 ```
 
+## [Problem 4. Twice Linear](https://www.codewars.com/kata/twice-linear/train/python)
+
+```python 
+def dbl_linear(n):
+	# your code
+    array = [1] 
+    count = 0 
+    idx2, idx3 = 0, 0
+    while len(array) <= n+1: 
+        #print(array) 
+        if 2 * array[idx2] + 1 < 3 * array[idx3] + 1:
+            array.append(2 * array[idx2]+1)
+            idx2 += 1 
+        elif 2 * array[idx2] + 1 > 3 * array[idx3] + 1:
+            array.append(3 * array[idx3]+1)
+            idx3 += 1 
+        else: 
+            idx2 += 1 
+            
+    return array[n] 
+```
