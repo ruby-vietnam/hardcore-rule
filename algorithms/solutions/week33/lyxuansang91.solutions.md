@@ -42,3 +42,37 @@ int SJF(std::vector <int> jobs, int index){
   return sum;
 }
 ```
+
+## Problem 4 - [Twice linear](https://www.codewars.com/kata/twice-linear)
+
+Generate this list using priority queue or heap or set.
+
+```cpp
+#include <vector>
+#include <algorithm>
+#include <queue>
+#include <functional>
+
+using namespace std;
+
+class DoubleLinear
+{
+public:
+    static int dblLinear(int n);
+};
+
+int DoubleLinear::dblLinear(int n) {
+  std::priority_queue<int, vector<int>, greater<int>> q;
+  q.push(1);
+  for(int i = 0; i < n; i++) {
+    int num = q.top();
+    while(!q.empty() && num == q.top()) {
+      q.pop();
+    }
+    q.push(2 * num + 1);
+    q.push(3 * num + 1);
+  }
+  return q.top();
+}
+
+```
