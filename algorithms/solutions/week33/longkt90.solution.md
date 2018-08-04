@@ -18,3 +18,29 @@ def middle_node(head)
   head
 end
 ```
+
+# Problem 2 : Scheduling (Shortest Job First or SJF)
+
+URL: https://www.codewars.com/kata/scheduling-shortest-job-first-or-sjf/ruby
+
+
+Status:
+```
+  ✔ Accepted
+```
+```ruby
+def SJF(jobs, index)
+  queues = {}
+  total_time = 0
+
+  jobs.each_with_index do |e, index|
+    queues[index] = e
+  end
+
+  queues.sort_by { |k,v| v}.each do |k,v|
+    total_time += v
+    break if k == index
+  end
+  total_time
+end
+```
