@@ -17,6 +17,23 @@ public:
 };
 ```
 
+#Bai 2: https://www.codewars.com/kata/scheduling-shortest-job-first-or-sjf/train/cpp
+
+```
+int SJF(std::vector <int> jobs, int index){
+  // your code here..
+  
+  int sum = 0;
+  for(int i = 0 ; i < jobs.size(); i++)
+  {
+    if(jobs[i] < jobs[index]  || (jobs[i] == jobs[index] && i <= index))
+      sum += jobs[i];
+  }
+  
+  return sum;
+}
+```
+
 
 #Bai 4: https://www.codewars.com/kata/twice-linear/train/cpp 
 
