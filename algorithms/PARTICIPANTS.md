@@ -42,3 +42,4 @@
 - lmduc - @mtt
 - lyxuansang91 - @lyxuansang91
 - viethnguyen - @vietnguyen
+- jinhduong - @jinhduong
