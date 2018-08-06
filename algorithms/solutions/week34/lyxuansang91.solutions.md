@@ -29,3 +29,28 @@ public:
     }
 };
 ```
+## Problem 2 - [Word Break](https://leetcode.com/problems/word-break/description/)
+
+Solution: using DP (Dynamic Programming)
+```cpp
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        sort(wordDict.begin(), wordDict.end());
+        int n = s.size();
+        bool *f = new bool[n+1];
+        f[0] = true;
+        for(int i = 1; i <= n; i++) {
+            f[i] = false;
+            for(int j = i; j > 0; j--) {
+                string sub = s.substr(j-1, i-j+1);
+                if(f[j-1] && std::binary_search(wordDict.begin(), wordDict.end(), sub)) {
+                    f[i] = true;
+                    break;
+                }
+            }
+        }
+        return f[n];
+    }
+};
+```
