@@ -40,5 +40,6 @@
 - lmduc - @mtt
 - lyxuansang91 - @lyxuansang91
 - viethnguyen - @vietnguyen
+- AkaiNNT - @AvadaKedavra
 - jinhduong - @jinhduong
 - nnti3n - @nntien
