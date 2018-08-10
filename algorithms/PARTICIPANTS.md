@@ -18,7 +18,6 @@
 - manhdaovan - @manhdv
 - Vuta - @jerome
 - hieuk09 - @hieuk09
-- phantrinh
 - thupv - @thupv
 - taurandat - @data.csv
 - tanlinhnd
@@ -29,7 +28,6 @@
 - kiennt
 - bachhh - @bachh
 - dautroc - @loind
-- ldhnam - @ldhnam
 - duythinht - @duythinht
 - hieutm211 - @hieutm211
 - trancongduy - @duytranc
@@ -42,3 +40,5 @@
 - lmduc - @mtt
 - lyxuansang91 - @lyxuansang91
 - viethnguyen - @vietnguyen
+- jinhduong - @jinhduong
+- nnti3n - @nntien
