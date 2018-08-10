@@ -1,7 +1,7 @@
 - thongbeo - @thongbeo
 - unrealhoang - @u
 - dzungdev - @dzungdev
-- rubikill
+- rubikill - @toanha
 - longkt90 - @longkt90
 - tamnd - @gopher
 - RuniVN
