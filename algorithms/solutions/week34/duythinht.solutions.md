@@ -9,7 +9,7 @@ class Solution {
         
         val s = IntArray(nums.size + 1)
         
-        s.set(0, nums.get(0))
+        s[0] = nums[0]
         s[1] = s[0]
         
         for (i in 1..nums.size-1) {
