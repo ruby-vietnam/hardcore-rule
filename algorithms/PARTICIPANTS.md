@@ -1,7 +1,7 @@
 - thongbeo - @thongbeo
 - unrealhoang - @u
 - dzungdev - @dzungdev
-- rubikill
+- rubikill - @toanha
 - longkt90 - @longkt90
 - tamnd - @gopher
 - RuniVN
@@ -40,5 +40,6 @@
 - lmduc - @mtt
 - lyxuansang91 - @lyxuansang91
 - viethnguyen - @vietnguyen
+- AkaiNNT - @AvadaKedavra
 - jinhduong - @jinhduong
 - nnti3n - @nntien
