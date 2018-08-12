@@ -44,3 +44,4 @@
 - jinhduong - @jinhduong
 - nnti3n - @nntien
 - lpthong90 - @lpthong
+- voanhduy1512 - @anhduy
