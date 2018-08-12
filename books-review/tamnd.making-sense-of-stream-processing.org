@@ -1,0 +1,85 @@
+#+TITLE: Making Sense of stream processing
+
+** Info
+#+BEGIN_QUOTE
+- Pages: 183
+- Authoer: Martin Kleppmann
+- Publisher: O'Reilly Media
+#+END_QUOTE
+[[https://www.confluent.io/wp-content/uploads/2016/08/making-sense-of-stream-processing-confluent-1.png]]
+
+** Review
+Tuần trước giới thiệu 2 cuốn sách, trong đó có 1 cuốn hơi dày xíu, tuần này mềnh đổi sang giới thiệu 1 cuốn sách mỏng mỏng. "Making Sense of Stream Processing" là 1 cuốn sách mỏng của Martin Kleppmann, tác giả cuốn "Designing data-intensive applications". Cuốn sách chứa khá nhiều ý tưởng thú vị, trình bày một cách mạch lạc, dễ hiểu, nhiều hình vẽ đẹp, có thể làm thay đổi cả cách bạn design một hệ thống lớn. Các ý tưởng như dual-write, materialized views, capture change set, hay cqrs (command-query separation) thậm chí bạn có thể áp dụng luôn cho hệ thống hiện tại của bạn để làm nó robust hơn. Chương cuối cũng là 1 chương khá thú vị, bằng cách sử dụng logs như là single source of trust, và materialized views, database biến thành 1 tầng query caching layer.
+
+Oh, hình ảnh cuối sách cũng khá thú vị
+[[https://i.imgur.com/eiepcRf.png]]
+
+** Table of contents
+- Chapter 1. Events and stream processing
+- Chapter 2. Using logs to build a solid data infrastructure
+- Chapter 3. Integrating databases and Kafka with change data capture
+- Chapter 4. The unix philosophy of distributed data
+- Chapter 5. Turning the database inside out
+
+** References
+Một ít link tham khảo về event sourcing và cqrs.
+
+- [[https://www.confluent.io/blog/turning-the-database-inside-out-with-apache-samza/][Turning the database inside-out with Apache Samza]]
+- [[https://www.confluent.io/blog/making-sense-of-stream-processing/][Stream processing, event sourcing, reactive, CEP... and making sense of it all]]
+-  Clarified CQRS http://udidahan.com/2009/12/09/clarified-cqrs/
+-  From CQS to CQRS https://herbertograca.com/2017/10/19/from-cqs-to-cqrs/ 
+-  Refactoring from anemic model to DDD https://blog.pragmatists.com/refactoring-from-anemic-model-to-ddd-880d3dd3d45f
+-  DDD, Hexagonal, onion, clean, CQRS,... how I put it all together https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/
+-  Patterns for designing flexible architecture in Node.js https://medium.com/@domagojk/patterns-for-designing-flexible-architecture-in-node-js-cqrs-es-onion-7eb10bbefe17
+-  Domain-driven design with F# and EventStore http://gorodinski.com/blog/2013/02/17/domain-driven-design-with-fsharp-and-eventstore/
+-  (Slide) Domain driven design with the F# type system https://www.slideshare.net/ScottWlaschin/domain-driven-design-with-the-f-type-system-functional-londoners-2014
+-  Using Scala and Akka with Domain-Driven design https://vaughnvernon.co/?p=770
+-  DDD with Scala and Akka revisisted https://vaughnvernon.co/?p=780
+-  Context validation in Domain-Driven design https://www.toptal.com/scala/context-validation-in-domain-driven-design
+-  (Slide) Domain-driven design in Scala https://www.slideshare.net/knoldus/domaindriven-design-56263922
+-  Using Akka and Scala for CQRS and Event sourcing http://musigma.org/scala/2017/07/03/akka-cqrs.html
+-  Event Sourcing in practice https://ookami86.github.io/event-sourcing-in-practice/
+-  CQRS es Akka https://blog.codecentric.de/en/2016/08/cqrs-es-akka/
+-  Event Sourcing with Scala, Play framework and Eventute - Part 1 http://kkanojia.me/blog/event-sourcing-part-1
+-  Event Sourcing with Scala - Part 2 - Persisting Actor State http://kkanojia.me/blog/persisting-events
+-  Entry-level, synchronous and transactional event sourcing https://softwaremill.com/entry-level-event-sourcing/
+-  Event-sourced game implementation example - Part 1: Getting started https://blog.scalac.io/2015/03/20/event-sourced-dice-game-part1.html
+-  Event-sourced game implementation example - Part 2: Building web application https://blog.scalac.io/2015/06/11/event-sourced-dice-game-part2.html
+-  Event-sourced game implementation example - Part 3: Grabbing some data - statistics service https://blog.scalac.io/2015/08/07/event-sourced-dice-game-part3.html
+-  Toward an immutable domain model - introduction https://tech.zilverline.com/2011/02/01/towards-an-immutable-domain-model-introduction-part-1
+-  Toward an immutable domain model - immutable change https://tech.zilverline.com/2011/02/02/towards-an-immutable-domain-model-immutable-change-part-2
+-  Toward an immutable domain model - immutability achieved https://tech.zilverline.com/2011/02/05/towards-an-immutable-domain-model-immutability-achieved-part-3
+-  Toward an immutable domain model - believe the type https://tech.zilverline.com/2011/02/07/towards-an-immutable-domain-model-believe-the-type-part-4
+-  Toward an immutable domain model - monads https://tech.zilverline.com/2011/02/10/towards-an-immutable-domain-model-monads-part-5
+-  CQRS and event sourcing with Lagom https://blog.codecentric.de/en/2017/02/cqrs-event-sourcing-lagom/
+-  Martin Folwer - event sourcing https://martinfowler.com/eaaDev/EventSourcing.html
+-  Why Event Sourcing http://eventuate.io/whyeventsourcing.html
+-  Event sourcing, CQRS, stream processing and Apache Kafka: What's the connection? https://www.confluent.io/blog/event-sourcing-cqrs-stream-processing-apache-kafka-whats-connection/
+-  Martin Kleppmann - Stream processing, event sourcing, reactive, CEP... and making sense of it all https://www.confluent.io/blog/making-sense-of-stream-processing/
+-  (Slide) Making sense of stream processing https://speakerdeck.com/ept/making-sense-of-stream-processing
+-  Martin Kleppmann - Turning the database inside-out with Apache Samza https://www.confluent.io/blog/turning-the-database-inside-out-with-apache-samza/
+-  Martin Kleppmann - Real-time full-text search with Luwak and Samza https://www.confluent.io/blog/real-time-full-text-search-with-luwak-and-samza/
+-  Martin Kleppmann - Bottled water: real-time integration of PostgreSQL and Kafka https://www.confluent.io/blog/bottled-water-real-time-integration-of-postgresql-and-kafka/
+-  Martin Kleppmann - Using logs to build a solid data infrastructure (or: why dual writes are a bad idea) https://www.confluent.io/blog/using-logs-to-build-a-solid-data-infrastructure-or-why-dual-writes-are-a-bad-idea/
+-  Jay Kreps - The Log: What every software engineer should know about real-time data's unifying abstraction https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying
+-  Martin Kleppmann - Apache Kafka, Samza and the Unix philosophy of distributed data https://www.confluent.io/blog/apache-kafka-samza-and-the-unix-philosophy-of-distributed-data/
+-  Martin Kleppmann - Should you put several event types in the same Kafka topic? https://www.confluent.io/blog/put-several-event-types-kafka-topic/ 
+-  Ben Stopford - Part 1: The data dichotomy: Rethinking the way we treat data and services https://www.confluent.io/blog/data-dichotomy-rethinking-the-way-we-treat-data-and-services/
+-  Ben Stopford - Part 2: Build services on a backbone of events https://www.confluent.io/blog/build-services-backbone-events/
+-  Ben Stopford - Part 3: Using Apache Kafka as a scalable, event-driven backbone for service architectures https://www.confluent.io/blog/apache-kafka-for-service-architectures/
+-  Ben Stopford - Part 4: Chain services with extractly-once gurantees https://www.confluent.io/blog/chain-services-exactly-guarantees/
+-  Ben Stopford - Part 5: Messaging as the single source of truth https://www.confluent.io/blog/messaging-single-source-truth/
+-  Ben Stopford - Part 6: Leveraging the power of a database unbundled https://www.confluent.io/blog/leveraging-power-database-unbundled/
+-  Ben Stopford - Part 7: Building a microservices ecosystem with Kafka streams and KSQL https://www.confluent.io/blog/building-a-microservices-ecosystem-with-kafka-streams-and-ksql/  
+-  Jay Kreps - Putting Apache Kafka to use: A practical guide to building a streaming platform - Part 1 https://www.confluent.io/blog/stream-data-platform-1/
+-  Jay Kreps - Putting Apache Kafka to use: A practical guide to building a streaming platform - Part 2 https://www.confluent.io/blog/stream-data-platform-2/
+-  Kafka example https://github.com/confluentinc/kafka-streams-examples 
+-  Barry O Sullivan - Event sourcing: What it is and why it's awesome https://dev.to/barryosull/event-sourcing-what-it-is-and-why-its-awesome
+-  Greg Young - Why use Event Sourcing? http://codebetter.com/gregyoung/2010/02/20/why-use-event-sourcing/
+-  Daniel Battaglia - Event Sourcing microservices with Kafka http://blog.kontena.io/event-sourcing-microservices-with-kafka/
+-  Scaling event sourcing at Jet https://medium.com/@eulerfx/scaling-event-sourcing-at-jet-9c873cac33b8
+-  Jay Kreps - The Log: Wat every software engineer should know about rea-time data's unifying abstraction https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying
+-  (Video) Martin Fowler - The many meanings of event-driven architecture https://www.youtube.com/watch?v=STKCRSUsyP0
+-  Pattern: Event sourcing http://microservices.io/patterns/data/event-sourcing.html
+-  (Video) Greg Young - CQRS and event sourcing https://www.youtube.com/watch?v=JHGkaShoyNs
+-  Greg Young - CQRS documents https://cqrs.files.wordpress.com/2010/11/cqrs_documents.pdf 
