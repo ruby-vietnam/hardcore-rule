@@ -54,3 +54,50 @@ public:
     }
 };
 ```
+## Problem 3 - [Task Scheduler](https://leetcode.com/problems/task-scheduler/description/)
+Solution:
+```cpp
+class Solution {
+public:
+    int leastInterval(vector<char>& tasks, int n) {
+        int* count = new int[26];
+        for(int i = 0; i < 26; i++) count[i] = 0;
+        int max = 0;
+        for(int i = 0; i < tasks.size(); i++) {
+            count[tasks[i] - 'A']++;
+            max = (max > count[tasks[i]- 'A'] ? max : count[tasks[i] - 'A']);
+        }
+        int ans = (max - 1) * (n+1);
+        for(int i = 0; i < 26; i++)
+            if(max == count[i]) ans++;
+        return (ans > tasks.size() ? ans : tasks.size());
+    }
+};
+```
+## Problem 4 - [Longest Valid Parentheses](https://leetcode.com/problems/longest-valid-parentheses/description/)
+Solution: using Dynamic Programming. With f[i] is the longest valid paretheses at ith element
+- f[0] = 0
+- if(s[i] == '(') f[i] = 0
+- if(s[i] == ')') 
+  f[i] = f[i-2] + 2 if s[i-1] == '(' else f[i] = f[i-1] + f[i-f[i-1]-2] + 2 if i-f[i-1]-1 == '('
+
+```cpp
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        vector<int> f(s.size());
+        int maxans = 0;
+        for(int i = 1; i < s.size(); i++) {
+            if(s[i] == ')') {
+                if(s[i-1] == '(') { 
+                    f[i] = (i >= 2 ? f[i-2] : 0) + 2;
+                } else if(i-f[i-1] > 0 && s[i-f[i-1]-1] == '(') {
+                    f[i] = f[i-1] + (i-f[i-1] >= 2 ? f[i-f[i-1]-2] : 0) + 2; 
+                }
+                maxans = (maxans > f[i]  ? maxans : f[i]);
+            }
+        }
+        return maxans;
+    }
+};
+```
