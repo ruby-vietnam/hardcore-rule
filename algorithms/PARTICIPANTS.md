@@ -43,3 +43,4 @@
 - AkaiNNT - @AvadaKedavra
 - jinhduong - @jinhduong
 - nnti3n - @nntien
+- lpthong90 - @lpthong
