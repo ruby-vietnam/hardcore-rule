@@ -1,29 +1,63 @@
 ## Problem 1 - [K-based Numbers](http://acm.timus.ru/problem.aspx?space=1&num=1009)
 
-```pascal
-var n,k         : byte;
-    a           : array[1..20,0..10]of qword;
-    h,i,j       : byte;
-    tong        :longint;
-begin
-  read(n,k);
-  for j:=0 to k-1 do a[1,j]:=1;
-  for i:=2 to n do
-    for j:=0 to k-1 do
-      begin
-        a[i,j]:=0;
-        if j=0 then
-          begin
-            for h:=1 to k-1 do a[i,j]:=a[i,j]+a[i-1,h];
-          end else
-          begin
-            for h:=0 to k-1 do a[i,j]:=a[i,j]+a[i-1,h];
-          end;
-      end;
-  tong:=0;
-  for j:=1 to k-1 do tong:=tong+a[n,j];
-  write(tong);
-end.
+```rust
+use std::io;
+
+// This macro I found at: https://users.rust-lang.org/t/reading-and-parsing-a-line-from-stdin-containing-3-integers/7265/2
+macro_rules! parse_line {
+    ($($t: ty),+) => ({
+        let mut a_str = String::new();
+        io::stdin().read_line(&mut a_str).expect("read error");
+        let mut a_iter = a_str.split_whitespace();
+        (
+            $(
+            a_iter.next().unwrap().parse::<$t>().expect("parse error"),
+            )+
+        )
+    })
+}
+
+fn main() {
+    let _n = parse_line!(usize);
+    let _k = parse_line!(usize);
+    let n = _n.0;
+    let k = _k.0;
+
+    let mut f = vec![vec![0 as u64; k]; 2];
+    for base in 0..k {
+        f[0][base] = 1
+    }
+
+    let mut current = 0;
+    let mut next = 0;
+    let mut startDigit = 0;
+    for _ in 1..n {
+        // reset first
+        next = 1 - current;
+        for lastDigit in 0..k {
+            f[next][lastDigit] = 0
+        }
+
+        for lastDigit in 0..k {
+            startDigit = match lastDigit {
+                0 => 1,
+                _ => 0,
+            };
+            for d in startDigit..k {
+                f[next][lastDigit] += f[current][d]
+            }
+        }
+
+        current = next;
+    }
+
+    let mut total = 0;
+    for lastDigit in 1..k {
+        total += f[current][lastDigit]
+    }
+
+    println!("{}", total);
+}
 ```
 
 ## Problem 3 - [Possible Bipartition](https://leetcode.com/problems/possible-bipartition/description/)
