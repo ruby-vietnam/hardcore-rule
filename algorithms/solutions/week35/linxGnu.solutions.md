@@ -23,40 +23,22 @@ fn main() {
     let n = _n.0;
     let k = _k.0;
 
-    let mut f = vec![vec![0 as u64; k]; 2];
-    for base in 0..k {
+    let mut f: [[u64; 2]; 2] = [[0; 2]; 2];
+    for base in 0..2 {
         f[0][base] = 1
     }
 
     let mut current = 0;
     let mut next = 0;
-    let mut startDigit = 0;
     for _ in 1..n {
         // reset first
         next = 1 - current;
-        for lastDigit in 0..k {
-            f[next][lastDigit] = 0
-        }
-
-        for lastDigit in 0..k {
-            startDigit = match lastDigit {
-                0 => 1,
-                _ => 0,
-            };
-            for d in startDigit..k {
-                f[next][lastDigit] += f[current][d]
-            }
-        }
-
+        f[next][0] = f[current][1] * ((k - 1) as u64);
+        f[next][1] = f[next][0] + f[current][0];
         current = next;
     }
 
-    let mut total = 0;
-    for lastDigit in 1..k {
-        total += f[current][lastDigit]
-    }
-
-    println!("{}", total);
+    println!("{}", f[current][1] * ((k - 1) as u64));
 }
 ```
 
