@@ -71,3 +71,39 @@ func spiralMatrixIII(R int, C int, r0 int, c0 int) [][]int {
 }
 };
 ```
+# [Problem 3 - Possible Bipartition](https://leetcode.com/problems/possible-bipartition/description/)
+
+```go
+func possibleBipartition(N int, dislikes [][]int) bool {
+    edges := make([][]int, N + 1)
+    for i := range edges {
+        edges[i] = []int{}
+    }
+    for _, tmp:= range dislikes {
+        u,v := tmp[0], tmp[1]
+        edges[u] = append(edges[u], v)
+        edges[v] = append(edges[v], u)
+    }
+    colors := make([]int, N + 1)
+    // start color-ing
+    for u := 1; u <= N; u++ {
+        if colors[u] == 0 && !dfs(u, edges, colors, 1) {
+            return false
+        }
+    }
+    return true
+}
+
+func dfs(u int, edges [][]int, colors []int, color int) bool {
+    if colors[u] != 0 { // colour-ed
+        return colors[u] == color
+    }
+    colors[u] = color
+    for _, v := range edges[u] {
+        if !dfs(v, edges, colors, 3 - color) {
+            return false
+        }
+    }
+    return true
+}
+```
