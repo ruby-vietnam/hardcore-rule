@@ -1,3 +1,36 @@
+## Problem 1
+
+https://leetcode.com/contest/weekly-contest-97/problems/spiral-matrix-iii/
+
+Just a simple loop. Let's use a "phase" concept. There are 4 phases: right, down, left, up. Each each phase, follow the direction for "length" times. When phase % 2 == 0, increase the length. Loop until we reach all the cells
+
+```ruby
+DELTA_R = [0, 1, 0, -1]
+DELTA_C = [1, 0, -1, 0]
+
+def spiral_matrix_iii(r, c, ri, ci)
+    count = r * c - 1
+    phase = 0
+    steps = [[ri, ci]]
+    length = 1
+    
+    while count > 0
+        length.times do
+            ri = ri + DELTA_R[phase]
+            ci = ci + DELTA_C[phase]
+            if ri >= 0 && ri < r && ci >= 0 && ci < c
+                steps << [ri, ci]
+                count -= 1
+            end
+        end
+        phase = (phase + 1) % 4
+        length += 1 if phase % 2 == 0
+    end
+    
+    steps
+end
+```
+
 ## Problem 3
 
 https://leetcode.com/contest/weekly-contest-97/problems/possible-bipartition/
