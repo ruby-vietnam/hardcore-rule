@@ -79,3 +79,9 @@ print(x + 4)         // Does a Python addition, then prints 46.
 x = "stringy now"    // Python values can hold strings, and dynamically change Python type!
 print("super " + x)  // Does a Python addition, then prints "super stringy now".
 ```
+
+Updated: Cái `PyValue` đã được đổi tên thành `PythonObject`, nhưng document bị outdated, lol :v 
+https://github.com/apple/swift/commit/8714d386bebe78aaee8723100fce3941172bf33c#diff-9c35301a67943f9bf278c84a0f55f490
+
+Chi tiết các bạn có thể đọc trong code, code mới là đáng tin, document chỉ là chém gió :v 
+
