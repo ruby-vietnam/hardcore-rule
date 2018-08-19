@@ -1,16 +1,16 @@
 - thongbeo - @thongbeo
 - unrealhoang - @u
 - dzungdev - @dzungdev
-- rubikill
+- rubikill - @toanha
 - longkt90 - @longkt90
 - tamnd - @gopher
 - RuniVN
-- nguyen7thai
+- nguyen7thai - @nguyen7thai
 - duythinht
 - vthang95
 - nhantv94
 - qcam — @HQC
-- philuu265
+- philuu265 - @tourer
 - trancongduy
 - thaod
 - huytd - @huytd
@@ -43,3 +43,5 @@
 - AkaiNNT - @AvadaKedavra
 - jinhduong - @jinhduong
 - nnti3n - @nntien
+- lpthong90 - @lpthong
+- Lpvcpp - @lephongvu
