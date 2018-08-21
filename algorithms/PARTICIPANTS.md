@@ -12,7 +12,6 @@
 - qcam — @HQC
 - philuu265 - @tourer
 - trancongduy
-- thaod
 - huytd - @huytd
 - linxGnu
 - manhdaovan - @manhdv
