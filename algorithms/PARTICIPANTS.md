@@ -1,35 +1,32 @@
 - thongbeo - @thongbeo
 - unrealhoang - @u
 - dzungdev - @dzungdev
-- rubikill
+- rubikill - @toanha
 - longkt90 - @longkt90
 - tamnd - @gopher
 - RuniVN
-- nguyen7thai
+- nguyen7thai - @nguyen7thai
 - duythinht
 - vthang95
 - nhantv94
 - qcam — @HQC
-- philuu265
+- philuu265 - @tourer
 - trancongduy
-- thaod
 - huytd - @huytd
 - linxGnu
 - manhdaovan - @manhdv
 - Vuta - @jerome
 - hieuk09 - @hieuk09
-- phantrinh
 - thupv - @thupv
 - taurandat - @data.csv
 - tanlinhnd
 - ledongthuc - @ledongthuc
-- danhuynhdev
+- danhuynhdev - @danhuynh
 - huydx - @h
 - minhnt95
 - kiennt
-- k-i-k-ichi - @bachh
+- bachhh - @bachh
 - dautroc - @loind
-- ldhnam - @ldhnam
 - duythinht - @duythinht
 - hieutm211 - @hieutm211
 - trancongduy - @duytranc
@@ -38,3 +35,13 @@
 - nguyenquangminh0711 - @nguyenquangminh0711
 - luongvo209 - @luongvo209
 - vnqthai - @thai
+- MrNinja - @rikimaru
+- lmduc - @mtt
+- lyxuansang91 - @lyxuansang91
+- viethnguyen - @vietnguyen
+- AkaiNNT - @AvadaKedavra
+- jinhduong - @jinhduong
+- nnti3n - @nntien
+- lpthong90 - @lpthong
+- Lpvcpp - @lephongvu
+- vanhtuan0409 - @vanhtuan0409

@@ -267,7 +267,7 @@ fn merge_pull_request(ctx: Context, week: u32) {
 
             let body = json!({});
             let (_, result, response) = ctx.client.put(body)
-                .custom_endpoint(&endpoint)
+                .custom_endpoint(&merge_endpoint)
                 .execute::<Value>().unwrap();
 
             if result == StatusCode::Ok {
