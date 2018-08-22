@@ -15,6 +15,7 @@ def rob(nums)
     (1 .. nums.length - 1).each do |i|
         res << [res[i], res[i-1] + nums[i]].max
     end
+    p res
     res[nums.length]
 end
 ```
