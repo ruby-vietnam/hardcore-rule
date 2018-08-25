@@ -22,7 +22,7 @@ Và các functional programming languages cung cấp cho chúng ta 2 features qu
 - Higher-order Function
 - Lazy Evaluation
 
-Đối với **higher-order function**, tác giả đưa ra một loạt ví dụ minh họa, như là xây dựng một hàm `reduce`, nhận vào một hàm bất kỳ (thể hiện đặc tính của higher-order function) để thực hiện tính toán trên một list, từ đó thực hiện việc tính toán các phép toán bất kỳ chỉ bằng việc kết hợp các chương trình nhỏ hơn (module) với hàm `reduce`:
+Đối với **higher-order function**, tác giả đưa ra một loạt ví dụ minh họa, như là xây dựng một hàm `reduce`, nhận vào một hàm bất kỳ (thể hiện đặc tính của higher-order function) để thực hiện tính toán trên một list, từ đó thực hiện việc tính toán các phép toán bất kỳ chỉ bằng việc kết hợp (compose) các chương trình nhỏ hơn (module) với hàm `reduce`:
 
 ```haskell
 reduce :: (a -> a -> a) -> a -> [a] -> a
@@ -40,7 +40,34 @@ product = reduce multiply 1
 product [1, 2, 3, 4] == 24
 ```
 
-Về **lazy evaluation**...
-(Còn nữa)
+Về **lazy evaluation**, tác giả giải thích bằng cách đưa ra một ví dụ hết sức đơn giản nhưng mà đọc lâu thiệt lâu mới hiểu: Giả sử có hai chương trình con (hoặc là hàm) `f` và `g`, chúng ta có thể compose chúng như sau:
 
-## Kết luận
+```haskell
+(g . f) input
+-- tương đương với
+g (f input)
+```
+
+Có nghĩa là, ta sẽ gọi hàm `f` với tham số là `input`, đồng thời lấy kết quả trả về để làm tham số cho câu lệnh gọi hàm `g`.
+
+Đặc tính **laziness** của Haskell và các functional programming languages nằm ở chỗ, việc thực thi `f` và `g` diễn ra một cách đồng bộ và chặt chẽ (ai dịch chữ strict synchronisation cho tui với), `f` chỉ được thực thi và trả về giá trị khi `g` thực hiện đọc tham số đầu vào của nó, và `f` cũng sẽ bị dừng khi `g` dừng lại.
+
+> The two programs f and g are run together in strict synchronisation. F is only started once g tries to read some input, and only runs for long enough to deliver the output g is trying to read. Then f is suspended and g is run until it tries to read another input. As an added bonus, if g terminates without reading all of f’s output then f is aborted.
+
+Và trong trường hợp `f` là một hàm sinh ra một tập giá trị có số lượng cực kì lớn, nếu implement trên các ngôn ngữ thông thường (thực thi xong `f`, lấy kết quả, truyền vào `g`) thì có thể sẽ cần một lượng bộ nhớ cực kì lớn, mà có khi là không đủ, ví dụ:
+
+```haskell
+-- trả về danh sách các số từ input đến +∞
+f input = [input..]
+```
+
+Như thế, nhờ vào đặc tính **lazy evaluation**, chúng ta có thể dễ dàng phân tách chương trình thành nhiều module nhỏ mà không cần quá bận tâm đến time và space complexity. Có thể thấy rõ qua ví dụ tính căn bậc 2 dùng phương pháp Newton-Raphson.
+
+Tác giả kết thúc phần kĩ thuật bằng ví dụ ở mục 5: thuật toán Alpha-beta để implement trò chơi tic-tac-toe, minh họa một cách đầy đủ cả hai ứng dụng của **higher-order function** và **lazy evaluation** để định nghĩa `gametree` và sinh ra các nước đi cho cây trò chơi (vốn là một thao tác cực kì tốn kém).
+
+## TL;DR
+
+- **Modularity** là yếu tố quan trọng để phát triển một phần mềm tốt.
+- **Higher-order function** và **lazy evaluation** là hai feature quan trọng của các functional programming languages giúp cho việc **modularize** hiệu quả hơn, giúp cho việc phát triển được productive hơn.
+- Suy ra Functional Programming đóng vai trò quan trọng trong việc bảo đảm chất lượng và productivity của các dự án phần mềm.
+
