@@ -59,6 +59,8 @@
 - Những protocol thông dụng:
   - RTSP (support Flash): dính lỗi bảo mật man in middle
   - HLS (của apple): thông dụng nhất hiện nay
+    - Apple device chỉ support HLS => dùng HLS sẽ giảm chi phí maintain thêm 1 protocol thứ 2 cho các device ngoài Apple
+  - MPEG Dash
   - WebRTC
 - Challenge:
   - Chủ yếu về cost: storage, CDN, bandwidth, latency, ...
