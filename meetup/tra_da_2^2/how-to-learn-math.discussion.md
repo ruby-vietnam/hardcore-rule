@@ -2,7 +2,8 @@
 ```
 Quan trọng là dedicate 1 khoảng thời gian hàng ngày
 Trong 1-2 năm để học
-Học lại nên học theo kiểu active, tức là tối có thể 1 vài tiếng thay vì chơi game hoặc đọc manga, trước khi đi ngủ thì list ra 1 vài vấn đề
+Học lại nên học theo kiểu active, tức là tối có thể 1 vài tiếng thay vì chơi game hoặc đọc
+manga, trước khi đi ngủ thì list ra 1 vài vấn đề
 Lúc nào chờ build với chờ docker pull thì làm :))
 học đến đâu chắc đến đó
 Ko có nghĩa là sau 2 năm em mới đủ dùng :))
