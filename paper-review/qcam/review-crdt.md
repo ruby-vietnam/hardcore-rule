@@ -1,0 +1,1 @@
+Read it here: [https://paper.dropbox.com/doc/Conflict-free-Replicated-Data-Types--ALrPIBsV10n8Z66ORavF~dr_AQ-7wIwnQdCEVLQdZsHerNZ8](https://paper.dropbox.com/doc/Conflict-free-Replicated-Data-Types--ALrPIBsV10n8Z66ORavF~dr_AQ-7wIwnQdCEVLQdZsHerNZ8).
