@@ -1,3 +1,7 @@
+# Paper
+
+http://www.bailis.org/papers/asap-vldb2017.pdf
+
 # Vấn đề:
 - Dữ liệu time series data raw sẽ khó để nhìn trend, đặc biệt với data mà thay đổi nhanh trong thời gian ngắn
 - Ví dụ với dữ liệu taxi của NW
