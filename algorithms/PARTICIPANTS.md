@@ -35,7 +35,6 @@
 - nguyenquangminh0711 - @nguyenquangminh0711
 - luongvo209 - @luongvo209
 - vnqthai - @thai
-- MrNinja - @rikimaru
 - lmduc - @mtt
 - lyxuansang91 - @lyxuansang91
 - viethnguyen - @vietnguyen
