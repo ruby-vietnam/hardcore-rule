@@ -27,7 +27,6 @@
 - kiennt
 - bachhh - @bachh
 - dautroc - @loind
-- duythinht - @duythinht
 - hieutm211 - @hieutm211
 - trancongduy - @duytranc
 - trietphm - @triet
