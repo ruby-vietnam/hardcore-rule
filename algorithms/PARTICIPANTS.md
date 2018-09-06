@@ -11,7 +11,7 @@
 - nhantv94
 - qcam — @HQC
 - philuu265 - @tourer
-- trancongduy
+- trancongduy - @duytranc
 - huytd - @huytd
 - linxGnu
 - manhdaovan - @manhdv
