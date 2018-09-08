@@ -32,3 +32,41 @@ def path_sum_of_tree(root, sum)
   [result, count]
 end
 ```
+
+## Problem 2
+
+```ruby
+def search_matrix(matrix, target)
+  m = matrix.size
+
+  return false if m == 0
+
+  n = matrix.first.size
+
+  start_x = 0
+  start_y = 0
+
+  search(matrix, target, start_x, start_y, m - 1, n - 1)
+end
+
+def search(matrix, target, start_x, start_y, m, n)
+  if start_x < 0 || start_y < 0 || start_x > m || start_y > n
+    false
+  else
+    median_x = (start_x + m + 1) / 2
+    median_y = (start_y + n + 1) / 2
+
+    if matrix[median_x][median_y] == target
+      true
+    elsif matrix[median_x][median_y] > target
+      search(matrix, target, start_x, start_y, median_x - 1, median_y - 1) ||
+        search(matrix, target, median_x, start_y, m, median_y - 1) ||
+        search(matrix, target, start_x, median_y, median_x - 1, n)
+    else
+      search(matrix, target, median_x + 1, median_y + 1, m, n) ||
+        search(matrix, target, median_x + 1, start_y, m, median_y) ||
+        search(matrix, target, start_x, median_y + 1, median_x, n)
+    end
+  end
+end
+```
