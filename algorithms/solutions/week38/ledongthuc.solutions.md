@@ -28,6 +28,35 @@ func pathSumFrom(root *TreeNode, sum int) int  {
 }
 ```
 
+Problem 2:
+
+https://leetcode.com/problems/search-a-2d-matrix-ii/description/
+
+```go
+func searchMatrix(matrix [][]int, target int) bool {
+    if len(matrix) == 0 || len(matrix[0]) == 0 { 
+        return false 
+    }
+    
+    if len(matrix) == 1 && len(matrix[0]) == 1 {
+        return matrix[0][0] == target 
+    }
+    
+    x, y := 0, len(matrix[0])-1
+    for x < len(matrix) && y >= 0 {
+        if matrix[x][y] == target {
+            return true 
+        }
+        if matrix[x][y] < target { 
+            x++ 
+        } else {
+            y-- 
+        }
+    }
+    return false
+}
+```
+
 Problem 3:
 
 https://leetcode.com/problems/daily-temperatures/description/
