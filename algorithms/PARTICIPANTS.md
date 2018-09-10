@@ -4,7 +4,6 @@
 - rubikill - @toanha
 - longkt90 - @longkt90
 - tamnd - @gopher
-- RuniVN
 - nguyen7thai - @nguyen7thai
 - duythinht
 - vthang95
