@@ -11,7 +11,7 @@
 - nhantv94
 - qcam — @HQC
 - philuu265 - @tourer
-- trancongduy
+- trancongduy - @duytranc
 - huytd - @huytd
 - linxGnu
 - manhdaovan - @manhdv
@@ -27,7 +27,6 @@
 - kiennt
 - bachhh - @bachh
 - dautroc - @loind
-- duythinht - @duythinht
 - hieutm211 - @hieutm211
 - trancongduy - @duytranc
 - trietphm - @triet
@@ -35,16 +34,15 @@
 - nguyenquangminh0711 - @nguyenquangminh0711
 - luongvo209 - @luongvo209
 - vnqthai - @thai
-- MrNinja - @rikimaru
 - lmduc - @mtt
 - lyxuansang91 - @lyxuansang91
 - viethnguyen - @vietnguyen
 - AkaiNNT - @AvadaKedavra
 - jinhduong - @jinhduong
 - nnti3n - @nntien
-- lpthong90 - @lpthong
+- ThongLe - @lpthong
 - voanhduy1512 - @anhduy
-- Lpvcpp - @lephongvu
+- lpvcpp - @lephongvu
 - vanhtuan0409 - @vanhtuan0409
 - nptai - @joker
 - tinntt - @Sad Boy
