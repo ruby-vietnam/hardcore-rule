@@ -25,7 +25,7 @@
 
 - submit code and peer-review (create a PR to this repo under `algorithms/solutions/` folder)
 - only submit solution after **3 days**, do not ask for solution before you show something to prove that you have done your homework
-- Follow the PR template and PR's title must have `week <current_week>` (we are using a tool (source_collector)[https://github.com/ruby-vietnam/hardcore-rule/tree/master/solution_collector], so please follow the pattern or your submission would be ignored, of course, you will be paid for that) 
+- Follow the PR template and PR's title must have `week <current_week>` (we are using a tool [source_collector](https://github.com/ruby-vietnam/hardcore-rule/tree/master/solution_collector), so please follow the pattern or your submission would be ignored, of course, you will be paid for that) 
 - Exception: You could choose one of the following ways to do instead of doing algorithm homework:
   * Blogging (not trivial stuff, another members will evalulate that your blog is worth a replacement or not)
   * OSS (OpenSource contribution)
