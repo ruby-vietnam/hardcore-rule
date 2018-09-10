@@ -42,7 +42,7 @@
 - nnti3n - @nntien
 - ThongLe - @lpthong
 - voanhduy1512 - @anhduy
-- Lpvcpp - @lephongvu
+- lpvcpp - @lephongvu
 - vanhtuan0409 - @vanhtuan0409
 - nptai - @joker
 - tinntt - @Sad Boy
