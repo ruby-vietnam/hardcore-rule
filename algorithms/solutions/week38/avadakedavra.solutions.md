@@ -1,9 +1,21 @@
-##Problem 1:
+##Problem 2:
 
-#Given a 32-bit signed integer, reverse digits of an integer.
+#Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
 
-# @param {Integer} x
-# @return {Integer}
-def reverse(x)
-    x < 0 ? (0 - x.to_s.reverse.to_i) : x.to_s.reverse.to_i
+#Integers in each row are sorted in ascending from left to right.
+#Integers in each column are sorted in ascending from top to bottom.
+
+# Ruby
+# @param {Integer[][]} matrix
+# @param {Integer} target
+# @return {Boolean}
+
+def search_matrix(mattrix, target)
+  i = 0
+  j = mattrix[0].size - 1
+  while i < mattrix.size && j >= 0 do
+    return true if target == mattrix[i][j]
+    target > mattrix[i][j] ? i += 1 : j -= 1
+  end
+  false
 end
