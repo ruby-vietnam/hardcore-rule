@@ -78,3 +78,30 @@ def run(board, check, x, y, word, index)
   result
 end
 ```
+
+## Problem 3
+
+```ruby
+def check_subarray_sum(nums, k)
+  sum = 0
+  trace = { 0 => -1 }
+
+  nums.each_with_index do |num, index|
+    sum += num
+
+    if k != 0
+      sum %= k
+    end
+
+    if trace[sum]
+      if index - trace[sum] > 1
+        return true
+      end
+    else
+      trace[sum] = index
+    end
+  end
+
+  false
+end
+```
