@@ -2,7 +2,6 @@
 - unrealhoang - @u
 - dzungdev - @dzungdev
 - rubikill - @toanha
-- RuniVN
 - nguyen7thai - @nguyen7thai
 - duythinht
 - vthang95
