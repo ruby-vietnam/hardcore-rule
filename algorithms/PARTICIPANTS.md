@@ -2,7 +2,6 @@
 - unrealhoang - @u
 - dzungdev - @dzungdev
 - rubikill - @toanha
-- RuniVN
 - nguyen7thai - @nguyen7thai
 - duythinht
 - vthang95
@@ -39,3 +38,4 @@
 - lpvcpp - @lephongvu
 - vanhtuan0409 - @vanhtuan0409
 - tinntt - @Sad Boy
+- tienducitt - @Duc Nguyen
