@@ -17,11 +17,7 @@ def merge(nums1, m, nums2, n)
       pos1 += 1
       break if pos1 > i-1
     end
-    if pos1 > (i-1)
-      nums1[pos1] = nums2[pos2]
-    else
-      nums1[i-pos1] = nums2[pos2]
-    end
+    pos1 > (i-1) ? nums1[pos1] = nums2[pos2] : nums1[i-pos1] = nums2[pos2]
     pos2 += 1
   end
   nums1.first(m+n)
