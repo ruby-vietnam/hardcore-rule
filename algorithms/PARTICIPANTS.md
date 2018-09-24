@@ -22,7 +22,6 @@
 - bachhh - @bachh
 - dautroc - @loind
 - hieutm211 - @hieutm211
-- trancongduy - @duytranc
 - trietphm - @triet
 - nguyenquangminh0711 - @nguyenquangminh0711
 - luongvo209 - @luongvo209
