@@ -3,7 +3,6 @@
 - dzungdev - @dzungdev
 - rubikill - @toanha
 - nguyen7thai - @nguyen7thai
-- duythinht
 - vthang95
 - nhantv94
 - philuu265 - @tourer
@@ -30,7 +29,6 @@
 - lyxuansang91 - @lyxuansang91
 - viethnguyen - @vietnguyen
 - AkaiNNT - @AvadaKedavra
-- jinhduong - @jinhduong
 - nnti3n - @nntien
 - ThongLe - @lpthong
 - voanhduy1512 - @anhduy
