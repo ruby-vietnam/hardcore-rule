@@ -1,7 +1,6 @@
 - thongbeo - @thongbeo
 - unrealhoang - @u
 - dzungdev - @dzungdev
-- rubikill - @toanha
 - nguyen7thai - @nguyen7thai
 - vthang95
 - nhantv94
