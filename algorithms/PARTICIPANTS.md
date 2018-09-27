@@ -1,9 +1,7 @@
 - thongbeo - @thongbeo
 - unrealhoang - @u
 - dzungdev - @dzungdev
-- rubikill - @toanha
 - nguyen7thai - @nguyen7thai
-- duythinht
 - vthang95
 - nhantv94
 - philuu265 - @tourer
@@ -22,7 +20,6 @@
 - bachhh - @bachh
 - dautroc - @loind
 - hieutm211 - @hieutm211
-- trancongduy - @duytranc
 - trietphm - @triet
 - nguyenquangminh0711 - @nguyenquangminh0711
 - luongvo209 - @luongvo209
@@ -31,7 +28,6 @@
 - lyxuansang91 - @lyxuansang91
 - viethnguyen - @vietnguyen
 - AkaiNNT - @AvadaKedavra
-- jinhduong - @jinhduong
 - nnti3n - @nntien
 - ThongLe - @lpthong
 - voanhduy1512 - @anhduy
