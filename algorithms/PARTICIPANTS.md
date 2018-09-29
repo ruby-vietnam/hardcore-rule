@@ -46,4 +46,4 @@
 - voanhduy1512 - @anhduy
 - Lpvcpp - @lephongvu
 - vanhtuan0409 - @vanhtuan0409
-- tinntt - @Sad Boy
+- tinttt - @Sad Boy
