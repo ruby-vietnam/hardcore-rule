@@ -1,25 +1,16 @@
 - thongbeo - @thongbeo
 - unrealhoang - @u
 - dzungdev - @dzungdev
-- rubikill - @toanha
-- longkt90 - @longkt90
-- tamnd - @gopher
-- RuniVN
-- nguyen7thai - @nguyen7thai
-- duythinht
 - vthang95
 - nhantv94
-- qcam — @HQC
 - philuu265 - @tourer
-- trancongduy
+- trancongduy - @duytranc
 - huytd - @huytd
 - linxGnu
-- manhdaovan - @manhdv
 - Vuta - @jerome
 - hieuk09 - @hieuk09
 - thupv - @thupv
 - taurandat - @data.csv
-- tanlinhnd
 - ledongthuc - @ledongthuc
 - danhuynhdev - @danhuynh
 - huydx - @h
@@ -27,23 +18,20 @@
 - kiennt
 - bachhh - @bachh
 - dautroc - @loind
-- duythinht - @duythinht
 - hieutm211 - @hieutm211
-- trancongduy - @duytranc
 - trietphm - @triet
-- hosyvietanh - @andyho
 - nguyenquangminh0711 - @nguyenquangminh0711
 - luongvo209 - @luongvo209
 - vnqthai - @thai
-- MrNinja - @rikimaru
 - lmduc - @mtt
 - lyxuansang91 - @lyxuansang91
 - viethnguyen - @vietnguyen
 - AkaiNNT - @AvadaKedavra
-- jinhduong - @jinhduong
 - nnti3n - @nntien
-- lpthong90 - @lpthong
+- ThongLe - @lpthong
 - voanhduy1512 - @anhduy
-- Lpvcpp - @lephongvu
+- lpvcpp - @lephongvu
 - vanhtuan0409 - @vanhtuan0409
-- tinttt - @Sad Boy
+- tinntt - @Sad Boy
+- tienducitt - @Duc Nguyen
+- namtx - @namtx
