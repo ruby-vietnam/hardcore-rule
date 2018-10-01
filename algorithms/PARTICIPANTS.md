@@ -1,7 +1,6 @@
 - thongbeo - @thongbeo
 - unrealhoang - @u
 - dzungdev - @dzungdev
-- nguyen7thai - @nguyen7thai
 - vthang95
 - nhantv94
 - philuu265 - @tourer
@@ -35,4 +34,4 @@
 - vanhtuan0409 - @vanhtuan0409
 - tinntt - @Sad Boy
 - tienducitt - @Duc Nguyen
-- namtx @namtx
+- namtx - @namtx
