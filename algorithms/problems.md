@@ -6,6 +6,8 @@ Host: nguyenquangminh0711
 - Medium: https://leetcode.com/problems/maximum-swap/
 - Hard: https://leetcode.com/problems/least-operators-to-express-number/
 
+Deadline: 13th January 2019
+
 # Week 41
 Host: nguyenquangminh0711
 
