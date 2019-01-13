@@ -60,7 +60,7 @@ def merge(intervals)
 end
 ```
 
-```elxir
+```elixir
 defmodule Interval do
   defstruct(start: 0, end: 0)
 
