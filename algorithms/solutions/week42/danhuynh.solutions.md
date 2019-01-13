@@ -59,3 +59,32 @@ def merge(intervals)
   end
 end
 ```
+
+```elxir
+defmodule Interval do
+  defstruct(start: 0, end: 0)
+
+  def merge(intervals) do
+    intervals
+    |> Enum.sort_by(& &1.start)
+    |> Enum.reduce([], fn interval, acc ->
+      case acc do
+        [] ->
+          [interval]
+
+        [head | rest] = acc ->
+          if head.end >= interval.start do
+            new_interval = %Interval{
+              start: head.start,
+              end: Enum.max([head.end, interval.end])
+            }
+
+            [new_interval | rest]
+          else
+            [interval | acc]
+          end
+      end
+    end)
+  end
+end
+```
