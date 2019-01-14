@@ -35,4 +35,4 @@
 - tinntt - @Sad Boy
 - tienducitt - @Duc Nguyen
 - namtx - @namtx
-- thinhdbui - @bdthinh
+- bdthinh - @bdthinh
