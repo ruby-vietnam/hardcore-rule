@@ -1,3 +1,12 @@
+# Week 43
+Host: triet
+- Easy: https://leetcode.com/problems/implement-stack-using-queues/
+- Medium: https://leetcode.com/problems/minimum-genetic-mutation/
+- Medium: https://leetcode.com/problems/range-sum-query-immutable/
+- Hard: https://leetcode.com/problems/maximum-frequency-stack/
+
+Deadline: 20th January, 2019
+
 # Week 42 (Restart)
 Host: nguyenquangminh0711
 
