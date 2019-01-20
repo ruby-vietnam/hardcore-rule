@@ -34,12 +34,13 @@ MyStack.prototype.push = function(x) {
  * @return {number}
  */
 MyStack.prototype.pop = function() {
-    for (let i = 0; i < this.queue1.length - 2; i++) {
+    const queueSize = this.queue1.size()
+    for (let i = 0; i < queueSize - 1; i++) {
         this.queue2.pushToBack(this.queue1.popFromFront())
     }
     var ret = this.queue1.popFromFront()
     this.queue1 = this.queue2
-    this.queue2 = []
+    this.queue2 = new Queue()
     return ret
 };
 
@@ -48,13 +49,14 @@ MyStack.prototype.pop = function() {
  * @return {number}
  */
 MyStack.prototype.top = function() {
-    for (let i = 0; i < this.queue1.length - 2; i++) {
+    const queueSize = this.queue1.size()
+    for (let i = 0; i < queueSize - 1; i++) {
         this.queue2.pushToBack(this.queue1.popFromFront())
     }
     var ret = this.queue1.popFromFront()
     this.queue2.pushToBack(ret)
     this.queue1 = this.queue2
-    this.queue2 = []
+    this.queue2 = new Queue()
     return ret
 };
 
@@ -63,7 +65,7 @@ MyStack.prototype.top = function() {
  * @return {boolean}
  */
 MyStack.prototype.empty = function() {
-    return this.queue1.length == 0
+    return this.queue1.size() == 0
 };
 
 /** 
