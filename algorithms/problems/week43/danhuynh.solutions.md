@@ -181,3 +181,22 @@ defmodule MySolution do
   end
 end
 ```
+
+# Problem 3
+
+O(1) to calculate sum range
+```ruby
+class NumArray
+
+  def initialize(nums)
+    @sums = nums.empty? ? [] : [nums[0]]
+    1.upto(nums.size - 1) do |i|
+      @sums[i] = @sums[i - 1] + nums[i]
+    end
+  end
+
+  def sum_range(i, j)
+    @sums[j] - (i.zero? ? 0 : @sums[i - 1])
+  end
+end
+```
