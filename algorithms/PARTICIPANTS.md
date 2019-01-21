@@ -5,7 +5,6 @@
 - nhantv94
 - philuu265 - @tourer
 - trancongduy - @duytranc
-- huytd - @huytd
 - linxGnu
 - Vuta - @jerome
 - hieuk09 - @hieuk09
