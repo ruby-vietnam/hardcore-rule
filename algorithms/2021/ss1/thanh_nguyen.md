@@ -1,14 +1,16 @@
-## Easy
-> [234. Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/)
+## Easy([234. Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/))
 
-My solution:
+**Solution:**
+
+Explanation:
 - Save all value of linked list to an array
 - Reverse array and compare with the original
 - If true, it is a palindrome
 
-Complexity: O(n)
+Analysis:
+- Time complexity: O(n)
+- Space complexity: O(n)
 
-Space:
 ```python
 # Definition for singly-linked list.
 class ListNode(object):
@@ -38,11 +40,15 @@ class Solution(object):
         return False
 ```
 
+## Medium([46. Permutations](https://leetcode.com/problems/permutations/))
 
-## Medium
-> [46. Permutations](https://leetcode.com/problems/permutations/)
+**Solution:**
 
-My solution:
+Explanation:
+
+Analysis:
+- Time complexity:
+- Space complexity:
 
 ```python
 class Solution(object):
@@ -71,11 +77,20 @@ class Solution(object):
                 self.find_permutation(permutation_copy, choices_copy, results)
 ```
 
-## Hard
+## Hard([336. Palindrome Pairs](https://leetcode.com/problems/palindrome-pairs/))
 
-> [336. Palindrome Pairs](https://leetcode.com/problems/palindrome-pairs/)
+*Issue: TLE*
 
-*Issue: Accepted but got time limited access*
+Explanation:
+
+- Step 1: get index list
+- Step 2: find all permutations of index list with pair [a, b]
+- Step 3: check if concat string in permutations is palindrome pairs, if yes put to result
+
+Analysis:
+- Time complexity:
+- Space complexity:
+
 
 ```python
 class Solution(object):
@@ -104,9 +119,7 @@ class Solution(object):
     def all_permutations_with_length(self, index_list, length):
         # permutation = []
         results = []
-
         self.find_permutation([], index_list, results, length)
-        print("results", results)
         return results
 
     def find_permutation(self, permutation, choices, results, length):
