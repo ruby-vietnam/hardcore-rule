@@ -172,4 +172,77 @@ Memory Usage: 8.1 MB, less than 23.33% of C++ online submissions for Permutation
 3. Hard
 > https://leetcode.com/problems/palindrome-pairs/
 
-WIP
+### Time O(NL^2), Space O(NL + L^2)
+
+Writing: WIP
+
+```cpp
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <vector>
+
+using namespace std;
+
+class Solution {
+public:
+  vector<vector<int>> palindromePairs(vector<string> &words) {
+    int lo = words.size();
+    vector<vector<int>> result;
+
+    unordered_map<string, int> map;
+
+    for (int i = 0; i < lo; ++i) {
+      string hi = words[i];
+      reverse(hi.begin(), hi.end());
+      map[hi] = i;
+    }
+
+    for (int i = 0; i < lo; ++i) {
+      // empty string case
+      if (map.find("") != map.end() && map[""] != i && isPalindrome(words[i])) {
+        result.push_back({i, map[""]});
+      }
+
+      for (int j = 1; j <= words[i].size(); ++j) {
+        string left = words[i].substr(0, j);
+        string right = words[i].substr(j, words[i].size() - 1);
+
+        // Special case
+        // Example: "llsss", "sll"
+        // When j = 2, left = "lls", and right = "ss"; m["lls"] is exist,
+        // so if right is palindrome, the pair is palindrome
+        if (map.find(left) != map.end() && map[left] != i &&
+            isPalindrome(right)) {
+          result.push_back({i, map[left]});
+        }
+
+        // Example: "lls", "sssll"
+        // When j = 2, left = "ss", and right = "sll"; m["lls"] is exist,
+        // if right is palindrome, the pair is palindrome
+        if (map.find(right) != map.end() && map[right] != i &&
+            isPalindrome(left)) {
+          result.push_back({map[right], i});
+        }
+      }
+    }
+
+    return result;
+  }
+
+private:
+  bool isPalindrome(string s) {
+    int lo = 0, hi = s.size() - 1;
+    while (lo < hi) {
+      if (s[lo++] != s[hi--]) {
+        return false;
+      }
+    }
+    return true;
+  }
+};
+```
+```
+Runtime: 228 ms, faster than 53.17% of C++ online submissions for Palindrome Pairs.
+Memory Usage: 54.1 MB, less than 64.46% of C++ online submissions for Palindrome Pairs.
+```
