@@ -1,3 +1,70 @@
+# Easy: Palindrome Linked List
+
+Submission Details:
+```
+85 / 85 test cases passed.
+Status: Accepted
+Runtime: 164 ms
+Memory Usage: 8.9 MB
+```
+
+```go
+/**
+ * Reverse a linked list
+ *
+ * While iterating the list, remove the connection between
+ * the current node and its next node, connect it with the
+ * previously visited node.
+ *
+ * Eventually, when finish connecting the last node, the
+ * head of the reversed linked list is the last previously
+ * visited node.
+ */
+func reverseLinkedList(head *ListNode) *ListNode {
+  var prev *ListNode
+  for head != nil {
+    next := head.Next
+    head.Next = prev
+    prev = head
+    head = next
+  }
+  return prev
+}
+
+/**
+ * Check if a linked list is palindrome using O(1) space
+ *
+ * First, use slow/fast pointer technique to find the middle
+ * of the linked list.
+ *
+ * Now split the linked list in two halves, one from the
+ * middle will be reversed, so the two list should be identical
+ * if they're a palindrome. One of the two lists might be longer
+ * than the other, but it should only longer by 1 node, and we
+ * can ignore the extra node.
+ */
+func isPalindromeLinkedList(root *ListNode) bool {
+  slow := root
+  fast := root
+  for fast.Next != nil && fast.Next.Next != nil {
+    slow = slow.Next
+    fast = fast.Next.Next
+  }
+
+  first := root
+  second := reverseLinkedList(slow)
+
+  for first != nil && second != nil {
+    if first.Val != second.Val {
+      return false
+    }
+    first = first.Next
+    second = second.Next
+  }
+  return true
+}
+```
+
 # Medium: Permutation
 https://leetcode.com/problems/permutations/
 
