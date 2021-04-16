@@ -11,6 +11,8 @@ even linked list so even node will take one more step to make slow go forward.
 
 Now we have 2 part of linked list: the full one and the half one.
 
+![Slow n Fast](https://github.com/monodyle/algorithms-adventure/raw/master/leetcode-problems/234-palindrome-linked-list/slow-n-fast.png)
+
 ## 1.2. Step by Step
 
 1. Linked list have 1 node: alway `true`
@@ -133,7 +135,7 @@ func backtrack(nums []int, prev []int, result *[][]int) {
 }
 ```
 
-# 1.4. Submission detail
+# 2.4. Submission detail
 
 ```
 25 / 25 test cases passed.
