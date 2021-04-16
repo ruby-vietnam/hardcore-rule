@@ -30,6 +30,15 @@ func isPalindrome(head *ListNode) bool {
 }
 ```
 
+### Submission Detail
+
+```
+85 / 85 test cases passed.
+Status: Accepted
+Runtime: 168 ms
+Memory Usage: 8.4 MB
+```
+
 # Medium: Permutations
 
 Leetcode: https://leetcode.com/problems/permutations/
@@ -69,6 +78,15 @@ func permute(nums []int) [][]int {
 	}
 	return res
 }
+```
+
+### Submission Detail
+
+```
+25 / 25 test cases passed.
+Status: Accepted
+Runtime: 0 ms
+Memory Usage: 3.3 MB
 ```
 
 # Hard: Palindrome Pairs
@@ -193,4 +211,13 @@ func reverse(input string) string {
 	}
 	return string(r)
 }
+```
+
+### Submission Detail
+
+```
+134 / 134 test cases passed.
+Status: Accepted
+Runtime: 68 ms
+Memory Usage: 6.8 MB
 ```
