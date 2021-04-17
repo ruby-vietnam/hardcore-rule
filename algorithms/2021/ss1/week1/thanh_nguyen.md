@@ -11,6 +11,14 @@ Analysis:
 - Time complexity: O(n)
 - Space complexity: O(n)
 
+Submission Detail
+```
+Status: Accepted
+85 / 85 test cases passed.
+Runtime: 1152 ms
+Memory Usage: 85.2 MB
+```
+
 ```python
 # Definition for singly-linked list.
 class ListNode(object):
@@ -45,10 +53,52 @@ class Solution(object):
 **Solution:**
 
 Explanation:
+- With n is length of the list, will have n! permutation
+  n! = n * (n-1) * (n-2) * ... * 1
+By example: [1, 2, 3]
+
+We want permution with length is length of the list, is 3, then we have 3 positions to put value on: _  _  _
+
+- At position 1, permutation = _ _ _ ; choices = [1, 2, 3]
+  - If select 1, -> permutation = 1 _ _ ; choices = [2, 3]
+    - If select 2 -> permutation = 1 2 _ ; choices = [3]
+        - If select 3 -> permutation = 1 2 3 ; choices = [] -> no more choice
+            > append permutation [1, 2, 3] to result
+    - If select 3 -> permutation = 1 3 _ ; choices = [2]
+        - If select 2 -> permutation = 1 3 2 ; choices = [] -> no more choice
+            > append permutation [1, 3, 2] to result
+  - If select 2, the choices will reduce to [1, 3]
+    - If select 1 -> permutation = 2 1 _ ; choices = [3]
+        - If select 3 -> permutation = 2 1 3 ; choices = [] -> no more choice
+            > append permutation [2, 1, 3] to result
+    - If select 3 -> permutation = 2 3 _ ; choices = [1]
+        - If select 1 -> permutation = 2 3 1 ; choices = [] -> no more choice
+            > append permutation [2, 3, 1] to result
+  - If select 3, the choices will reduce to [1, 2]
+    - If select 1 -> permutation = 3 1 _ ; choices = [2]
+        - If select 2 -> permutation = 3 1 2 ; choices = [] -> no more choice
+            > append permutation [3, 1, 2] to result
+    - If select 2 -> permutation = 3 2 _ ; choices = [1]
+        - If select 1 -> permutation = 3 2 1 ; choices = [] -> no more choice
+            > Second permutation is [3, 2, 1]
+
+
+> If still have choice, get next value and put to permutation, then pop them out of the choices
+>
+> If no more choice, append permutation to results.
+
 
 Analysis:
 - Time complexity:
 - Space complexity:
+
+Submission Detail
+```
+Status: Accepted
+25 / 25 test cases passed.
+Runtime: 24 ms
+Memory Usage: 13.4 MB
+```
 
 ```python
 class Solution(object):
@@ -73,7 +123,7 @@ class Solution(object):
             if len(choices_copy) == 0:
                 results = results.append(permutation_copy)
                 return results
-            else:
+            else:****
                 self.find_permutation(permutation_copy, choices_copy, results)
 ```
 
@@ -85,12 +135,20 @@ Explanation:
 
 - Step 1: get index list
 - Step 2: find all permutations of index list with pair [a, b]
+  - use solution in the medium one
 - Step 3: check if concat string in permutations is palindrome pairs, if yes put to result
+  - use solution in the easy one
 
 Analysis:
 - Time complexity:
 - Space complexity:
 
+
+Submission Detail
+```
+Status: Time Limit Exceeded
+47 / 134 test cases passed.
+```
 
 ```python
 class Solution(object):
@@ -137,4 +195,59 @@ class Solution(object):
     def is_palindrome(self, word):
         return word == word[::-1]
 
+```
+
+> Make it shorter, and still TLE
+
+Submission Detail
+```
+Status: Time Limit Exceeded
+62 / 134 test cases passed.
+```
+
+```python
+class Solution(object):
+    def palindromePairs(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[List[int]]
+        """
+        index_list = list(range(0, len(words)))
+
+
+        result_permutations_palindrome = []
+        self.find_permutation(
+            [], index_list,
+            result_permutations_palindrome,
+            2, words
+        )
+
+        return result_permutations_palindrome
+
+    def find_permutation(
+        self, permutation, choices,
+        result_permutations_palindrome,
+        length, words
+    ):
+        for i, num in enumerate(choices):
+            choices_copy = choices[::]
+            permutation_copy = permutation[::]
+            choices_copy.pop(i)
+            permutation_copy.append(num)
+
+            if len(permutation_copy) == length:
+                word = words[
+                    permutation_copy[0]] + words[permutation_copy[1]
+                ]
+                if word == word[::-1]:
+                    result_permutations_palindrome.append(permutation_copy)
+
+            elif len(choices_copy) > 0:
+                self.find_permutation(
+                    permutation_copy,
+                    choices_copy,
+                    result_permutations_palindrome,
+                    length,
+                    words
+                )
 ```
