@@ -59,6 +59,30 @@ public:
 | 484ms    | 11.25%      | 53.7 MB  | 66.49%    |
 
 ### 2.2. Solution summary
+There are three cases:
+
+1. If the list contains an empty string, that empty string matches
+   all palindrome strings.
+2. Pair of a string with its reversed in the list.
+3. Pair of strings that the combination is a palindrome.
+    1. Imagine you have a string `abaxyz`, you can split it into
+       `aba` and `xyz` then you can see `aba` is already a palindrome.
+       If the list contains reversed of `xyz`, you can make a
+       palindrome string by adding it at the prefix, like
+       `zyx` + `abaxyz` = `zyxabaxyz`.
+    2. Like an above, but a little different, imagine your
+       string now is `xyzaba`. Very easy to see that it can be
+       split into two string `xyz` and `aba`. Now `aba` is already
+       a palindrome string. If the list contains `zyx`, it can be
+       added at the end of the string like
+       `xyzaba` + `zyx` = `xyzabazyx` then you have a palindrome string.
+
+I used Rolling Hash for checking palindrome in *O(1)* and easy
+to check whether the string is existing in the list or not.
+
+If you guys are not familiar with Rolling Hash, just read it here:
+[Hash: A String Matching Algorithm](https://vnoi.info/wiki/algo/string/hash.md).
+
 ### 2.3. Source code
 ```cpp
 const int64_t MOD = 1000000003;
