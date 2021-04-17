@@ -1,6 +1,6 @@
 ## Easy([234. Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/))
 
-**Solution:**
+**Solution 1:**
 
 Explanation:
 - Save all value of linked list to an array
@@ -48,6 +48,24 @@ class Solution(object):
         return False
 ```
 
+**Solution 2:**
+
+Explanation:
+- Use fast(2 steps) and slow(1 step) pointers to find the middle of the linked list
+  - The idea is when fast pointer will get to the end of linked list is the time slow pointer in the middle of the list
+- After defining the middle one, we go and reverse the a half of the linked list
+- After reverse, if the reversed match other then it is a palindrome linked list
+
+Analysis:
+- Time complexity: O(n)
+- Space complexity: O(2)
+
+Submission Detail
+```
+```
+
+```python
+```
 ## Medium([46. Permutations](https://leetcode.com/problems/permutations/))
 
 **Solution:**
@@ -129,6 +147,95 @@ class Solution(object):
 
 ## Hard([336. Palindrome Pairs](https://leetcode.com/problems/palindrome-pairs/))
 
+Explanation:
+
+- Get a reversed list of words
+- Find all permutation pairs by check each word with the reversed list
+  - Same length: If word had reversed in the reversed list and they are not the same then they are a palindrome pair
+  - Diff length: If not belong above case, there are 2 options could make palindrome:
+    ...
+
+Analysis:
+- Time complexity:
+- Space complexity:
+
+
+Submission Detail
+```
+Status: Accepted
+134 / 134 test cases passed.
+Runtime: 4828 ms
+Memory Usage: 15.3 MB
+```
+
+
+```python
+class Solution(object):
+    def palindromePairs(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[List[int]]
+        """
+        all_palindrome_pairs = []
+
+        # Step 1: reverse all words
+        reversed_words = [self.reversed_word(word) for word in words]
+
+        # Step 2: get all palindromes alternative the word and list reversed words
+        for word in words:
+            palindrome_pairs = self.find_palindromes_helper(word, words, reversed_words)
+            all_palindrome_pairs += palindrome_pairs
+
+        return all_palindrome_pairs
+
+    def is_palidrome(self, word):
+        return word == word[::-1] if word else False
+
+    def reversed_word(self, word):
+        return word[::-1]
+
+    def find_palindromes_helper(self, word, words, reversed_words):
+        """Find all palindromes alternative the word and list reversed words"""
+        palindromes_indices = []
+
+        # Case: word exist in reversed words list, same length
+        if word in reversed_words:
+            reversed_word = self.reversed_word(word)
+            # Avoid case revered word and word is the same
+            if reversed_word != word:
+                palindromes_indices.append([
+                    words.index(word),
+                    words.index(reversed_word)
+                ])
+
+
+        # Case: two words not same length
+        # by appending the other word to the back of the given word
+        for i, letter in enumerate(word):
+            taken_out_str = word[-(i+ 1):len(word)]
+            remain_str = word[0:len(word)-(i+1)]
+            if self.is_palidrome(taken_out_str) and remain_str in reversed_words:
+                palindromes_indices.append([
+                    words.index(remain_str + taken_out_str),
+                    words.index(self.reversed_word(remain_str))
+                ])
+
+        # Case: two words not same length
+        # by appending the other word to the front of the given word
+        for i, letter in enumerate(word):
+            taken_out_str = word[-len(word):(i+1)]
+            remain_str = word[(i+1):len(word)]
+            if self.is_palidrome(taken_out_str) and remain_str in reversed_words:
+                palindromes_indices.append([
+                    words.index(self.reversed_word(remain_str)),
+                    words.index(taken_out_str + remain_str)
+                ])
+
+        return palindromes_indices
+
+```
+
+--- Below is TLE solution of hard one
 *Issue: TLE*
 
 Explanation:
