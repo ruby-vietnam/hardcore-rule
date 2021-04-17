@@ -8,6 +8,7 @@ _Leetcode: https://leetcode.com/problems/palindrome-linked-list/_
 #         self.val = val
 #         self.next = next
 class Solution:
+
     def isPalindrome(self, head: ListNode) -> bool:
         slow, fast = head, head
         stack = []
@@ -27,4 +28,29 @@ class Solution:
 ```
 Runtime: 832 ms, faster than 35.41% of Python3 online submissions for Palindrome Linked List.
 Memory Usage: 47 MB, less than 50.45% of Python3 online submissions for Palindrome Linked List.
+```
+
+# 46. Permutations (Medium)
+_https://leetcode.com/problems/permutations/_
+## Approach
+```python
+class Solution:
+    
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        if len(nums) == 1:
+            return [nums]
+        N = len(nums)
+        results = []
+        x = nums[0]
+        curr = self.permute(nums[1:])
+        for i in range(N):
+            for l in curr:
+                results.append(l[:i] + [x] + l[i:])
+        return results
+    
+```
+## Submission Detail
+```
+Runtime: 28 ms, faster than 99.31% of Python3 online submissions for Permutations.
+Memory Usage: 14.5 MB, less than 43.55% of Python3 online submissions for Permutations.
 ```
