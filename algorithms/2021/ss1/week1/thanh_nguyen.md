@@ -57,7 +57,7 @@ Explanation:
   n! = n * (n-1) * (n-2) * ... * 1
 By example: [1, 2, 3]
 
-We want permution with length is length of the list, is 3, then we have 3 positions to put value on: _  _  _
+We want permutation with length is length of the list, is 3, then we have 3 positions to put value on: _  _  _
 
 - At position 1, permutation = _ _ _ ; choices = [1, 2, 3]
   - If select 1, -> permutation = 1 _ _ ; choices = [2, 3]
@@ -80,7 +80,7 @@ We want permution with length is length of the list, is 3, then we have 3 positi
             > append permutation [3, 1, 2] to result
     - If select 2 -> permutation = 3 2 _ ; choices = [1]
         - If select 1 -> permutation = 3 2 1 ; choices = [] -> no more choice
-            > Second permutation is [3, 2, 1]
+            > append permutation [3, 2, 1] to result
 
 
 > If still have choice, get next value and put to permutation, then pop them out of the choices
@@ -89,8 +89,8 @@ We want permution with length is length of the list, is 3, then we have 3 positi
 
 
 Analysis:
-- Time complexity:
-- Space complexity:
+- Time complexity: O(n!)
+- Space complexity: O(n!) permutations and O(n!) for choices -> O(n!) * O(n!) (?)
 
 Submission Detail
 ```
