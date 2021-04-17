@@ -153,7 +153,17 @@ Explanation:
 - Find all permutation pairs by check each word with the reversed list
   - Same length: If word had reversed in the reversed list and they are not the same then they are a palindrome pair
   - Diff length: If not belong above case, there are 2 options could make palindrome:
-    ...
+    - Case 1: by appending the other word to the back of the given word
+      - Lấy từ sau ra trước số từ theo thứ tự tăng dần từ 1 đến length của từ
+        - sau đó kiểm tra phân đoạn này có phải là palindrome hay không. Nếu phải, tiếp tục kiểm tra phần còn lại của chữ có nằm trong reversed hay không
+          -> nếu có thì có một palindrome pair là [word, reverse của phần còn lại]
+
+        Ví dụ: có ['rui', 'ur'], khi ghép lại là 'ruiur' là một palidrome. reversed_list sẽ là ['iur', 'ru']
+        - Step 1: phần lấy ra = 'i', phần còn lại: 'ru'
+        - Step 2: 'i' là một palindrome, 'ru' nằm trong reversed list
+        -> ['rui', 'ur'] là sẽ ghép được một palindrom
+    - Case 2: by appending the other word to the front of the given word
+      - Ngược lại case 1, thực hiện tách từ trước ra sau
 
 Analysis:
 - Time complexity:
