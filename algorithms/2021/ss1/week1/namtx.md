@@ -1,6 +1,9 @@
-### 234. Palindrome Linked List
+## 234. Palindrome Linked List (Easy)
 
 > Given the head of a singly linked list, return true if it is a palindrome.
+
+
+### Approach
 
 After reading the problem statement, as the first thought, we need to divide the linked list into a smaller list and make the compare by pair.
 
@@ -27,7 +30,7 @@ the `faster` pointer is not `NULL`, and the `slow` pointer is exactly the center
 
 At this point, we can easily compare the top of the Stack and `slow` pointer value, if has any mismatch value, we instantly return `FALSE`. And so on, until the Stack is empty, so, we can draw a conclustion that the list is palindrome.
 
-# Submission
+### Submission
 
 ```java
 /**
@@ -73,6 +76,67 @@ class Solution {
     }
 }
 ```
-> 85 / 85 test cases passed.
-> Runtime: 7 ms
-> Memory Usage: 52.7 MB
+
+### Submission detail
+```
+85 / 85 test cases passed.
+Runtime: 7 ms
+Memory Usage: 52.7 MB
+```
+
+### Complexity
+- Time Complexity: O(n)
+- Space Complexity: O(n)
+
+## 46. Permutations (Medium)
+
+> Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+
+### Approach
+
+This problem is kind of most popular in backtracking strategy.
+
+The idea is loop through the array and check whether the nums is already in a temporary array `tmp`. After adding the number to `tmp`, just do the backtrack and select others number.
+
+Whenever the `tmp` is full, add it into the result
+
+### Submission
+
+```java
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> tmp = new ArrayList<>();
+
+        backtrack(nums, result, tmp);
+
+        return result;
+    }
+
+    public void backtrack(int[] nums, List<List<Integer>> result, List<Integer> tmp) {
+        if (tmp.size()== nums.length) {
+            result.add(new ArrayList<>(tmp));
+        } else {
+            for (int num : nums) {
+                if (tmp.contains(num)) continue;
+
+                tmp.add(num);
+                backtrack(nums, result, tmp);
+                tmp.remove(tmp.size() - 1);
+            }
+        }
+    }
+}
+```
+
+### Submission detail
+
+```
+25 / 25 test cases passed.
+Runtime: 2 ms
+Memory Usage: 39.1 MB
+```
+
+### Complexity
+- Time Complexity: O(n!)
+- Space Compexity: O(n)
