@@ -67,8 +67,113 @@ Status: Accepted
 Runtime: 32 ms
 Memory Usage: 14.3 MB
 ```
+## Problem 2
+https://leetcode.com/problems/last-stone-weight-ii/
+
+**How**
+1. Why does the rock smashing refer to the difference of two sums: S1 and S2, is there anything proving that the difference of these two sets is the result we're looking for?
+2. Why is it related to 0/1 knapsack?
+
+Question 1:
+> Why does the rock smashing refer to the difference of two sums: S1 and S2
+
+```
+Starting with 2 stones:
+a - b
+Get the 3rd stone c:
+c - (a - b) = c - a + b
+Take the 4th stone as d:
+d - (c - (a - b)) = d - c + a - b = (d + a) - (c + b)
+Get the 3rd stone is e:
+e - (d - (c - (a - b))) = e - d + c - a + b = (e + c + b) - (d + a)
+```
+
+Thus, it can be seen that the nature of beating stones is to keep hitting each other until the end, and is equal to the difference of two sums: `diff = S1 - S2`.
+
+As in the example, `S1 = [e, c, b]`, `S2 = [d, a]`
+
+> Does anything prove that difference of these two sets is the result we need?
+
+```
+Suppose S1> = S2
+S1 + S2 = S
+S1 - S2 = diff => diff = S - S2 - S2 = S - 2 * S2
+```
+
+S stays the same (the sum of all stones).
+So to find the smallest diff, S2 must be the largest,
+but S2 cannot exceed S/2 so the problem is to find S2 which is maximum sum and does not exceed S/2
+
+Question 2: Why is it related to 0/1 knapsack?
+
+S2 = sum of some stones in set S2 => need to find some stones whose total is the greatest (<= S/2).
+
+This is similar to 0/1 knapsack where its problem is to find objects whose total weight <= W has the greatest value. Here, the weight is S/2 and find the greatest value is sum of stones.
+
+**Analysis**
+
+Let's call maximum stone weight is m.
+
+Time complexity is nlogn for sorting stones and O(nm/2) for two loops so overall complexity is O(nm).
+
+Space complexity is obviously O(nm).
+
+```python
+class Solution:
+    def lastStoneWeightII(self, stones: List[int]) -> int:
+        stone_sum = sum(stones)
+        max_s2 = stone_sum // 2
+        n = len(stones)
+        
+        stones.sort()
+        
+        # s[i][j] is maximum sum of stones in stones[:i+1] until j
+        s = [[0 for _ in range(max_s2+1)] for _ in stones]
+        for i in range(n):
+            for j in range(1, max_s2+1):
+                s[i][j] = max(s[i-1][j], 
+                              s[i-1][j-stones[i]] + stones[i] if j >= stones[i] else 0)
+                
+        return stone_sum - 2*s[n-1][max_s2]
+```
+```
+86 / 86 test cases passed.
+Status: Accepted
+Runtime: 84 ms
+Memory Usage: 14.8 MB
+```
+
+We can reduce space complexity from 2D array into 1D array, time complexity is still O(nm) but space complexity is O(m).
+
+```python
+class Solution:
+    def lastStoneWeightII(self, stones: List[int]) -> int:
+        stone_sum = sum(stones)
+        max_s2 = stone_sum // 2
+        n = len(stones)
+        
+        stones.sort()
+        
+        # s[j] is maximum sum of stones in stones[:i+1] until j
+        s = [0 for _ in range(max_s2+1)]
+        for i in range(n):
+            cs = s.copy()
+            for j in range(1, max_s2 + 1):
+                s[j] = max(cs[j], cs[j-stones[i]] + stones[i] if j >= stones[i] else 0)
+
+        return stone_sum - 2*s[max_s2]
+```
+
+```
+86 / 86 test cases passed.
+Status: Accepted
+Runtime: 80 ms
+Memory Usage: 14.8 MB
+```
 
 ## Problem 3
+https://leetcode.com/problems/find-k-th-smallest-pair-distance/
+
 ### Brute force
 **How**:
 
