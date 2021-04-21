@@ -72,3 +72,81 @@ Status: Accepted
 Runtime: 0 ms
 Memory Usage: 2 MB
 ```
+
+# Medium: Last Stone Weight II
+
+Leetcode: https://leetcode.com/problems/last-stone-weight-ii/
+
+### Approach
+
+Suppose we separate stones that have weight `x` and stones that have weight `y` into 2 subsets:
+```
+S: [2, 7, 4, 1, 8, 1]
+S1: [2, 7, 1]
+S2: [4, 8, 1]
+```
+Then when smashing together we will have
+```
+S1 - S2 -> [2, 1]
+and 2 - 1 -> [1]
+```
+The problem ask us to find the smallest possible weight of the left stone. The result can be calculated like this:
+```
+S = S1 + S2
+result = S1 - S2 = S - S2 - S2 = S - 2 * S2
+```
+
+To minimize the result (the weight of the left stone) we need to maximize S2. We don't need to find which stone is in S2, we just need to find the sum of all stones in S2. But how do we find the sum of S2 exactly?
+
+This is a 0/1 knapsack problem: you have a list of items with value `v` and weight `w`, you also have a sack of `W` capacity. Now you need to collect the items to maximize item values and make sure item weights still smaller than or equal to the sack's capacity.
+
+To find S2, we can think of
+- `W` as `sum(stones) / 2`
+- `v` as `stones[i]`
+- `w` as `stones[i]`
+
+### Solution (Go):
+
+```go
+func lastStoneWeightII(stones []int) int {
+	/*
+	   S: sum of weights in stones
+	   S1: sum of stones have weight x
+	   S2: sum of stones have weight y
+	   S1 + S2 = S
+	   S1 - S2 = smallest possible weight of the left stone
+	   smallest possible stone weight = S - 2 * S2 where S2 is as close to S/2 as possible
+	*/
+	S := 0
+	for _, weight := range stones {
+		S += weight
+	}
+	S2 := S >> 1
+	T := make([]int, S2+1) // T[i] is the sum of stones you can choose from S when the allowed weight (capacity) is i
+	for _, weight := range stones {
+		for i := S2; i >= weight; i-- {
+			T[i] = max(weight+T[i-weight], T[i])
+		}
+	}
+	return S - 2 * T[S2]
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+```
+
+Time complexity: O(N * S2)
+Space complexity: S2
+
+### Submission Detail
+
+```
+86 / 86 test cases passed.
+Status: Accepted
+Runtime: 0 ms
+Memory Usage: 2.1 MB
+```
