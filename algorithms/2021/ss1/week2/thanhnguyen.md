@@ -57,30 +57,74 @@ class Solution(object):
 > [1049. Last Stone Weight II](https://leetcode.com/problems/last-stone-weight-ii/)
 
 
-**Approach 1:**
+## Approach 1:
 
 Explanation:
 * Quy về bài toán nhỏ hơn
-Giả sử chọn hai viên đá bất kỳ là a, b, với a > b -> a - b
-Lấy viên tiếp theo là c, với c > a - b -> c - (a - b) = c - a + b
-Lấy viên tiếp theo là d, với d > c - (a - b) -> d - (c - (a - b))
-= d - (c - a + b)
-= d - c + a - b
-= (d + a)  - (b + c)
-= (d + a + ...) - (b + c + ...)
--> diff = S1 - S2 và S1 + S2 = S
 
-Vậy số bé nhất cần tìm chính là diff bé nhất
-diff = S1 - S2 = (S - S2) - S2 = S - (2 * S2) >= 0
+> Giả sử chọn hai viên đá bất kỳ là a, b, với a > b -> a - b
+>
+> Lấy viên tiếp theo là c, với c > a - b -> c - (a - b) = c - a + b
+>
+> Lấy viên tiếp theo là d, với d > c - (a - b) -> d - (c - (a - b))
+>
+> = d - (c - a + b)
+>
+> = d - c + a - b
+>
+> = (d + a)  - (b + c)
+>
+> = (d + a + ...) - (b + c + ...)
+>
+> -> diff = S1 - S2 và S1 + S2 = S
+>
+> Vậy số bé nhất cần tìm chính là diff bé nhất
+>
+> diff = S1 - S2 = (S - S2) - S2 = S - (2 * S2) >= 0
+>
+> Để diff nhỏ nhất thì S2 phải lớn nhất, với S2 <= S // 2
+>
+**Quy về bài toán nhỏ hơn là:**
 
-Để diff nhỏ nhất thì S2 phải lớn nhất, với S2 <= S // 2
+- Step 1: Tìm S2 sao cho S2 lớn nhất và nhỏ hơn S/2
 
-Quy về bài toán nhỏ hơn là:
-Step 1: Tìm S2 sao cho S2 lớn nhất và nhỏ hơn S/2
-Step 2: Trả về diff = S - 2 * S2
+- Step 2: Trả về diff bé nhất = S - 2 * S2
+---
+####  Giải bài toán nhỏ: Tìm S2 sao cho S2 lớn nhất và nhỏ hơn S//2
 
-> Giải bài toán nhỏ: Tìm S2 sao cho S2 lớn nhất và nhỏ hơn S/2
+Bài toán này tương tự 0/1 Knapsack với:
+- m = S // 2
+- n = len(stones)
+- weights = stones
 
+Ví dụ stones = [2,7,4,1,8,1] thì: S = 23; m = S // 2 = 11; n = range(0,5), weights = [2,7,4,1,8,1]
+
+- Tổng
+Ta có bảng tính:
+
+      0 1 2 3 4 5 6 7 8 9 10 11 (m)
+2   0 0 0 2 2 2 2 2 2 2 2  2  2
+7   1 0 0 2 2 2 2 2 7 7 9  9  9
+4   2 0 0 2 2 4 4 6 7 7 9  9 11
+1   3 0 1 2 3 4 5 6 7 8 9 10 11
+8   4 0 1 2 3 4 5 6 7 8 9 10 11
+1   5 0 1 2 3 4 5 6 7 8 9 10 11
+(w)(n)
+
+ -> max = 11
+
+Công thức tổng quát: A[n, w] = max(A[n-1, w], A[n-1, w - w_of_n])
+
+- n là số thứ tự của viên đá, từ 0 đến len(stones)
+- w là sức chứa, sức chứa là có giới hạn từ 1 đến m
+- w_of_n: là khối lượng của viên đá thứ n
+
+A[3, 3] = max(A[2, 3], A[3, 3-1] + w_of_n)
+        = max(2, 2 + 1) = 3
+
+-> min diff = 23 - 11 * 2 = 1
+
+---
 Analysis:
 - Time complexity:
 - Space complexity:
