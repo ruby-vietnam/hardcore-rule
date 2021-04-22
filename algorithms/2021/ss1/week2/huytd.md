@@ -102,3 +102,39 @@ Analysis:
 The first step is to push every elements of the input array into a priority queue, which takes `O(n log n)` time. The main `while` loop takes `n` times as explained in the previous solution. All priority queue's operations in the main loop are `O(log n)` time, except the `pq.top()` is just `O(1)`. Combine them all we have the total time complexity is `O(n log n) + n * (2 * (O(1) + O(log n)) + O(log n) + O(1))`, well, eventually it's just `O(n log n)`.
 
 This algorithm created a priority queue to store every elements of the input array in it, so it would be `O(n)` space.
+
+# Hard: Find K-th Smallest Pair Distance
+
+Submission details:
+```
+19 / 19 test cases passed.
+Status: Accepted
+Runtime: 3548 ms
+Memory Usage: 3.5 MB
+```
+
+```go
+func smallestDistancePair(n []int, k int) int {
+    sort.Ints(n)
+    l := len(n)
+    low := 0
+    high := 1000000
+    for low < high {
+        mid := (high + low) / 2
+        fk := 0
+        for i := 0; i < l; i++ {
+            j := 0
+            for j < l && n[j] - n[i] <= mid {
+                j++
+            }
+            fk += j - i - 1
+        }
+        if fk < k {
+            low = mid + 1
+        } else {
+            high = mid
+        }
+    }
+    return low
+}
+```
