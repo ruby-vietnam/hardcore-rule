@@ -181,3 +181,46 @@ So we can easily get the 2 most weightest stones by go backward, smash them toge
 There is one special case, when the number of stones with the same weight is even, we can treat it as `0` as after smashing, there is nothing remain.
 
 ### Submission
+
+```java
+class Solution {
+    public int lastStoneWeight(int[] stones) {
+        int[] arr = new int[1001];
+        Arrays.fill(arr, 0);
+        for (int stone: stones) {
+            arr[stone]++;
+        }
+
+        int right = 1000;
+        int left;
+
+        while (right >= 1) {
+            if (arr[right] % 2 != 0) {
+                left = right - 1;
+                
+                while (left >= 1 && arr[left] == 0) left--;
+                
+                if (left == 0) break;
+                
+                arr[right - left]++;
+                arr[left]--;
+            }
+            
+            right--;
+        }
+
+        return right;
+    }
+}
+```
+
+### Submission detail
+
+| Status    | Runtime     | Memory   | Language  |
+| ---       | ----------- | -------- | --------- |
+| Accepted  | 1ms         | 36.4MB   | java      |
+
+### Analyze
+
+- Time Complexity **O(n ^ 2)**
+- Space Compexity **O(n)**
