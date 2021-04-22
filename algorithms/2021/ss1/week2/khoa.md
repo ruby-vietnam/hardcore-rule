@@ -6,7 +6,7 @@
 - Pickup the first two elements
 - Compare them and append to the array
 
-Analysis:
+**Analysis:**
 - Time: The sort method takes `O(N log N)` with the worst case, then we pick two element out and append it to the result array. So the runtime for this solution would be `O(N ^ 2 log N)`.
 
 - Space: If we solve this by Swift, because Swift prevent us to modified parameter array so if we use sort it will cost `O(N)` space, so the total space complexity is `O(N)`
@@ -142,8 +142,115 @@ Memory Usage: 14 MB, less than 73.91% of Swift online submissions for Last Stone
 
 # Medium:
 
-WIP
+**Analysis:**
 
-# Hard:
+Call maximum stone weight is M
 
-WIP
+Time: O(NM/2) for two loops, so the overall complexity would be `O(NM)`
+
+Space: O(M), which use 1D array for dp
+
+```cpp
+#include <iostream>
+#include <numeric>
+#include <vector>
+
+using namespace std;
+
+class Solution {
+public:
+  int lastStoneWeightII(vector<int> &stones) {
+    int sum = accumulate(stones.begin(), stones.end(), 0);
+    int halfSum = sum / 2;
+    vector<bool> dp(halfSum + 1, false);
+    dp[0] = true;
+
+    int s2 = 0;
+    for (int stone : stones) {
+      for (int i = halfSum; i >= stone; i--) {
+        if (!dp[i]) {
+          dp[i] = dp[i - stone];
+          if (dp[i])
+            s2 = max(s2, i);
+        }
+      }
+    }
+
+    return sum - 2 * s2;
+  }
+}
+
+```
+```
+Runtime: 4 ms, faster than 77.64% of C++ online submissions for Last Stone Weight II.
+Memory Usage: 8 MB, less than 60.52% of C++ online submissions for Last Stone Weight II.
+```
+
+# Hard: Find K-th Smallest Pair Distance
+
+We can use binary search to find the k-th smallest distance pair by guessing what we think k-th smallest distance will be. The pair of the largest and smallest elements in the array will have the largest distance between them. So, if two numbers are same, they will have a distance = 0. This gives us a lower and upper bound that we can use to perform binary search
+
+1. First sort the array.
+2. Create 2 variable:
+- 3. `minDist` is minimum distance between two numbers is 0 if they are the same
+- 4. `maxDist` is max distance in sorted array is leftmost - rightmost element
+5. Do a binary search
+- 6. Create `midDist`
+- 7. Since we want the k-th smallest distance pair, we now need to count the number of pairs with a distance greater than `midDist` so that we can decide how to modify our search space
+  - 8. If this condition is correct, then the current number and all numbers to its right will be greater than `midDist` from `nums[left]`
+  - 9. Adds the number of pairs between right and left.3
+- 10. We found too many pairs which means the k-th smallest distance pair must have a distance is less than our guess, so we remove the lower half of our search space
+- 11. We found to few pairs which means the k-th smallest distance pair must have a distance that is greater than our guess so we remove the lower half of our search space
+
+**Analysis:**
+- Time: O(N Log N)
+- Space: O(N) which use for sorted array
+
+```swift
+class Solution {
+    func smallestDistancePair(_ nums: [Int], _ k: Int) -> Int {
+        // 1
+        let nums = nums.sorted()
+        // 2
+        var minDist = 0
+        // 3
+        var maxDist = nums[nums.count - 1] - nums[0]
+
+        // 5
+        while minDist <= maxDist {
+            // 6
+            let midDist = minDist + (maxDist - minDist) / 2
+
+            // 7
+            var left = 0
+            var right = 0
+            var count = 0
+
+            while right < nums.count {
+                if nums[right] - nums[left] > midDist {
+                    // 8
+                    left += 1
+                } else {
+                    // 9
+                    let numberOfPairs = right - left
+                    count += numberOfPairs
+                    right += 1
+                }
+            }
+
+            if count >= k {
+                // 10
+                maxDist = midDist - 1
+            } else {
+                // 11
+                minDist = midDist + 1
+            }
+        }
+        return minDist
+    }
+}
+```
+```
+Runtime: 76 ms, faster than 66.67% of Swift online submissions for Find K-th Smallest Pair Distance.
+Memory Usage: 14.8 MB, less than 5.56% of Swift online submissions for Find K-th Smallest Pair Distance.
+```
