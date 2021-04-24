@@ -224,3 +224,70 @@ class Solution {
 
 - Time Complexity **O(n ^ 2)**
 - Space Compexity **O(n)**
+
+# 719. Find K-th Smallest Pair Distance
+
+## Approach
+
+First of all, we sort the array for easily couting, it takes **O(n log n)** Time complexity and **O(n)** Space complexity.
+
+We have a conclusion as the minimum distance is 0 and the maximum is `nums[N] - nums[0]`.
+
+We're gonna use binary searching.
+- the `mid` value is `min + (max - min)/2`
+- we use two pointer `left` and `right` and then we count the number of pairs which are greater than the `mid` by sliding the `left` and `right` pointer
+- if the number of pairs is greater than `k` so, we find a new `mid` value by reassign the `max` value to `(mid - 1)`, otherwise, the new min value is `(mid + 1)`
+- And so on, the loop is end whenever the binary searching is done (`min > max`)
+
+## Submission
+
+```java
+import java.util.Arrays;
+
+public class Solution {
+    public int smallestDistancePair(int[] nums, int k) {
+        Arrays.sort(nums);
+        int n = nums.length;
+
+        int max = nums[n - 1] - nums[0];
+        int min = 0;
+
+        while (min <= max) {
+            int mid = min + (max - min) / 2;
+
+            int left = 0;
+            int right = 0;
+            int count = 0;
+
+            while (right < n) {
+                if (nums[right] - nums[left] > mid) {
+                    left++;
+                } else {
+                    int pairs = right - left;
+                    count += pairs;
+                    right++;
+                }
+            }
+
+            if (count >= k) {
+                max = mid - 1;
+            } else {
+                min = mid + 1;
+            }
+        }
+
+        return min;
+    }
+}
+```
+
+## Submission detail
+
+| Status    | Runtime     | Memory   | Language  |
+| ---       | ----------- | -------- | --------- |
+| Accepted  | 3 ms        | 38.7MB   | java      |
+
+## Complexity
+
+Time complexity: **O(n log n)**
+Space complexity **O(n)**
