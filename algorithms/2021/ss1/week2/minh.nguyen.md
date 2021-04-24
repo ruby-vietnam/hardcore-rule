@@ -13,8 +13,7 @@ We don't need any optimization or fancy algorithm for this problem. Loop, sort, 
 
 ```ruby
 def last_stone_weight(stones)
-  1.upto(stones.length - 1) { stones.push(stones.sort!.pop(2).reduce(&:-).abs) }
-  stones.first
+  stones.tap { |s| 1.upto(s.length - 1) { s.push(s.sort!.pop(2).reduce(&:-).abs) } }.first
 end
 ```
 
