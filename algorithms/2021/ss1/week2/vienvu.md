@@ -4,11 +4,10 @@ https://leetcode.com/problems/last-stone-weight/
 Submission Details
 
 ```
-0 / 70 test cases passed.
+70 / 70 test cases passed.
 Status: Accepted
 Runtime: 0 ms
 Memory Usage: 2 MB
-Submitted: 12 minutes ago
 ```
 
 Naive Solution:
@@ -88,4 +87,108 @@ func (h *IntHeap) Pop() interface{} {
 	*h = old[0 : n-1]
 	return x
 }
+```
+
+#Hard find-k-th-smallest-pair-distance
+https://leetcode.com/problems/find-k-th-smallest-pair-distance/
+
+Naive Solution
+We will save all distance to and array. After that we will sort it. And we choose k-1 in the array. We will need run 2 loops. So complexity of this solution is O(n^2)
+
+```Go
+import (
+	"sort"
+)
+
+func Abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
+
+func smallestDistancePair(nums []int, k int) int {
+    sort.Ints(nums)
+	result := make([]int, 0)
+	for i := 0; i < len(nums) - 1; i++ {
+		for j := i + 1; j < len(nums); j++ {
+			result = append(result, Abs(nums[i] - nums[j]))
+		}
+	}
+	sort.Ints(result)
+	return  result[k - 1]
+}
+```
+
+BS approach:
+
+
+Submission Details
+```
+19 / 19 test cases passed.
+Status: Accepted
+Runtime: 20 ms
+Memory Usage: 3.7 MB
+```
+
+Implementation:
+```Go
+import "sort"
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func countPairs(nums []int, mid int) int {
+	res := 0
+	n := len(nums)
+	for i := 0; i < n; i++ {
+		res += UpperBound(nums, i, n - 1, nums[i] + mid) - i - 1
+	}
+
+	return res
+}
+
+func UpperBound(array []int, low int, high int, key int) int {
+	if array[high] <= key {
+		return high + 1
+	}
+
+	for low < high {
+		mid := (low + high) / 2
+		if key >= array[mid] {
+			low = mid + 1
+		} else {
+			high = mid
+		}
+	}
+	return low
+}
+
+func smallestDistancePair(nums []int, k int) int {
+	sort.Ints(nums)
+	n := len(nums)
+	low := nums[1] - nums[0]
+
+	for i := 1; i < n - 1; i++ {
+		low = min(low, nums[i + 1] - nums[i])
+	}
+
+	high := nums[n - 1] - nums[0]
+
+	for low < high {
+		mid := (low + high) / 2
+		if countPairs(nums, mid) < k {
+			low = mid + 1
+		} else {
+			high = mid
+		}
+	}
+
+	return  low
+}
+
 ```
