@@ -1,5 +1,4 @@
-# 1046. Last Stone Weight
-_https://leetcode.com/problems/last-stone-weight/_
+# [1046. Last Stone Weight](https://leetcode.com/problems/last-stone-weight/)
 
 ## Brute-force Approach
 
@@ -41,9 +40,9 @@ Runtime: 0 ms, faster than 100.00% of C++ online submissions for Last Stone Weig
 Memory Usage: 7.6 MB, less than 69.19% of C++ online submissions for Last Stone Weight.
 ```
 
-## Better Approach
+## Priority Queue Approach
 
-Construct a `priority_queue` that all elements are always in non ncreasing order.
+Construct a `priority_queue` that all elements are always in non increasing order.
 
 **Algorithm:**
 - While the priority queue has at least 2 element:
@@ -81,4 +80,36 @@ public:
 ```
 Runtime: 0 ms, faster than 100.00% of C++ online submissions for Last Stone Weight.
 Memory Usage: 7.6 MB, less than 23.19% of C++ online submissions for Last Stone Weight.
+```
+
+# [1049. Last Stone Weight II](https://leetcode.com/problems/last-stone-weight-ii/)
+
+## 0/1 Knapsack Approach
+```cpp
+class Solution {
+public:
+    int lastStoneWeightII(vector<int>& stones) {
+        sort(stones.begin(), stones.end());
+        int weight_sum = accumulate(stones.begin(), stones.end(), 0);
+        int n_stones = stones.size();
+        int max_s2 = weight_sum / 2;
+        vector<int> t(max_s2+1, 0);
+        for (auto i=0; i<n_stones; i++) {
+            vector<int> t_col(t);
+            for (auto j=1; j<max_s2+1; j++) {
+                if (j < stones[i]) {
+                    t[j] = t_col[j];
+                }
+                else {
+                    t[j] = max(t_col[j], t_col[j-stones[i]] + stones[i]);
+                }
+            }
+        }
+        return weight_sum - 2*t[max_s2];
+    }
+};
+```
+```
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Last Stone Weight II.
+Memory Usage: 9.1 MB, less than 24.38% of C++ online submissions for Last Stone Weight II.
 ```
