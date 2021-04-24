@@ -122,7 +122,7 @@ func lastStoneWeightII(stones []int) int {
 		S += weight
 	}
 	S2 := S >> 1
-	T := make([]int, S2+1) // T[i] is the sum of stones you can choose from S when the allowed weight (capacity) is i
+	T := make([]int, S2+1) // T[i] is sum of stones you can choose to make S2, where this sum of stones cannot larger than i
 	for _, weight := range stones {
 		for i := S2; i >= weight; i-- {
 			T[i] = max(weight+T[i-weight], T[i])
@@ -139,7 +139,7 @@ func max(a, b int) int {
 }
 ```
 
-Time complexity is O(n* * S2) and space complexity is S2.
+Time complexity is O(n * S2) and space complexity is S2.
 
 ### Submission Detail
 
