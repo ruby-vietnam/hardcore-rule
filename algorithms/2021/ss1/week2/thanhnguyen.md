@@ -100,8 +100,80 @@ Bài toán này tương tự 0/1 Knapsack với:
 Ví dụ stones = [2,7,4,1,8,1] thì: S = 23; m = S // 2 = 11; n = range(0,5), weights = [2,7,4,1,8,1]
 
 - Tổng
-Ta có bảng tính:
+Ta có bảng tính khởi tạo với(m=0 -> khối lượng tối đa luôn là 0):
 
+```
+      0 1 2 3 4 5 6 7 8 9 10 11 (m)
+2   0 0
+7   1 0
+4   2 0
+1   3 0
+8   4 0
+1   5 0
+(w)(n)
+```
+
+> n = 0
+
+```
+      0 1 2 3 4 5 6 7 8 9 10 11 (m)
+2   0 0 0 2 2 2 2 2 2 2 2  2  2
+7   1 0
+4   2 0
+1   3 0
+8   4 0
+1   5 0
+(w)(n)
+```
+
+Giải thích: với n = 0, chỉ có 1 cục đá là n0 với w_n0 là 2.
+
+Do đó, nó sẽ có khối lượng lớn nhất là 2 cho tất cả m >=2
+
+> n = 1
+```
+      0 1 2 3 4 5 6 7 8 9 10 11 (m)
+2   0 0 0 2 2 2 2 2 2 2 2  2  2
+7   1 0 0 2 2 2 2 2 7 7 9  9  9
+4   2 0
+1   3 0
+8   4 0
+1   5 0
+(w)(n)
+```
+
+Giải thích: với n = 1, có 2 cục đá là (n0, n1) với (w_n0, w_n1) tương ứng là (2, 7).
+
+Do đó, nó sẽ có khối lượng lớn nhất là:
+- chọn được 1 viên w=2 -> tổng w=2 cho m < 7
+- chọn được 1 viên w=7 -> tổng w=7 cho 7 <= m < 9
+- chọn được 2 viên: w=2 và w=7 -> tổng w=9 cho 9 <= m <= 11
+
+> n = 2
+```
+      0 1 2 3 4 5 6 7 8 9 10 11 (m)
+2   0 0 0 2 2 2 2 2 2 2 2  2  2
+7   1 0 0 2 2 2 2 2 7 7 9  9  9
+4   2 0 0 2 2 4 4 6 7 7 9  9 11
+1   3 0
+8   4 0
+1   5 0
+(w)(n)
+```
+
+Giải thích: với n = 2, có 3 cục đá là (n0, n1, n2) với (w_n0, w_n1, w_n2) tương ứng là (2, 7, 4).
+
+Do đó, nó sẽ có khối lượng lớn nhất là:
+- chọn được 1 viên w=2 -> tổng w=2 cho m < 4
+- chọn được 1 viên w=4 -> tổng w=4 cho 4 <= m < 7
+- chọn được 1 viên w=7 -> tổng w=7 cho 7 <= m < 9
+- chọn được 2 viên: w=2 và w=7 -> tổng w=9 cho 9 <= m < 11
+- chọn được 2 viên w=7 và w=4  -> tổng w=11 cho m = 11
+
+
+> thực hiện tương tự cho n là 3, 4, 5
+
+```
       0 1 2 3 4 5 6 7 8 9 10 11 (m)
 2   0 0 0 2 2 2 2 2 2 2 2  2  2
 7   1 0 0 2 2 2 2 2 7 7 9  9  9
@@ -110,17 +182,52 @@ Ta có bảng tính:
 8   4 0 1 2 3 4 5 6 7 8 9 10 11
 1   5 0 1 2 3 4 5 6 7 8 9 10 11
 (w)(n)
+```
 
- -> max = 11
+Từ bảng trên ta rút ra được công thức, gọi là ct của 0/1 Knapsack(0/1 nghĩa là phần tử đó có được dùng hay không, ví dụ dùng viên w=2 thì là có, không dùng là không)
 
-Công thức tổng quát: A[n, w] = max(A[n-1, w], A[n-1, w - w_of_n])
+-> Công thức tổng quát: A[n, w] = max(A[n-1, w], A[n-1, w - w_of_n])
 
-- n là số thứ tự của viên đá, từ 0 đến len(stones)
-- w là sức chứa, sức chứa là có giới hạn từ 1 đến m
-- w_of_n: là khối lượng của viên đá thứ n
+Để tính giá trị lớn nhất ở vị trí n, w thì lấy giá trị lớn nhất giữ hai gía trị:
+- Giá trị của
 
-A[3, 3] = max(A[2, 3], A[3, 3-1] + w_of_n)
-        = max(2, 2 + 1) = 3
+
+select items:
+n | weight
+2 | 4
+1 | 7 -> max = 11
+
+Công thức tổng quát:
+
+> **A[n, m] = max(A[n-1, m], A[n-1, m - w_of_n] + w_of_n)**
+
+với:
+- n là chỉ số thứ tự của viên đá
+- w là khối lượng của viên đá
+- w_of_n là khối lượng của viên đá thứ n
+
+
+Áp dụng công thức trên thử tính là vải vị trí xem có đúng không nhé:
+
+Giả sử bảng tính đang ở vị trí này:
+```
+      0 1 2 3 4 5 6 7 8 9 10 11 (m)
+2   0 0 0 2 2 2 2 2 2 2 2  2  2
+7   1 0 0 2 2 2 2 2 7 7 9  9  9
+4   2 0 0 2 2 4 4 6 7 7 9  9 11
+1   3 0 1 2 X Y
+8
+(w)(n)
+```
+Hãy thử tìm X, Y:
+
+X = A[3, 3] = max(A[2, 3], A[2, 3 - 1] + 1) = max(2, A[2, 2] + 1) = max(2, 2 + 1) = 3
+
+Y = A[4, 3] = max(A[3, 3], A[3, 4 - 1] + 1) = max(3, A[3, 3] + 1) = max(3, 3 + 1) = 4
+
+-> Đúng với giá trị ở bảng trên rồi nè :D
+
+Kết luận: số lớn nhất tìm được nằm ở vị trí A[11, 5] = 11
 
 -> min diff = 23 - 11 * 2 = 1
 
