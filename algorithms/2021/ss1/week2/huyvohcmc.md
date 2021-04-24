@@ -10,7 +10,7 @@ The first algorithm that came to my mind:
   - pops out 2 last stones, smashes them and put the remaining weight (if any) back to its desired position in `stones` to maintain the order.
 3. if `stones` is empty, returns 0, otherwise returns the left stone.
 
-We could use binary search (O(logN)) to find the desired position of `stones[i] - stones[j]`, then insert the new stone to that position in the array (O(N)). Combine with the looping, this algorithm costs O(N^2) in time complexity and O(1) in space.
+We could use binary search (O(log(n))) to find the desired position of `stones[i] - stones[j]`, then insert the new stone to that position in the array (O(n)). Combine with the looping, this algorithm costs O(n^2) in time complexity and O(1) in space.
 
 To improve time complexity, we can use a heap data structure to store the stones, because pushing and popping operations of a heap is only O(logN) complexity. The steps are follow:
 1. build a heap `heap` from `stones`
@@ -18,9 +18,9 @@ To improve time complexity, we can use a heap data structure to store the stones
   - pops out 2 stones, smashes them and push the remaining weight (if any) back to `heap`
 3. if `heap` is empty, returns 0, otherwise returns the left stone.
 
-The time complexity has improved to O(NlogN), and space is O(N).
+The time complexity has improved to O(nlog(n)), and space complexity is O(n).
 
-### Solution (Go):
+### Code (Go):
 
 ```go
 func lastStoneWeight(stones []int) int {
@@ -105,7 +105,7 @@ To find S2, we can think of
 - `v` as `stones[i]`
 - `w` as `stones[i]`
 
-### Solution (Go):
+### Code (Go):
 
 ```go
 func lastStoneWeightII(stones []int) int {
@@ -139,8 +139,7 @@ func max(a, b int) int {
 }
 ```
 
-Time complexity: O(N * S2)
-Space complexity: S2
+Time complexity is O(n* * S2) and space complexity is S2.
 
 ### Submission Detail
 
@@ -149,4 +148,109 @@ Space complexity: S2
 Status: Accepted
 Runtime: 0 ms
 Memory Usage: 2.1 MB
+```
+
+# Hard: Find K-th Smallest Pair Distance
+
+Leetcode: https://leetcode.com/problems/find-k-th-smallest-pair-distance/
+
+### Brute-force
+
+Find all possible pair distances, sort them in ascending order and returns the kth distance. This solution clearly doesn't work for large inputs.
+
+### A Better Approach
+
+We know that kth smallest distance will always be in between the range of smallest possible distance and largest possible distance. If we sort the input in ascending order then the largest possible distance will be:
+
+```
+largestPossibleDistance = nums[l-1] - nums[0] // l: length of nums
+```
+
+We don't know for sure that the smallest possible distance will be nums[1] - nums[0], because with input `[1, 5, 6]` smallest possible pair distance is `[5, 6]` not `[1, 5]`. But we know that the smallest possible distance cannot be smaller than 0, so let's just say it's 0 and call it a day:
+
+```
+smallestPossibleDistance = 0
+```
+
+So now we have `smallestPossibleDistance <= kth smallest distance <= largestPossibleDistance`. Next step is to find `k` by try guessing.
+
+We don't know yet what is kth smallest distance, but for a certain distance `x`, we can know how many pairs that have smaller distance than or equal to `x`.
+
+For example, the input ask us to find the 5th smallest distance (k = 5), and since we already know the range of the smallest distance and largest distance, if we start with a random number `x` (smallest <= x <= largest), and there are indeed 5 pairs in the input (sorted) that have `distance <= x`, then the 5th smallest distance is `x`.
+
+```
+[smallest possible distance ... x] has 5 elements, so 5th smallest distance is x
+```
+
+But if there are only 3 pairs in the input that have `distance <= x`, then the range [smallest distance ... x] doesn't contain the 5th smallest distance
+
+```
+[smallest possible distance ... x] has 3 elements, so 5th smallest distance is outside of this range
+```
+
+Similarly when are 6 pairs have `distance <= x`:
+```
+[smallest possible distance ... x] has 6 elements, so x is 6th smallest distance, not 5th smallest distance
+```
+
+The pattern above is pretty much the same with binary search algorithm. So by applying the algorithm we can find which value is x and is also kth smallest distance.
+
+There is one thing left to do, which is given a sorted array of numbers, count the number of pairs that have distance smaller than or equal to a given distance:
+
+```
+1. loop through the array with 2 pointers i and j (increment i every step)
+
+nums = 0 0 1 1 2 2, d = 1 (given distance)
+       i j
+
+2. increment j while nums[j] - nums[i] <= d
+
+nums = 0 0 1 1 2 2, d = 1
+       i       j
+
+3. number of pairs <= d at this step is j - i - 1
+```
+
+### Code (Go)
+
+```go
+import "sort"
+
+func smallestDistancePair(nums []int, k int) int {
+    sort.Ints(nums)
+    max := nums[len(nums)-1] - nums[0]
+    min := 0
+    for min < max {
+        median := min + (max - min) / 2
+        if countPairs(nums, median) >= k {
+            max = median
+        } else {
+            min = median + 1
+        }
+    }
+    return min
+}
+
+func countPairs(nums []int, d int) int {
+    c, n := 0, len(nums)
+    j := 1
+    for i := 0; i < n; i++ {
+        for j < n && nums[j] - nums[i] <= d {
+            j++
+        }
+        c += j - 1 - i
+    }
+    return c
+}
+```
+
+Time complexity of the initial sort is O(nlog(n)), binary search is O(log(n)), and for each search we calls `countPairs` with O(n), so the total time complexity is O(nlog(n)).
+
+### Submission Detail
+
+```
+19 / 19 test cases passed.
+Status: Accepted
+Runtime: 276 ms
+Memory Usage: 3.5 MB
 ```
