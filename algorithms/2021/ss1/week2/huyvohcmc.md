@@ -172,11 +172,11 @@ We don't know for sure that the smallest possible distance will be nums[1] - num
 smallestPossibleDistance = 0
 ```
 
-So now we have `smallestPossibleDistance <= kth smallest distance <= largestPossibleDistance`. Next step is to find `k` by try guessing.
+So now we have `smallestPossibleDistance <= kth smallest distance <= largestPossibleDistance`. Next step is to find kth smallest distance by try guessing.
 
 We don't know yet what is kth smallest distance, but for a certain distance `x`, we can know how many pairs that have smaller distance than or equal to `x`.
 
-For example, the input ask us to find the 5th smallest distance (k = 5), and since we already know the range of the smallest distance and largest distance, if we start with a random number `x` (smallest <= x <= largest), and there are indeed 5 pairs in the input (sorted) that have `distance <= x`, then the 5th smallest distance is `x`.
+For example, the question ask us to find the 5th smallest distance (k = 5), and since we already know the range of the smallest distance and largest distance, if we start with a random number `x` (smallest <= x <= largest), and there are indeed 5 pairs in the input (sorted) that have `distance <= x`, then the 5th smallest distance is `x`.
 
 ```
 [smallest possible distance ... x] has 5 elements, so 5th smallest distance is x
