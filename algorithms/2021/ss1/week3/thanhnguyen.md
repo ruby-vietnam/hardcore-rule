@@ -1,5 +1,5 @@
 # Easy
-> [1046. Last Stone Weight](https://leetcode.com/problems/last-stone-weight/)
+> [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
 **Approach 1(TLE):**
 
@@ -114,4 +114,46 @@ class Solution(object):
                     profits.add(sell - buy)
 
         return max(profits) if len(profits) else 0
+```
+
+
+# Medium
+> [309. Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
+
+**Approach:**
+Explanation:
+
+Analysis:
+- Time complexity:
+- Space complexity:
+Submission Detail
+```
+Status:
+x / x0 test cases passed.
+Runtime: ms
+Memory Usage:  MB
+```
+
+```python
+```
+
+# Hard
+> [3188. Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/)
+
+
+**Approach:**
+Explanation:
+
+Analysis:
+- Time complexity:
+- Space complexity:
+Submission Detail
+```
+Status:
+x / x0 test cases passed.
+Runtime: ms
+Memory Usage:  MB
+```
+
+```python
 ```
