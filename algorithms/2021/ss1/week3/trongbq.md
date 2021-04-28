@@ -102,12 +102,13 @@ https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
 For a certain day `i`, there are 3 possibilities
 
 1. It's a cooldown day, so the maximum profit is by buying and selling from day 0 to day `i-1`.
-2. It's a selling day, so the maximum profit is addition of profit when selling on day `i` and what we need to find is the day to buy that selling on day `i` makes most profitable.
+2. It's a buying day, so the maximum profit is by buying and selling from day 0 to day `i-2`.
+3. It's a selling day, so the maximum profit is addition of profit when selling on day `i` and what we need to find is the day to buy that selling on day `i` make most profitable.
 
 In conclusion, we have following formular:
 
 ```
-profits[i] = max(profits[i-1], max(prices[i] - prices[j] + profits[j-2] for j from 0 to i-1))
+profits[i] = max(profits[i-1], profits[i-2], max(prices[i] - prices[j] + profits[j-2] for j from 0 to i-1))
 ```
 
 **Analysis**
@@ -127,7 +128,10 @@ class Solution:
             
             # if day i is a cooldown day
             max_profit = find(i-1)
-            # try to find the max profit by selecting selling day is one of previous days
+            # if day i is a buying day
+            max_profit = max(max_profit, find(i-2))
+            # else day i is a selling day,
+            # try to find the max profit by selecting buying day is one of previous days
             for j in range(0, i):
                 p = max(0, prices[i] - prices[j]) + find(j-2)  # minus 2 due to 1 day cooldown
                 if p > max_profit:
@@ -138,7 +142,7 @@ class Solution:
 ```
 
 ### Topdown with Memorization
-We can see the overlapping problem when `find(i)` is being called many times.
+We can see the overlapping problem when `find(i)` is being called many times with the same value `i`.
 
 For example
 
@@ -147,9 +151,11 @@ prices: [1,2,3,0,2]
 
 With i = 4:
     - find(i-1) = find(3)
+    - find(i-2) = find(2)
     - find(j-2) = find(-2), find(-1), find(0), find(1)
 With i = 3:
     - find(i-1) = find(2)
+    - find(i-2) = find(1)
     - find(j-2) = find(-2), find(-1), find(0)
 ...
 ```
@@ -171,7 +177,10 @@ class Solution:
             
             # if day i is a cooldown day
             max_profit = find(i-1)
-            # try to find the max profit by selecting selling day is one of previous days
+            # if day i is a buying day
+            max_profit = max(max_profit, find(i-2))
+            # else day i is a selling day,
+            # try to find the max profit by selecting buying day is one of previous days
             for j in range(0, i):
                 p = max(0, prices[i] - prices[j]) + find(j-2)  # minus 2 due to 1 day cooldown
                 if p > max_profit:
@@ -186,8 +195,8 @@ class Solution:
 ```
 210 / 210 test cases passed.
 Status: Accepted
-Runtime: 3140 ms
-Memory Usage: 18.8 MB
+Runtime: 3096 ms
+Memory Usage: 18.9 MB
 ```
 
 ### Bottom-up
@@ -207,11 +216,14 @@ class Solution:
             return 0
         
         # profits[i] is the maximum profit we can get so far till day i (sell at day i)
-        profits = [0] + [max(0, prices[1] - prices[0])] + [-1 for _ in range(2, n)]
+        profits = [-1 for _ in range(n)]
+        profits[0] = 0
+        profits[1] = max(0, prices[1] - prices[0])
         
         for i in range(2, n):
-            # if day i is a cooldown day, then maximum profits is profits[i-1]
-            max_profit = profits[i-1]
+            # if day i is a cooldown day, or day i can be a buying day
+            max_profit = max(profits[i-1], profits[i-2])
+            # day i is a selling day
             for j in range(0, i):
                 # profits[j-2] due to skip cooldown day
                 p = max(0, prices[i] - prices[j]) + (profits[j-2] if j - 2 >= 0 else 0)
@@ -225,6 +237,6 @@ class Solution:
 ```
 210 / 210 test cases passed.
 Status: Accepted
-Runtime: 2356 ms
+Runtime: 2328 ms
 Memory Usage: 14.7 MB
 ```
