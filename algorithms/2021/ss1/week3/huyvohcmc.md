@@ -45,7 +45,7 @@ We will use dynamic programming to solve this problem. For any day there are 2 p
 - we have a stock on that day (1)
 - we don't have any stock on that day (2)
 
-To build up the solution, we will use a 2-dimensional array for 2 possibilities `dp[n][2]`: `dp[i][0]` is the maximum profit when we don't have any stock left at the end of day `i`, and `dp[i][1]` is the maximum profit when we have a stock left at the end of day `i`.
+To build up the solution, we will use a 2-dimensional array `dp[n][2]` for 2 possibilities: `dp[i][0]` is the maximum profit when we don't have any stock left at the end of day `i`, and `dp[i][1]` is the maximum profit when we have a stock left at the end of day `i`.
 
 (1) has 2 possibilities:
 - we bought the stock today (A)
@@ -62,7 +62,7 @@ Let's go through each case in more details:
 We bought the stock today, which means yesterday was the cooldown day, so our max profit = (max profit on day i-2) - today's stock price.
 - `dp[i-2][0] - prices[i]`
 
-Why `dp[i-2][0]`, because at the end of day i-2, we must have sold the stock so we can buy it again on day i.
+Why `dp[i-2][0]`? Because at the end of day `i-2`, we must have sold the stock so we can buy it again on day `i`.
 
 #### (1B)
 
