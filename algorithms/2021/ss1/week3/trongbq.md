@@ -101,9 +101,8 @@ https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
 ### Brute Force
 For a certain day `i`, there are 3 possibilities
 
-1. It's a cooldown day, so the maximum profit is by buying and selling from day 0 to day `i-1`.
-2. It's a buying day, so the maximum profit is by buying and selling from day 0 to day `i-2`.
-3. It's a selling day, so the maximum profit is addition of profit when selling on day `i` and what we need to find is the day to buy that selling on day `i` make most profitable.
+1. It's a resting day, so the maximum profit is by buying and selling from day 0 to day `i-1`.
+2. It's a selling day, so the maximum profit is addition of profit when selling on day `i` and what we need to find is the day to buy that selling on day `i` make most profitable.
 
 In conclusion, we have following formular:
 
@@ -126,10 +125,8 @@ class Solution:
             if i <= 0:
                 return 0
             
-            # if day i is a cooldown day
+            # if day i is a resting day
             max_profit = find(i-1)
-            # if day i is a buying day
-            max_profit = max(max_profit, find(i-2))
             # else day i is a selling day,
             # try to find the max profit by selecting buying day is one of previous days
             for j in range(0, i):
@@ -151,11 +148,9 @@ prices: [1,2,3,0,2]
 
 With i = 4:
     - find(i-1) = find(3)
-    - find(i-2) = find(2)
     - find(j-2) = find(-2), find(-1), find(0), find(1)
 With i = 3:
     - find(i-1) = find(2)
-    - find(i-2) = find(1)
     - find(j-2) = find(-2), find(-1), find(0)
 ...
 ```
@@ -175,10 +170,8 @@ class Solution:
             if profits[i] != -1:
                 return profits[i]
             
-            # if day i is a cooldown day
+            # if day i is a resting day
             max_profit = find(i-1)
-            # if day i is a buying day
-            max_profit = max(max_profit, find(i-2))
             # else day i is a selling day,
             # try to find the max profit by selecting buying day is one of previous days
             for j in range(0, i):
@@ -221,7 +214,7 @@ class Solution:
         profits[1] = max(0, prices[1] - prices[0])
         
         for i in range(2, n):
-            # if day i is a cooldown day, or day i can be a buying day
+            # if day i is a resting day
             max_profit = max(profits[i-1], profits[i-2])
             # day i is a selling day
             for j in range(0, i):
@@ -239,4 +232,29 @@ class Solution:
 Status: Accepted
 Runtime: 2328 ms
 Memory Usage: 14.7 MB
+```
+## Problem 3
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
+
+
+### Brute Force
+The brute force approach is similar to problem 2, except we keep counting number of used transactions to discard any choices that exceed k.
+
+```python
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+        def find(i, kt):
+            if i <= 0:
+                return 0
+			# if more than k transaction have been made, we stop making any transactions
+            if kt > k:
+                return 0
+			# i might be a rest day
+            mp = find(i-1, kt)
+            for j in range(0, i):
+			    # i is a selling day, looking for a buying day
+                mp = max(mp, prices[i] - prices[j] + find(j-1, kt+1))
+            return mp
+
+        return find(len(prices)-1, 1)
 ```
