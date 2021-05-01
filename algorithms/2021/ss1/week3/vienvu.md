@@ -1,7 +1,7 @@
 ## 1: Easy: best-time-to-buy-and-sell-stock
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock
 
-#1.1: Naive Solution:
+# 1.1: Naive Solution:
 We run two loops save all profit we can get into an array. After that we will find max value. this approach ahve complexcity is O(n^2)
 
 Submission Details
@@ -33,7 +33,7 @@ func maxProfit(prices []int) int {
 }
 ```
 
-#1.2: Better Solution:
+ # 1.2: Better Solution:
 Run one loop and we will find maxprofit with minprice on the right of array prices
 This approach wil have complexity O(n)
 
