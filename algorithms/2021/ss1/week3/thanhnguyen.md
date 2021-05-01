@@ -121,21 +121,115 @@ class Solution(object):
 > [309. Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
 
 **Approach:**
-Explanation:
+### Explanation:
+> Phân tích đề:
+>
+> Khi chưa có cổ phiếu, mình sẽ đi mua hoặc đợi(không mua)
+>
+> Khi có cổ phiếu, mình sẽ đi bán, hoặc đợi(giữ cp)
+>
+> Sau khi bán, có 1 ngày cool down thì ngày đó sẽ đợi(không được mua)
+
+> Do đó, tại một ngày bất kỳ, sẽ có 3 khả năng có thể xảy ra: Mua, Bán, Đợi
+
+* Quy bài toán theo các trạng thái, tạo sơ đồ:
+
+> Giả sử tại một ngày bất kỳ mình chưa có cổ phiếu: [X]
+>
+> [X] -> tại đây xảy ra hai khả năng là mua hoặc không mua
+>
+> Nếu tại X mua, chuyển trạng thái qua ngày [Y]
+>
+> [Y] -> tại đây xảy ra hai khả năng là bán hoặc giữ không bán(đợi)
+>
+> Nếu tại [Y] bán, chuyển trạng thái qua ngày [Z], tại đây có một ngày cooldown nên bắt buộc phải đợi
+>
+**Ta có được sơ đồ các khả năng mua, bán, đợi trong ba trạng thái [X], [Y], [Z] có thể xảy ra:**
+
+```
+      |-------------Đợi----------------|
+      |                                |
+      |-> [X]  -> Mua -> [Y] -> Bán -> |
+        |  ^           |  ^
+        |--|           |--|
+        Đợi           Đợi
+```
+
+Lập bảng giải bài toán bằng quy hoạch động với n là số ngày giao dịch, và 3 khả năng xảy ra X, Y, Z như trên
+
+```
+Ví dụ: [7, 2, 5, 0, 1, 2]
+
+n      0  1. 2. 3. 4. 5
+price  7  2  5  0  1  2
+X      0  0  0  3  3  3
+Y     -7 -2 -2  0  2  4
+Z      0 -5  3 -2  1  4
+```
+
+Giá bán có lợi nhất là max của X, Y, Z cot so 5 -> **4**
+
+
+#### **Cong thuc tong quat tinh X_n, Y_n, Z_n**
+
+> **Tại vị trí X**: chọn giữ trạng thái Z_n-1 hoặc chọn giữ từ X_n-1
+>
+> `X_n = max(X_n-1, Z_n-1)`
+>
+> **Tại vị trí Y**: chọn giữ trạng thái Y_n-1 hoặc chọn mua từ X_n-1. Nếu mua(mất bớt tiền -> -) thì profit sẽ là giá X_n-1 - price_n
+>
+> `Y_n = max(Y_n-1, X_n-1 - price_n)`
+>
+> **Tại vị trí Z**: bán(thêm tiền -> +) từ giá trị Y_n-1 -> Y_n-1 + price_n
+>
+> `Z_n = max(Y_n-1 + price_n)`
+>
+> `Lợi nhuận tối ưu là: max(X_n, Y_n, Z_n) với n là thứ tự cuối cùng của prices`
+
 
 Analysis:
 - Time complexity:
 - Space complexity:
+
 Submission Detail
 ```
 Status:
-x / x0 test cases passed.
-Runtime: ms
-Memory Usage:  MB
+210 / 210 test cases passed.
+Runtime: 44 ms
+Memory Usage:  13.9 MB
 ```
 
 ```python
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        length = len(prices)
+
+        if length < 2 or length == 2 and prices[0] > prices[1]:
+            return 0
+
+        A = []
+        for p in prices:
+            A.append([0,0,0])
+
+        # First day
+        A[0][0] = 0
+        A[0][1] = 0 - prices[0]
+        A[0][2] = 0
+
+        # Next days
+        for i, n in enumerate(prices):
+            if i > 0:
+                A[i][0] = max(A[i-1][0], A[i-1][2])
+                A[i][1] = max(A[i-1][1], A[i-1][0] - n)
+                A[i][2] = A[i-1][1] + n
+
+        return max(A[length-1][0], A[length-1][1], A[length-1][2])
 ```
+
 
 # Hard
 > [3188. Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/)
@@ -147,12 +241,13 @@ Explanation:
 Analysis:
 - Time complexity:
 - Space complexity:
+
 Submission Detail
 ```
 Status:
-x / x0 test cases passed.
-Runtime: ms
-Memory Usage:  MB
+ /  test cases passed.
+Runtime:  ms
+Memory Usage:   MB
 ```
 
 ```python
