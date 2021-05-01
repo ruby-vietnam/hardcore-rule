@@ -1,7 +1,4 @@
-## 1: Easy: best-time-to-buy-and-sell-stock
-https://leetcode.com/problems/best-time-to-buy-and-sell-stock
-
-# 1.1: Naive Solution:
+## 1.1: Naive Solution:
 We run two loops save all profit we can get into an array. After that we will find max value. this approach ahve complexcity is O(n^2)
 
 Submission Details
@@ -65,7 +62,7 @@ func maxProfit(prices []int) int {
 }
 ```
 
-## 2: Medium: best-time-to-buy-and-sell-stock-with-cooldown
+# 2: Medium: best-time-to-buy-and-sell-stock-with-cooldown
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
 
 
