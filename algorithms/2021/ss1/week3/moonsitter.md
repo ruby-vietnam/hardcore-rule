@@ -41,32 +41,27 @@ Memory Usage: 93.4 MB, less than 34.83% of C++ online submissions for Best Time 
 
 # [309. Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
 
-## 0/1 Knapsack Approach
+**Submission Detail:**
 ```cpp
 class Solution {
 public:
-    int lastStoneWeightII(vector<int>& stones) {
-        sort(stones.begin(), stones.end());
-        int weight_sum = accumulate(stones.begin(), stones.end(), 0);
-        int n_stones = stones.size();
-        int max_s2 = weight_sum / 2;
-        vector<int> t(max_s2+1, 0);
-        for (auto i=0; i<n_stones; i++) {
-            vector<int> t_col(t);
-            for (auto j=1; j<max_s2+1; j++) {
-                if (j < stones[i]) {
-                    t[j] = t_col[j];
-                }
-                else {
-                    t[j] = max(t_col[j], t_col[j-stones[i]] + stones[i]);
-                }
-            }
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        int rest = 0;
+        int buy = -prices[0];
+        int sell = 0;
+        for (auto i=1; i<n; ++i) {
+            auto prev_buy = buy;
+            auto prev_sell = sell;
+            buy = max(rest - prices[i], buy);
+            sell = max(prev_buy + prices[i], sell);
+            rest = max(max(prev_sell, prev_buy), rest);
         }
-        return weight_sum - 2*t[max_s2];
+        return max(sell, rest);
     }
 };
 ```
 ```
-Runtime: 0 ms, faster than 100.00% of C++ online submissions for Last Stone Weight II.
-Memory Usage: 9.1 MB, less than 24.38% of C++ online submissions for Last Stone Weight II.
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Best Time to Buy and Sell Stock with Cooldown.
+Memory Usage: 11.2 MB, less than 71.78% of C++ online submissions for Best Time to Buy and Sell Stock with Cooldown.
 ```
