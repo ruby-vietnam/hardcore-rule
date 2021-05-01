@@ -258,3 +258,66 @@ class Solution:
 
         return find(len(prices)-1, 1)
 ```
+
+### DP
+Let's call dp[i][j] is a maximum profit at day j with i transactions.
+
+- If day j is a resting day, then dp[i][j] = dp[i][j-1]
+- If day j is a selling day, then we will looking for a buying day j' that `dp[i][j] = dp[i-1][j'-1] + (prices[j] - prices[j'])` is a maximum profit.
+
+
+```python
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+        n = len(prices)
+        dp = [[0 for _ in range(n+1)] for _ in range(k+1)]
+        prices = [0] + prices
+        
+        for i in range(1, k+1):
+            for j in range(1, n+1):
+                # init dp[i][j] is a maximum profit if j is a resting day
+                dp[i][j] = dp[i][j-1]
+                # day j is a selling day, pick day j' that maximum profit
+                for jj in range(1, j):
+                    dp[i][j] = max(dp[i][j], prices[j] - prices[jj] + dp[i-1][jj-1])
+        return dp[k][n]
+```
+
+### DP Improved
+
+Third loop contains wasted operations due to retry and keep recording max profit. We need to find a day j' with a single operation.
+
+Remember that in third loop, day[i][j] is the maximum profit at selling day j with i iteration, so we need to find a day j' so that `dp[i][j] = dp[i-1][j'-1] + (prices[j] - prices[j'])` is maximum. Other way to think about this is we need to find a maximum profit before day j', which is `dp[i][j'-1]`, minus with prices when buying at day j'. It means that we need to find maximum value of `dp[i-1][j'-1] - prices[j']`, because `prices[j]` is a constant, so if we find that maximum, then profit when selling at day j is maximum.
+
+On each day, we keep recording maximum profit when at day j'-1 and buying stock at day j'.
+
+**Analysis**
+Time complexity: O(kn)
+Space complexity: O(kn) due to the matrix `dp`.
+
+
+```python
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+        n = len(prices)
+        if n == 0:
+            return 0
+        
+        dp = [[0 for _ in range(n)] for _ in range(k+1)]
+        
+        for i in range(1, k+1):
+            mp = -prices[0]  # cost of buying at day 1
+            for j in range(1, n):
+                # maximum if day j is a resting day or selling day
+                dp[i][j] = max(dp[i][j-1], mp + prices[j])
+                # update max profit if buying at day j
+                mp = max(mp, dp[i-1][j-1] - prices[j])
+            
+        return dp[k][n-1]
+```
+```
+211 / 211 test cases passed.
+Status: Accepted
+Runtime: 180 ms
+Memory Usage: 15.5 MB
+```
