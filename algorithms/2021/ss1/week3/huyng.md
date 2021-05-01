@@ -68,3 +68,52 @@ public:
   }
 };
 ```
+
+## 3. Best Time to Buy and Sell Stock IV
+### 3.1. Summary
+| Runtime  | Faster than | Memory   | Less than |
+| :----:   | :----:      | :----:   | :----:    |
+| 1540ms   | ?%          | 23.5 MB  | ?%        |
+
+### 3.2. Solution summary
+
+### 3.3. Source code
+```cpp
+class Solution {
+public:
+  int maxProfit(int k, vector<int>& prices) {
+    int n = prices.size(), maxBuy = k;
+
+    if (maxBuy == 0 || n == 0) {
+      return 0;
+    }
+
+    vector< vector<int> > maxProfit(n, vector<int>(n, 0));
+    for (int i = 0; i < n; i++) {
+      int minCost = prices[i];
+      for (int j = i; j < n; j++) {
+        minCost = min(minCost, prices[j]);
+        maxProfit[i][j] = prices[j] - minCost;
+      }
+    }
+
+    vector< vector<int> > f(n, vector<int>(maxBuy + 1, 0));
+    for (int i = 0; i < n; i++) {
+      if (i > 0) {
+        //f[i][0] = *max_element(f[i-1].begin(), f[i-1].end());
+        for (int cnt = 0; cnt <= maxBuy; cnt++) {
+          f[i][cnt] = f[i-1][cnt];
+        }
+      }
+      f[i][1] = max(f[i][1], maxProfit[0][i]);
+      for (int cnt = 1; cnt <= maxBuy; cnt++) {
+        for (int j = i - 1; j >= 0; j--) {
+          f[i][cnt] = max(f[i][cnt], f[j][cnt-1] + maxProfit[j+1][i]);
+        }
+      }
+    }
+
+    return *max_element(f[n-1].begin(), f[n-1].end());
+  }
+};
+```
