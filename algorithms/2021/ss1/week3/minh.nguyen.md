@@ -1,3 +1,28 @@
+## 121. Best Time to Buy and Sell Stock
+
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
+Iterate each price in the list, the maximum profit is the difference between the current price and the previous minimum price. The naive implementation is to loop back and find the minimum price. However, this problem can be optimize by maintaining a variable, and update accordingly when iterating to the new one.
+
+```ruby
+def max_profit(prices)
+  min = prices[0]
+  max = 0
+
+  1.upto(prices.length - 1) do |i|
+    min = prices[i] if min > prices[i]
+    max = prices[i] - min if prices[i] - min > max
+  end
+
+  max
+end
+```
+
+```
+Runtime: 288 ms, faster than 5.26% of Ruby online submissions for Best Time to Buy and Sell Stock.
+Memory Usage: 219.5 MB, less than 62.03% of Ruby online submissions for Best Time to Buy and Sell Stock.
+```
+
 ## 309. Best Time to Buy and Sell Stock with Cooldown
 
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
@@ -27,4 +52,9 @@ def max_profit(prices)
     end
     max
  end
+```
+
+```
+Runtime: 400 ms, faster than 6.79% of Ruby online submissions for Best Time to Buy and Sell Stock with Cooldown.
+Memory Usage: 219.5 MB, less than 62.03% of Ruby online submissions for Best Time to Buy and Sell Stock with Cooldown.
 ```
