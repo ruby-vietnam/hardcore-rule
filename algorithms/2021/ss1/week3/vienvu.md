@@ -1,3 +1,6 @@
+# 1. Easy:
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
 ## 1.1: Naive Solution:
 We run two loops save all profit we can get into an array. After that we will find max value. this approach ahve complexcity is O(n^2)
 
