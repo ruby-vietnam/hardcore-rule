@@ -1,0 +1,187 @@
+nếu như không phải là kv storage mà là WAL thì có lib nào ngon không nhỉ
+
+huydx [10:27 AM]
+golang thi mot vai lib ngon day
+cua cznic
+cznic/file
+
+Razer [10:27 AM]
+A xài rocksdb như wal
+
+unrealhoang [10:27 AM]
+preferable C :disappointed:
+
+Razer [10:29 AM]
+Nhưng cần bóc tách thêm. Wal value size bao nhiêu? Cần wal làm gì? Khi nào có thể remove entry trong wal? Random hay serial interation/remove?
+
+unrealhoang [10:30 AM]
+serial anh
+kiểu như 1 event store
+for replication/recovery
+
+Razer [10:31 AM]
+Value size thế nào em?
+
+unrealhoang [10:31 AM]
+insert tail, backup / remove head
+<1kb
+
+Razer [10:32 AM]
+Kiểu em muốn giống như persistent queue?
+
+unrealhoang [10:32 AM]
+yep
+write thẳng xuống disk thì cũng là 1 solution
+nhưng mà write disk tricky phết
+
+Razer [10:34 AM]
+Workload em cần? Expect perf thế nào?
+
+unrealhoang [10:35 AM]
+1M events/s
+engine thì đang chạy ở khoảng 1.5-2M
+
+Razer [10:43 AM]
+Vậy anh assume:
+1. Tốc độ push < 1M events/s vì nó phải nhỏ hơn hoặc bằng tốc độ pop về mặt lý thuyết, nếu không thì leak
+2. Value < 1kb, nếu 1M * 1k == 1GB, hoàn toàn fit memory
+Vậy trong bài toán này rocksdb chơi được. Đặt key là auto increment, value là event value (edited)
+để layer 0 có mem size >= 2GB coi như bound
+iteration 1M events/s, 1GB/s in total via level 0 là suitable với rocksdb
+write 1GB/s sẽ hơi tricky, cần compression một tí để giảm size và để lấy lên mem cho dễ
+có thể compression bằng lz4 ở application level, rồi mới save (edited)
+rồi decompression ngược lại ở application level để lấy ra event
+
+huydx [10:48 AM]
+1M nay la tren toan cluster chu dung k?
+gia su cluster cua unreal co 10 machine thi se chi la 100k/s
+
+unrealhoang [10:49 AM]
+single node anh
+app bên em nó như 1 cái state machine ấy
+
+huydx [10:49 AM]
+hien tai design k scale out dc a?
+
+unrealhoang [10:49 AM]
+single threaded
+dạ không
+bản chất market nó thế
+thứ tự input matter
+
+huydx [10:51 AM]
+the ve sau market ben e x10
+thi lieu 1 node handle dc k
+
+unrealhoang [10:51 AM]
+à đang nói tốc độ lý thuyết
+chứ tốc độ hiện tại thì ~500events/s thôi :roflrofl:
+
+Razer [10:52 AM]
+nói chung 1 node với những requirement trên thì rocksdb ok. Ngoài ra còn một option khác là tự write, tự manage
+
+huydx [10:53 AM]
+noi chung co 2 option
+1 la thong qua 1 cai storage layer nhu linx suggest
+2 la write to file
+
+unrealhoang [10:53 AM]
+tự write thì chắc học theo cách checksum như redis
+
+huydx [10:53 AM]
+vi ban chat cai storage layer no cung co wal cua no
+minh chi can cai wal day thoi
+tuy nhien neu tu viet wal se kha tricky o 1 so doan
+dac biet la atomic commit
+e phai handle: fail before commit, fail when commit va fail after commit
+
+Razer [10:54 AM]
+tự write phức tạp hơn nhiều. Simple question: khi write fail sẽ làm gì? write tiếp vào cái wal đó hay cố create wal file mới và write vào đó
+
+huydx [10:54 AM]
+commit == write to file physically
+https://github.com/cznic/file
+e doc cai nay la thay do phuc tap
+neu thong qua storage layer thi no se lam ho minh
+
+unrealhoang [10:55 AM]
+em có nghiên cứu qua thử
+
+huydx [10:55 AM]
+https://github.com/facebook/rocksdb/wiki/Write-Ahead-Log
+
+unrealhoang [10:55 AM]
+nên mới hỏi lib đấy chứ
+
+huydx [10:55 AM]
+voi toc do hien tai a nghi lam nhu linx suggest
+
+unrealhoang [10:55 AM]
+chứ thấy dễ thì đã file.write :roflrofl:
+
+huydx [10:55 AM]
+thong qua mot cai storage la tot nhat
+
+unrealhoang [10:55 AM]
+:+1:
+
+huydx [10:55 AM]
+cai agent a viet cung write direct to file
+tuy nhien khi no detect fail thi se auto ... delete all
+=)))
+va no detect fail lien tuc
+hoi linx la biet
+
+unrealhoang [10:56 AM]
+cái em cần thực ra chỉ là
+nếu đã ghi
+thì đọc lên sẽ biết tới event nào là đúng
+
+huydx [10:56 AM]
+tuy nhien ben e k accept cho lost event dung k
+
+unrealhoang [10:56 AM]
+event nào partially written
+thì drop
+vẫn drop đc ạ
+
+huydx [10:57 AM]
+vay ha
+the thi write direct cung dc
+phat hien co gi sai sai thi rollback or catastrophic fail bang cach explode luon cai wal
+=)))
+co ma thoi storage layer cho nhe nhang
+write direct debug kho chiu lam
+a toan phai lai binary reader ra read roi tinh offset
+
+unrealhoang [11:00 AM]
+Quan trọng là chỗ phát hiện sai đó ạ
+
+huydx [11:00 AM]
+cai do easy ma
+crc32
+
+Razer [11:04 AM]
+cần thiết kế streamable entry
+gồm header, body, footer. Trong đó footer là check sum, nếu muốn tự manage, và chấp nhận có fail (edited)
+nhưng khi fail thì vẫn phải có chuyện thuật là create new wal và retry
+và vẫn nên có secondary backup. Chẳng hạn để rocksdb ở một mounted volume khác thay vì primary disk volume
+cái này hơi tay chân nhưng nếu data là quý và không muốn loss thì nên làm thế
+
+unrealhoang [11:08 AM]
+Bên em có fork/copy on write để backup snapshot (entire state)
+
+Razer [11:10 AM]
+anh thiết nghĩ chuyển sang rocksdb như anh nói ở trên cho việc backup thay vì manual cow
+lý do là write amplification, local write distribution, less contention
+cow có write amp khá lớn
+wal của rocksdb bản chất là đã preallocate size với os
+nó fallocate rồi
+nên khá ổn.
+
+unrealhoang [11:13 AM]
+:+1: để em nghiên cứu thêm
+
+Razer [11:18 AM]
+Ngoài ra option khác cần phải thử là: https://github.com/LMDB/lmdb
+em nên bench thử với case của em. Anh nghĩ không có một cái gì `fixed`, case của ai thì người đó tự bench để xem phù hợp ra sao
