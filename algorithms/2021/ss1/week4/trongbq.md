@@ -387,3 +387,65 @@ Memory Usage: 14.3 MB
 ```
 
 Great, space complexity now is O(1), seems like Python needs some extra time on copying array so time complexity goes up a bit.
+## Problem 3
+https://leetcode.com/problems/n-queens
+
+We have n queens need to be placed in n x n board. Start by placing a queen on first column and all row slots in this column, recursively move to the next column if previous placement is a valid, when placing n queens on the board, recoding the solutions.
+
+The hard part is how to check if a placement is a valid one, based on the way we approach the puzzle, from left to right column, and top to bottom row, there are some observation to make this check easier:
+
+- There are no two queens have same row or column: since we place a single queen on a single column `c` at row index `r`, we can be sure that if no queens in the `board[r][:c]`  then this condition is satisfied.
+- Normally there are two diagonals, so 4 possible directions need to check for a single place `(r,c)`, but we approach from left to right, so two directions from the right are not needed to be checked. Iterate through all previous columns, check if there is any placements that lie on two left diagonals.
+
+**Analysis**
+
+Time complexity: O(n^3)
+
+Space complexity: O(n^2)
+
+```python
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        def place(col: int, positions: List[int]):
+            if col == n:
+                outcome.append(positions)
+                return
+            
+            # try to place a queen to one of slots in this column
+            for row in range(n):
+                # check if this is a valid place
+                valid = True
+                pn = len(positions)
+                for j in range(pn):
+                    # 1. check if this row is used
+                    if row == positions[j]:
+                        valid = False
+                        break
+                    # check if two left diagonals are used
+                    # by check if each slot in the column in one of two slot for diagonals (at least 2 slots)
+                    if positions[j] in [r for r in [row-pn+j, row+pn-j] if r >= 0 and r < n]:
+                        valid = False
+                        break
+                if valid:
+                    place(col+1, positions + [row])
+                
+                
+        # store list of possible placement, each placement is a list of row value, with index is a column.
+        outcome = []
+        place(0, [])
+        
+        # construct the board
+        boards = []
+        for sol in outcome:
+            board = [['.' for _ in range(n)] for _ in range(n)]
+            for r, c in enumerate(sol):
+                board[r][c] = 'Q'
+            boards.append([''.join(r) for r in board])
+        return boards
+```
+```
+9 / 9 test cases passed.
+Status: Accepted
+Runtime: 188 ms
+Memory Usage: 14.7 MB
+```
