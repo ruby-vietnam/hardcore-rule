@@ -53,10 +53,12 @@ https://leetcode.com/problems/knight-dialer/
 ### Approach
 
 Let's simulate the process of hopping a knight 3 times, starting at cell 1, to find distinct phone numbers of length 3:
+```
 1. At cell 1, n = 1, distinct phone numbers of length 1: 1 ("1")
 2. From 1, we can make 2 different hops to either 6 or 8, n = 2, distinct phone number of length 2: 2 ("16", "18")
   2a. From 6, we can make 3 different hops to 1, 7 or 0, n = 3, distinct phone number of length 3: 3 ("161", "167", "170")
   2b. From 8, we can make 2 different hops to 1 or 3, n = 3, distinct phone number of length 3: 3 ("181", "183")
+```
 
 The number of distinct phone numbers of length 3, starting at cell 1, is 5 ("161", "167", "170", "181", "183"). We have 10 cells, so we just need to do the above process for the other 9 cells. When adding the result of all of them, we have the number of distinct phone numbers of length 3. Converting this simulation into a formula is simple enough:
 
@@ -87,7 +89,8 @@ func knightDialer(n int) int {
 	mod := 1000000007
 	c := []int{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 	for i := 0; i < n-1; i++ {
-		c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8], c[9] = (c[4]+c[6])%mod, (c[6]+c[8])%mod, (c[7]+c[9])%mod, (c[4]+c[8])%mod, (c[3]+c[9]+c[0])%mod, 0, (c[1]+c[7]+c[0])%mod, (c[2]+c[6])%mod, (c[1]+c[3])%mod, (c[2]+c[4])%mod
+		c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8], c[9] =
+		(c[4]+c[6])%mod, (c[6]+c[8])%mod, (c[7]+c[9])%mod, (c[4]+c[8])%mod, (c[3]+c[9]+c[0])%mod, 0, (c[1]+c[7]+c[0])%mod, (c[2]+c[6])%mod, (c[1]+c[3])%mod, (c[2]+c[4])%mod
 	}
 	sum := 0
 	for _, v := range c {
