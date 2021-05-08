@@ -422,8 +422,7 @@ class Solution:
                         valid = False
                         break
                     # check if two left diagonals are used
-                    # by check if each slot in the column in one of two slot for diagonals (at least 2 slots)
-                    if positions[j] in [r for r in [row-pn+j, row+pn-j] if r >= 0 and r < n]:
+                    if col-j == abs(row-positions[j]):
                         valid = False
                         break
                 if valid:
@@ -442,10 +441,11 @@ class Solution:
                 board[r][c] = 'Q'
             boards.append([''.join(r) for r in board])
         return boards
+        
 ```
 ```
 9 / 9 test cases passed.
 Status: Accepted
-Runtime: 188 ms
-Memory Usage: 14.7 MB
+Runtime: 92 ms
+Memory Usage: 14.9 MB
 ```
