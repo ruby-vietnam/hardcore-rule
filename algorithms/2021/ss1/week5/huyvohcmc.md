@@ -121,6 +121,8 @@ func pathSumIncludingRoot(root *TreeNode, targetSum int) int {
 }
 ```
 
+Time complexity: O(n), space complexity: O(n).
+
 ### Submission Detail
 
 ```
