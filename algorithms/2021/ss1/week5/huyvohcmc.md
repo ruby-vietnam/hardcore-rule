@@ -86,7 +86,7 @@ You can take a look at the example:
 
 ![leetcode example](https://assets.leetcode.com/uploads/2021/04/09/pathsum3-1-tree.jpg)
 
-The root node of the tree, 10, is not included in any of the paths (1), but node 5 is included in 2 paths. Due to the nature of tree data structure, we can say 5 is the root node of a subtree of the bigger tree, and 5 itself is included when forming a path (2).
+The root node of the tree, 10, is not included in any of the paths (2), but node 5 is included in 2 paths. Due to the nature of tree data structure, we can say 5 is the root node of a subtree of the bigger tree, and 5 itself is included when forming a path (1).
 
 So, to find the number of paths, we need to find the number of paths in the tree where the root node is included, plus the number of paths in the tree where the root node is not included.
 
@@ -116,7 +116,8 @@ func pathSumIncludingRoot(root *TreeNode, targetSum int) int {
 	if root.Val == targetSum {
 		count++
 	}
-	count += pathSumIncludingRoot(root.Left, targetSum-root.Val) + pathSumIncludingRoot(root.Right, targetSum-root.Val)
+	remainingSum := targetSum - root.Val
+	count += pathSumIncludingRoot(root.Left, remainingSum) + pathSumIncludingRoot(root.Right, remainingSum)
 	return count
 }
 ```
