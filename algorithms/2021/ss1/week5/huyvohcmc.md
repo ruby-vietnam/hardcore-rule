@@ -112,12 +112,12 @@ func pathSumIncludingRoot(root *TreeNode, targetSum int) int {
 	if root == nil {
 		return 0
 	}
-	paths := 0
+	count := 0
 	if root.Val == targetSum {
-		paths++
+		count++
 	}
-	paths += pathSumIncludingRoot(root.Left, targetSum-root.Val) + pathSumIncludingRoot(root.Right, targetSum-root.Val)
-	return paths
+	count += pathSumIncludingRoot(root.Left, targetSum-root.Val) + pathSumIncludingRoot(root.Right, targetSum-root.Val)
+	return count
 }
 ```
 
