@@ -70,7 +70,7 @@ We have to do that for all nodes in the tree (take each node as a starting node)
 
 **Analysis**
 
-Time complexity: each `check` function takes O(2^h) with h is the height of the tree, and we call n times so overall it should be O(n\*2^h).
+Time complexity: each `check` function takes O(n) with n is number of nodes, and we traverse O(n) times so overall it should be O(n^2)).
 
 Space complexity: O(n) for stack in recursive calls.
 
