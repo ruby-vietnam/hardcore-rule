@@ -44,3 +44,15 @@ func inorderRect(root *TreeNode, list *[]int)  {
 	}
 }
 ```
+
+# Medium: path-sum-iii
+https://leetcode.com/problems/path-sum-iii
+
+Submission Details:
+
+```
+126 / 126 test cases passed.
+Status: Accepted
+Runtime: 16 ms
+Memory Usage: 4.4 MB
+```
