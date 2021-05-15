@@ -56,3 +56,67 @@ Status: Accepted
 Runtime: 16 ms
 Memory Usage: 4.4 MB
 ```
+
+```Go
+func pathSum(root *TreeNode, targetSum int) int {
+	if root == nil { return 0 }
+
+	return pathOnNode(root, targetSum) + pathSum(root.Left, targetSum) + pathSum(root.Right, targetSum)
+}
+
+func pathOnNode(root *TreeNode, sum int) int  {
+	count := 0
+	if root == nil { return 0 }
+    if root.Val == sum { count ++ }
+    
+	return count + pathOnNode(root.Left, sum - root.Val) + pathOnNode(root.Right, sum - root.Val)
+}
+```
+
+# Hard: binary-tree-maximum-path-sum
+https://leetcode.com/problems/binary-tree-maximum-path-sum
+
+
+Submission Details:
+```
+94 / 94 test cases passed.
+Status: Accepted
+Runtime: 36 ms
+Memory Usage: 7.3 MB
+```
+
+
+
+
+```Go
+type Res struct {
+	Val int
+}
+
+func maxPathSum(root *TreeNode) int {
+	res := Res{Val: math.MinInt8}
+	maxSum(root, &res)
+	return res.Val
+}
+
+func maxSum(node *TreeNode, res *Res) int {
+	if node == nil {
+		return  0
+	}
+
+	 l := maxSum(node.Left, res)
+	 r := maxSum(node.Right, res)
+	 a := Max(l, r)
+	 b := Max(node.Val, node.Val + a)
+	 c := Max(b, node.Val + l + r)
+	 res.Val = Max(res.Val, c)
+	return  b
+
+}
+func Max(x, y int) int {
+	if x < y {
+		return y
+	}
+	return x
+}
+```
