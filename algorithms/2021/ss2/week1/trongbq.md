@@ -68,3 +68,69 @@ Memory Usage: 19 MB
 Time complexity: O(n^2) due to number of elements in `trust` array can be up to `(n-1)^2`
 
 Space complexity: O(n)
+
+# Problem 2
+https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree
+
+Tree is some kind of graph, we can see easily that by using searching technique in graph, we can search for all possible node in the tree that have k distance from target node.
+
+Using BFS is suitable for this, DFS can not work on this case. By storing distance of current node to target node as we expand further from target node, check if we found nodes which have distance k.
+
+In the `TreeNode` definition, we can not modify to add parent attribute to it, so we create a mapping between node and its parent, it is done by traversing from the root.
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        # discover parent node of all node
+        def traverse(node):
+            if node.left != None:
+                parent[node.left.val] = node
+                traverse(node.left)
+            if node.right != None:
+                parent[node.right.val] = node
+                traverse(node.right)
+        
+        parent[root.val] = None
+        dist = {target.val: 0}
+        
+        traverse(root)
+        
+        # bfs
+        queue = [target]
+        visited = defaultdict(bool)
+        result = []
+        while len(queue) != 0:
+            node = queue.pop(0)
+            visited[node.val] = True
+            
+            if dist[node.val] == k:
+                # found one
+                result.append(node.val)
+            else:
+                # go further, there are only 3 possible edges: left, right, parent
+                if node.left != None and not visited[node.left.val]:
+                    dist[node.left.val] = dist[node.val] + 1
+                    queue.append(node.left)
+                if node.right != None and not visited[node.right.val]:
+                    dist[node.right.val] = dist[node.val] + 1
+                    queue.append(node.right)
+                if parent[node.val] != None and not visited[parent[node.val].val]:
+                    dist[parent[node.val].val] = dist[node.val] + 1
+                    queue.append(parent[node.val])
+
+        return result
+```
+```
+
+57 / 57 test cases passed.
+Status: Accepted
+Runtime: 40 ms
+Memory Usage: 14.6 MB
+```
