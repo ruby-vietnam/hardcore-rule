@@ -72,9 +72,9 @@ Space complexity: O(n)
 # Problem 2
 https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree
 
-Tree is some kind of graph, we can see easily that by using searching technique in graph, we can search for all possible node in the tree that have k distance from target node.
+Tree is some kind of graph, we can see easily that by using searching technique in graph (BFS, DFS), we can search for all possible node in the tree that have k distance from target node.
 
-Using BFS is suitable for this, DFS can not work on this case. By storing distance of current node to target node as we expand further from target node, check if we found nodes which have distance k.
+By storing distance of current node to target node as we expand further from target node, check if we found nodes which have distance k.
 
 In the `TreeNode` definition, we can not modify to add parent attribute to it, so we create a mapping between node and its parent, it is done by traversing from the root.
 
