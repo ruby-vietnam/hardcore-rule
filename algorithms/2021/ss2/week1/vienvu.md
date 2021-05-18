@@ -50,3 +50,59 @@ func intIntSlice(a int, list []int) bool {
     return false
 }  
 ```
+
+# Medium: all-nodes-distance-k-in-binary-tree
+https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
+
+Sumission Details:
+```
+57 / 57 test cases passed.
+Status: Accepted
+Runtime: 0 ms
+Memory Usage: 3.4 MB
+```
+
+We convert binary tree to a graph. After that we find path from the given have distance k 
+
+```Go
+func distanceK(root *TreeNode, target *TreeNode, k int) []int {
+	graph := make([][]int, 501)
+
+	genGraph(root, &graph)
+
+	result := make([]int, 0)
+	distance(target.Val, -1, &graph, k, &result)
+
+	return result
+}
+
+func distance(node int, previousNode int, graph *[][]int, k int, result *[]int) {
+	if k == 0  {
+		*result = append(*result, node)
+		return
+	}
+	for i := range (*graph)[node] {
+		if (*graph)[node][i] != previousNode {
+			distance((*graph)[node][i], node, graph, k - 1, result)
+		}
+	}
+}
+
+func genGraph(root *TreeNode, graph *[][]int)  {
+	if root.Left != nil {
+		(*graph)[root.Val] =  append((*graph)[root.Val], root.Left.Val)
+		(*graph)[root.Left.Val] = append((*graph)[root.Left.Val], root.Val)
+	}
+	if root.Right != nil {
+		(*graph)[root.Val] = append((*graph)[root.Val], root.Right.Val)
+		(*graph)[root.Right.Val] = append((*graph)[root.Right.Val], root.Val)
+	}
+
+	if root.Left != nil {
+		genGraph(root.Left, graph)
+	}
+	if root.Right != nil {
+		genGraph(root.Right, graph)
+	}
+}
+```
