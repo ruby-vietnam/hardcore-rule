@@ -1,4 +1,4 @@
-## 1. Two Sum IV - Input is a BST
+## 1. Find the Town Judge
 ### 1.1. Summary
 | Runtime  | Faster than | Memory   | Less than |
 | :----:   | :----:      | :----:   | :----:    |
@@ -6,10 +6,24 @@
 
 ### 1.3. Source code
 ```cpp
+class Solution {
+public:
+  int findJudge(int n, vector<vector<int>>& trust) {
+    vector<int> in(n), out(n);
+    for (auto edge : trust) {
+      ++in[edge[1]-1], ++out[edge[0]-1];
+    }
 
+    for (int i = 0; i < n; i++) {
+      if (in[i] == n - 1 && out[i] == 0) return i + 1;
+    }
+
+    return -1;
+  }
+};
 ```
 
-## 2. Two Sum IV - Input is a BST
+## 2. All Nodes Distance K in Binary Tree
 ### 2.1. Summary
 | Runtime  | Faster than | Memory   | Less than |
 | :----:   | :----:      | :----:   | :----:    |
