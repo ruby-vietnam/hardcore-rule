@@ -6,7 +6,7 @@ https://leetcode.com/problems/min-stack/
 
 Design a stack that supports push, pop, and top elements is simple, but design a stack that supports retrieving the minimum element in *constant time* can be tricky. The first solution came to mind is to use a variable to store the min element in the stack, but when the stack pops that element out you will lose track of the min element in the stack.
 
-Whenever we push an element to the stack, we need to know whether that element is the min element in the stack so far. If it is, we will store it in another `min` stack. This way when we pop an element from the main stack and if that element is also the same with the top element in the `min` stack, we will pop that element out from the `min` stack as well, and now the min value in the stack will be whichever element at the top of the `min` stack.
+Whenever we push an element to the stack, we need to know whether that element is the min element in the stack so far. If it is, we will store it in another `min` stack. This way when we pop an element from the main stack and if that element is also the same with the top element in the `min` stack, we will pop that element out as well from the `min` stack, and now the min value left in the stack will be the top element in the `min` stack.
 
 ### Code (Go)
 
