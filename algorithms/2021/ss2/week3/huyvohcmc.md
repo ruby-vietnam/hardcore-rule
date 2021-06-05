@@ -2,6 +2,12 @@
 
 https://leetcode.com/problems/min-stack/
 
+### Approach
+
+Design a stack that supports push, pop, and top elements is simple, but design a stack that supports retrieving the minimum element in *constant time* can be tricky. The first solution came to mind is to use a variable to store the min element in the stack, but when the stack pops that element out you will lose track of the min element in the stack.
+
+Whenever we push an element to the stack, we need to know whether that element is the min element in the stack so far. If it is, we will store it in another `min` stack. This way when we pop an element from the main stack and if that element is also the same with the top element in the `min` stack, we will pop that element out from the `min` stack as well, and now the min value in the stack will be whichever element at the top of the `min` stack.
+
 ### Code (Go)
 
 ```go
@@ -38,6 +44,8 @@ func (this *MinStack) GetMin() int {
 }
 ```
 
+Space complexity: O(n).
+
 ### Submission Detail
 
 ```
@@ -50,6 +58,16 @@ Memory Usage: 8.5 MB
 # Medium: Number of Islands
 
 https://leetcode.com/problems/number-of-islands/
+
+### Approach
+
+Traverse through every cell in the map:
+- if it is water, skip
+- if it is a land, it may be a part of an island, so use DFS to mark that cell and all adjacent cells, and increase the number of islands to 1
+
+Strategy to mark a cell:
+1. Check if `grid[i][j]` == 1, then change its value to 0 (so if we visit this cell again, we will skip it).
+2. Do the same thing for adjacent cells, but if they are water then skip.
 
 ### Code (Go)
 
@@ -81,6 +99,8 @@ func dfs(grid [][]byte, i int, j int) {
 	dfs(grid, i, j-1)
 }
 ```
+
+Time complexity: O(m * n), space complexity: O(1).
 
 ### Submission Detail
 
