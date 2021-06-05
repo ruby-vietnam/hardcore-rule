@@ -199,3 +199,61 @@ def valid(x, y)
   x >= 0 && x < @n && y >= 0 && y < @m
 end
 ```
+
+## 42. Trapping Rain Water
+
+https://leetcode.com/problems/trapping-rain-water/
+
+For each position, search for the tallest in the left, and the tallest in the right of that position.
+
+Can use `tallest_left` and `tallest_right` arrays, to avoid recalculation. These arrays are calculated once at the beginning. Without this improvement, the time complexity is `O(N^2)` and will get `Time Limit Exceeded` verdict.
+
+Time complexity: `O(N)`
+Space complexity: `O(N)`
+
+```
+Runtime: 116 ms, faster than 13.73% of Ruby online submissions for Trapping Rain Water.
+Memory Usage: 210.4 MB, less than 29.41% of Ruby online submissions for Trapping Rain Water.
+```
+
+```ruby
+# @param {Integer[]} height
+# @return {Integer}
+def trap(height)
+  @height = height
+  @n = height.size
+  return 0 if @n == 0
+  
+  @heightest_left = Array.new(@n, -1)
+  @heightest_left[0] = @height[0]
+  for i in 1..@n-1
+    @heightest_left[i] = [@heightest_left[i-1], @height[i]].max 
+  end
+  # pp "@heightest_left is #{@heightest_left}"
+  
+  @heightest_right = Array.new(@n, -1)
+  @heightest_right[@n-1] = @height[@n-1]
+  for i in (@n-2).downto(0)
+    @heightest_right[i] = [@heightest_right[i+1], @height[i]].max 
+  end
+  # pp "@heightest_right is #{@heightest_right}"
+  
+  res = 0
+  for i in 1..@n-2 
+    res += get_trapped(i)
+  end
+  res
+end
+
+def get_trapped(x)
+  high_left = @heightest_left[x-1]
+  high_right = @heightest_right[x+1]
+  if high_left > @height[x] && high_right > @height[x]
+    trapped = [high_left, high_right].min - @height[x]
+    # pp "Adding at #{x} trapped #{trapped}"
+    return trapped
+  else
+    return 0
+  end
+end
+```
