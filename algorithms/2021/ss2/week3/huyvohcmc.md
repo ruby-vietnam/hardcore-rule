@@ -100,7 +100,7 @@ func dfs(grid [][]byte, i int, j int) {
 }
 ```
 
-Time complexity: O(m * n), space complexity: O(1).
+Time complexity: O(m * n), space complexity: O(m * n).
 
 ### Submission Detail
 
