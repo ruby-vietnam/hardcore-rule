@@ -5,7 +5,10 @@ https://leetcode.com/problems/merge-sorted-array/
 ### Approach
 
 We try compare each number in `nums1` and `nums2`, from the greatest down to the smallest. Get the greater one and place it to the end of `nums1`.
-You can follow our approach by the following pic
+You can follow our approach by the following pic:
+
+![88](https://user-images.githubusercontent.com/25602820/121770278-a0e5a380-cb92-11eb-9af6-3129adab667a.png)
+
 
 If in case, we traversed all nums in `nums1`, but there are some numbers in `nums2` we just place it to the start of `nums1`
 
@@ -49,6 +52,8 @@ https://leetcode.com/problems/shuffle-an-array/
 ### Approach
 
 We follow the Fisher-Yates algorithm as following pic:
+
+![384](https://user-images.githubusercontent.com/25602820/121779912-26377b00-cbc8-11eb-9236-966215ef6f8a.jpeg)
 
 ### Submission
 
