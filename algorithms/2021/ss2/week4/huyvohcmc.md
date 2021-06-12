@@ -4,7 +4,7 @@ https://leetcode.com/problems/merge-sorted-array/
 
 ### Approach
 
-Loop through 2 arrays backward, check their last elements `nums1[i]` and `nums2[j`, if `nums1[i]` is larger we assign `nums1[k] = nums1[i]` and decrease `i`, `k` to 1, else assign `nums1[k] = nums2[j]` and decrease `j`, `k` to 1.
+Loop through 2 arrays backward, check their last elements nums1[i] and nums2[j], if nums1[i] is larger we assign nums1[k] to nums1[i] and decrease i, k to 1, else assign nums1[k] to nums2[j] and decrease j, k to 1.
 
 ```
 (k = m + n - 1, m = nums1.length - 1, n = nums2.length - 1)
