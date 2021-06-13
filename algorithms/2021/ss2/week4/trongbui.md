@@ -116,3 +116,67 @@ Memory Usage: 19.4 MB
 Time complexity: O(n)
 
 Space complexity: O(n) for copying array.
+
+## Problem 3
+https://leetcode.com/problems/median-of-two-sorted-arrays
+
+```python
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        m = len(nums1)
+        n = len(nums2)
+        total = m + n
+        rem = total // 2
+        
+        # handle empty case
+        if m == 0:
+            return nums2[rem] if total % 2 == 1 else (nums2[rem-1] + nums2[rem]) / 2
+        if n == 0:
+            return nums1[rem] if total % 2 == 1 else (nums1[rem-1] + nums1[rem]) / 2
+        
+        # init BS indicators search
+        l1, h1, m1 = 0, m-1, (m-1) // 2
+        l2, h2, m2 = 0, n-1, (n-1) // 2
+        
+        # find median base on last number of left half and first number of right half
+        def find_med(left_half_end, right_half_start):
+            if total % 2 == 1:
+                return right_half_start
+            return (left_half_end + right_half_start) / 2
+        
+        while True:
+            if nums1[m1] <= nums2[m2]:
+                rem = rem -  len(nums1[l1:m1+1])
+                if rem == 0:
+                    # nums1[m1] belongs to left half, not necessary ending of left half
+                    # nums2[l2] belongs to right half, not necessary start of right half
+                    first = nums1[m1] if l2 - 1 < 0 else max(nums1[m1], nums2[l2-1])
+                    second = nums2[l2] if m1 + 1 >= m else min(nums1[m1+1], nums2[l2])
+                    return find_med(first, second)
+                l1, h1, h2 = m1 + 1, min(m1 + rem, h1), min(l2 + rem - 1, h2)
+            else:
+                rem = rem -  len(nums2[l2:m2+1])
+                if rem == 0:
+                    first = nums2[m2] if l1 - 1 < 0 else max(nums1[l1-1], nums2[m2])
+                    second = nums1[l1] if m2 + 1 >= n else min(nums1[l1], nums2[m2+1])
+                    return find_med(first, second)
+                l2, h2, h1 = m2 + 1, min(m2 + rem, h2), min(l1 + rem - 1, h1)
+
+            # update mid index
+            m1 = l1 + (h1-l1) // 2
+            m2 = l2 + (h2-l2) // 2
+            
+            if l1 >= m:
+                # no more elements for first array, return median in second array
+                return find_med(max(nums1[m-1], nums2[h2]), nums2[h2+1])
+            if l2 >= n:
+                # no more elements for second array
+                return find_med(max(nums1[h1], nums2[n-1]), nums1[h1+1])
+```
+```
+
+2094 / 2094 test cases passed.
+Status: Accepted
+Runtime: 88 ms
+Memory Usage: 14.6 MB
+```
