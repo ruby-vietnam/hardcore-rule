@@ -46,10 +46,12 @@ https://leetcode.com/problems/partition-array-for-maximum-sum/
 ### Approach
 
 Traverse the array from index i = 1 to N (arr.length):
+```
 1. find the maximum element of the array up to index i-1 # maxElement
 2. change `up to k` last elements of the subarray (index 0..i-1) to the value of maxElement:
   2.1. with each change, calculate the sum of the subarray at index i by adding the newly changed values with the largest sum of the subarray that not includes those newly changed values
   2.2. memorize the largest sum out of all the sums generated from step 2.1 into the memoization array
+```
 
 ### Code
 
