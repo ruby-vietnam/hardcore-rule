@@ -99,6 +99,7 @@ The last node that greater or equal than `x` is marked as `greater`.
 
 From here, we just reorder them into a correct order.
 
+![drawing](https://user-images.githubusercontent.com/25602820/123518334-a03f2800-d6cf-11eb-9984-d08aa0c7251b.png)
 
 ### Submission
 
