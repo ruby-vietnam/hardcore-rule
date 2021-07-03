@@ -10,7 +10,7 @@ The solutio is pretty straightforward: while the given number is not equals to 1
 
 ```go
 func isHappy(n int) bool {
-	hashmap := map[int]bool{}
+	seen := map[int]bool{}
 	for n != 1 {
 		current, sum := n, 0
 		for current != 0 {
@@ -18,10 +18,10 @@ func isHappy(n int) bool {
 			sum += last * last
 			current /= 10
 		}
-		if hashmap[sum] {
+		if seen[sum] {
 			return false
 		}
-		hashmap[sum] = true
+		seen[sum] = true
 		n = sum
 	}
 	return true
