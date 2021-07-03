@@ -51,3 +51,46 @@ func isHappy(n int) bool {
 ```
 #Medium: the-k-th-lexicographical-string-of-all-happy-strings-of-length-n
 https://leetcode.com/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/
+
+Submission Details:
+```
+345 / 345 test cases passed.
+Status: Accepted
+Runtime: 32 ms
+Memory Usage: 6.8 MB
+```
+
+```Go
+var characterSet = []string{"a", "b", "c"}
+var allStrings []string
+func getHappyString(n int, k int) string {
+    allStrings = []string{}
+	generateAllStringRec("", len(characterSet), n)
+	sort.Strings(allStrings)
+	if k > len(allStrings) {
+		return ""
+	}
+	return allStrings[k - 1]
+}
+
+func generateAllStringRec(prefix string, n int, k int)  {
+	if k == 0 {
+		allStrings = append(allStrings, prefix)
+		return
+	}
+
+	for i := 0; i < n; i++ {
+		newPrefix := ""
+
+		if len(prefix) == 0 {
+			newPrefix = prefix + characterSet[i]
+			generateAllStringRec(newPrefix, n, k - 1)
+		} else  {
+			if prefix[len(prefix) - 1:] != characterSet[i] {
+				newPrefix = prefix + characterSet[i]
+				generateAllStringRec(newPrefix, n, k - 1)
+			}
+		}
+	}
+}
+```
