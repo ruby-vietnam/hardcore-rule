@@ -36,3 +36,4 @@
 - namtx - @namtx
 - bdthinh - @bdthinh
 - luathn - @luathn
+- vuongvu1 - @vuong
