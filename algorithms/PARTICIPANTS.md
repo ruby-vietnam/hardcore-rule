@@ -37,4 +37,6 @@
 - namtx - @namtx
 - bdthinh - @bdthinh
 - luathn - @luathn
+- ducva - @ducva
+- vuongvu1 - @vuong
 - vien - @vienvu89
