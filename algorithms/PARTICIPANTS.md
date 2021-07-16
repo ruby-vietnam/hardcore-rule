@@ -33,6 +33,7 @@
 - vanhtuan0409 - @vanhtuan0409
 - tinntt - @Sad Boy
 - tienducitt - @Duc Nguyen
+- GraphicDThanh - @BeautyOnCode
 - namtx - @namtx
 - bdthinh - @bdthinh
 - luathn - @luathn
