@@ -36,3 +36,4 @@
 - namtx - @namtx
 - bdthinh - @bdthinh
 - luathn - @luathn
+- ngocro208 - @ro
