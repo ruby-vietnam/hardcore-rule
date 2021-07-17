@@ -116,7 +116,7 @@ func backtrack(res *[]string, curr []byte, open, close, max int) {
 }
 ```
 
-# Submission Detail:
+### Submission Detail:
 
 ```
 8 / 8 test cases passed.
