@@ -1,36 +1,100 @@
-# Easy: two-sum
-https://leetcode.com/problems/two-sum/
+#
 
-##mSubmission details:
+## Easy: two-sum
+
+<https://leetcode.com/problems/two-sum/>
+
+### Submission details
+
 ```
 53 / 53 test cases passed.
 Status: Accepted
 Runtime: 4 ms
 Memory Usage: 3.2 MB
 ```
-## implement
+
+### implement
+
 ```Go
 func twoSum(nums []int, target int) []int {
-	m := make(map[int] int)
+ m := make(map[int] int)
 
-	for i := 0; i < len(nums); i++ {
-		j, found := m[target - nums[i]]
-		if found {
-			return []int{i, j}
-		}
-		m[nums[i]] = i
-	}
-	return  []int{-1, -1}
+ for i := 0; i < len(nums); i++ {
+  j, found := m[target - nums[i]]
+  if found {
+   return []int{i, j}
+  }
+  m[nums[i]] = i
+ }
+ return  []int{-1, -1}
 }
 ```
 
-# Easy: valid-parentheses
-https://leetcode.com/problems/valid-parentheses/
+## Easy: valid-parentheses
 
-## Submission details:
+<https://leetcode.com/problems/valid-parentheses/>
+
+### Submission details
+
 ```
+91 / 91 test cases passed.
+Status: Accepted
+Runtime: 0 ms
+Memory Usage: 2.4 MB
 ```
-## Implement
+
+### Implement
+
 ```Go
+type Stack []string
 
+func (s *Stack)isEmpty() bool  {
+	return len(*s) == 0
+}
+
+func (s *Stack) Push(str string)  {
+	*s = append(*s, str)
+}
+
+func (s *Stack) Pop() (string, bool)  {
+	if s.isEmpty() {
+		return "", false
+	}
+
+	index := len(*s) - 1
+	element := (*s)[index]
+	*s = (*s)[:index]
+
+	return element, true
+}
+
+func find(slice []string, val string) bool {
+	for _, item := range slice {
+		if item == val { return  true }
+	}
+
+	return false
+}
+
+func isValid(s string) bool {
+	sSlice := strings.Split(s, "")
+	closeSlice := []string{")", "]", "}"}
+	openSlice := []string{"(", "[", "{"}
+	dict:= map[string]string {")" : "(", "]" : "[", "}" : "{"}
+	stack := Stack([]string{})
+
+	for _ , letter :=  range sSlice {
+		if find(closeSlice, letter) && stack.isEmpty() { return  false }
+		if find(openSlice, letter) {
+			stack.Push(letter)
+		} else {
+			element, _ := stack.Pop()
+			if  dict[letter] != element { return  false }
+		}
+	}
+
+	if !stack.isEmpty() { return false }
+
+	return  true
+}
 ```
