@@ -17,16 +17,16 @@ Memory Usage: 3.2 MB
 
 ```Go
 func twoSum(nums []int, target int) []int {
- m := make(map[int] int)
+	m := make(map[int] int)
 
- for i := 0; i < len(nums); i++ {
-  j, found := m[target - nums[i]]
-  if found {
-   return []int{i, j}
-  }
-  m[nums[i]] = i
- }
- return  []int{-1, -1}
+	for i := 0; i < len(nums); i++ {
+		j, found := m[target - nums[i]]
+		if found {
+			return []int{i, j}
+		}
+		m[nums[i]] = i
+	}
+	return  []int{-1, -1}
 }
 ```
 
@@ -96,5 +96,44 @@ func isValid(s string) bool {
 	if !stack.isEmpty() { return false }
 
 	return  true
+}
+```
+
+## Medium: generate-parentheses
+
+<https://leetcode.com/problems/generate-parentheses/>
+
+### Submission details
+
+```
+```
+
+### Implement
+
+```Go
+```
+
+## Medium: sum-of-two-integers
+
+<https://leetcode.com/problems/sum-of-two-integers/>
+
+### Submission details
+13 / 13 test cases passed.
+Status: Accepted
+Runtime: 0 ms
+Memory Usage: 1.9 MB
+```
+```
+
+### Implement
+
+```Go
+func getSum(a int, b int) int {
+	for b != 0 {
+		carry := a & b
+		a = a ^ b
+		b = carry << 1
+	}
+	return  a
 }
 ```
