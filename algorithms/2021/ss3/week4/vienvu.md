@@ -106,11 +106,36 @@ func isValid(s string) bool {
 ### Submission details
 
 ```
+8 / 8 test cases passed.
+Status: Accepted
+Runtime: 0 ms
+Memory Usage: 2.8 MB
 ```
 
 ### Implement
 
 ```Go
+func generateParenthesis(n int) []string {
+	var combinations []string
+	openBracketCount := 0
+	closeBracketCount := 0
+	backtrack(&combinations, "", openBracketCount, closeBracketCount, n)
+
+	return combinations
+}
+
+func backtrack(combinations *[]string, cur string, openBracketCount int, closeBracketCount int, n int)  {
+	if len(cur) == n * 2 {
+		*combinations = append(*combinations, cur)
+		return
+	}
+	if openBracketCount < n {
+		backtrack(combinations, cur +  "(", openBracketCount + 1, closeBracketCount, n)
+	}
+	if closeBracketCount < openBracketCount {
+		backtrack(combinations, cur + ")", openBracketCount, closeBracketCount + 1, n)
+	}
+} 
 ```
 
 ## Medium: sum-of-two-integers
