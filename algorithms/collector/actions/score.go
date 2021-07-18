@@ -10,6 +10,8 @@ import (
 	"github.com/google/go-github/v37/github"
 )
 
+/*GetUserMapping makes a HTTP request to get user mapping file content.
+The file contains key-value pairs of <github-account> - <slack-acount>, that's used to showing in weekly report */
 func GetUserMapping(mappingUsersURL string) (map[string]string, error) {
 	response, err := http.Get(mappingUsersURL)
 	if err != nil {
@@ -24,6 +26,15 @@ func GetUserMapping(mappingUsersURL string) (map[string]string, error) {
 	return getUserMappingFromRaw(string(raw)), nil
 }
 
+/*getUserMappingFromRaw goes through lines of user mapping file content, parse mappings between <github-account> and <slack-account> and finally put them to hash map.
+Mapping between <github-account> and <slack-account> has structure:
+
+<github-account> - @<slack-account>
+ledongthuc - @ledongthuc
+huy - @huytd
+
+We accept the line that starts with ` - ` (bullet point)
+*/
 func getUserMappingFromRaw(mappingRaw string) map[string]string {
 	result := map[string]string{}
 	for _, line := range strings.Split(strings.TrimRight(mappingRaw, "\n"), "\n") {
@@ -40,6 +51,10 @@ func getUserMappingFromRaw(mappingRaw string) map[string]string {
 	return result
 }
 
+/*GetProblemScoresThisWeek go to algorithm issue, get 2 main things:
+- Level-score mapping: from first comment of algorithm issue
+- Raw problems of latest week: from latest comment of algorithm issue
+With them, the method calculate problem-score of this week.*/
 func GetProblemScoresThisWeek(p params, issueNumber int) ([]int, error) {
 	issue, err := getIssue(p, issueNumber)
 	if err != nil {
@@ -47,7 +62,7 @@ func GetProblemScoresThisWeek(p params, issueNumber int) ([]int, error) {
 	}
 
 	levelScoreMapping := getLevelScoreMapping(issue.GetBody())
-	latestComment, err := getLatestIssueCommentOfIssue(p, issue)
+	latestComment, err := getLatestIssueComment(p, issue)
 	if err != nil {
 		return []int{}, err
 	}
@@ -55,6 +70,21 @@ func GetProblemScoresThisWeek(p params, issueNumber int) ([]int, error) {
 	return getProblemScoreThisWeek(latestComment, levelScoreMapping), nil
 }
 
+/*getLevelScoreMapping go through lines of raw of level-score mapping, parsing it to hash map of <level> and <score>.
+Structure of pair of <level>-score> is
+
+<level>: <score>
+hard: 3
+medium: 2
+
+The block's covered by
+
+*** score mapping ***
+<level>: <score>
+<level>: <score>
+<level>: <score>
+*** end score mapping ***
+*/
 func getLevelScoreMapping(mappingRaw string) map[string]int {
 	isScoreMappingArea := false
 	result := map[string]int{}
@@ -82,12 +112,14 @@ func getLevelScoreMapping(mappingRaw string) map[string]int {
 	return result
 }
 
+/*getProblemScoreThisWeek go through lines of raw of weekly problem, check its level in level-score mapping to extract list weeklyscore.
+Order of weekly score matches with order of weekly problems.*/
 func getProblemScoreThisWeek(commentOfProblem *github.IssueComment, levelScoreMapping map[string]int) []int {
 	problemScores := []int{}
 	for _, line := range strings.Split(strings.TrimRight(commentOfProblem.GetBody(), "\n"), "\n") {
 		line = strings.TrimSpace(strings.ToLower(line))
 		for level, score := range levelScoreMapping {
-			if strings.HasPrefix(line, fmt.Sprintf("%s:", level)) {
+			if strings.Contains(line, fmt.Sprintf("%s:", level)) {
 				problemScores = append(problemScores, score)
 				break
 			}
@@ -97,6 +129,8 @@ func getProblemScoreThisWeek(commentOfProblem *github.IssueComment, levelScoreMa
 	return problemScores
 }
 
+/*CalculateUserScore read the pull request description, parse problems and mapping their order with problem scores of this week.
+Finally sum checked problem score. */
 func CalculateUserScore(pr *github.PullRequest, problemScores []int) (int, error) {
 	if pr.Body == nil {
 		return 0, nil
@@ -104,7 +138,7 @@ func CalculateUserScore(pr *github.PullRequest, problemScores []int) (int, error
 	indexProblemScores := 0
 	score := 0
 
-	for _, line := range strings.Split(strings.TrimRight(getStrFromPtr(pr.Body), "\n"), "\n") {
+	for _, line := range strings.Split(strings.TrimRight(pr.GetBody(), "\n"), "\n") {
 		line = strings.TrimSpace(strings.ToLower(line))
 		if indexProblemScores >= len(problemScores) {
 			break
