@@ -13,6 +13,7 @@ const (
 	GithubMaxPRPerQuery     = 100
 )
 
+// getGithubClient create new client of github to communicate with
 func getGithubClient(accessToken string) *github.Client {
 	ctx := context.Background()
 	ts := oauth2.StaticTokenSource(
@@ -23,6 +24,7 @@ func getGithubClient(accessToken string) *github.Client {
 	return github.NewClient(tc)
 }
 
+// GetPullRequests get all pull requests
 func GetPullRequests(p params) ([]*github.PullRequest, error) {
 	client := getGithubClient(p.accessToken)
 	pullRequests, _, err := client.PullRequests.List(context.Background(), p.owner, p.repo, &github.PullRequestListOptions{
@@ -36,6 +38,7 @@ func GetPullRequests(p params) ([]*github.PullRequest, error) {
 	return pullRequests, err
 }
 
+// CommentPR adds a comment in PR
 func CommentPR(p params, pr *github.PullRequest, message string) error {
 	client := getGithubClient(p.accessToken)
 	review, _, err := client.PullRequests.CreateReview(context.Background(), p.owner, p.repo, pr.GetNumber(), &github.PullRequestReviewRequest{
@@ -50,19 +53,22 @@ func CommentPR(p params, pr *github.PullRequest, message string) error {
 	return err
 }
 
+// MergePR merge PR
 func MergePR(p params, pr *github.PullRequest) error {
 	client := getGithubClient(p.accessToken)
 	_, _, err := client.PullRequests.Merge(context.Background(), p.owner, p.repo, pr.GetNumber(), "", &github.PullRequestOptions{})
 	return err
 }
 
+// getIssue get github issue by issue number
 func getIssue(p params, issueNumber int) (*github.Issue, error) {
 	client := getGithubClient(p.accessToken)
 	issue, _, err := client.Issues.Get(context.Background(), p.owner, p.repo, issueNumber)
 	return issue, err
 }
 
-func getLatestIssueCommentOfIssue(p params, issue *github.Issue) (*github.IssueComment, error) {
+// getLatestIssueComment get latest comment of github issue
+func getLatestIssueComment(p params, issue *github.Issue) (*github.IssueComment, error) {
 	client := getGithubClient(p.accessToken)
 	comments, _, err := client.Issues.ListComments(context.Background(), p.owner, p.repo, issue.GetNumber(), &github.IssueListCommentsOptions{
 		ListOptions: github.ListOptions{
@@ -77,6 +83,7 @@ func getLatestIssueCommentOfIssue(p params, issue *github.Issue) (*github.IssueC
 	return comments[0], nil
 }
 
+// addIssueComment adds a issue comment
 func addIssueComment(p params, issueNumber int, content string) error {
 	client := getGithubClient(p.accessToken)
 	_, _, err := client.Issues.CreateComment(context.Background(), p.owner, p.repo, issueNumber, &github.IssueComment{
