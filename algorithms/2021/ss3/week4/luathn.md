@@ -1,5 +1,7 @@
 # 1. Two Sum
 
+https://leetcode.com/problems/two-sum/
+
 ### Approach - Hash
 
 ### Submission
@@ -16,6 +18,8 @@ end
 ```
 
 # 20. Valid Parentheses
+
+https://leetcode.com/problems/valid-parentheses/
 
 ### Approach - Stack
 
@@ -37,6 +41,8 @@ end
 ```
 
 # 22. Generate Parentheses
+
+https://leetcode.com/problems/generate-parentheses/
 
 ### Submission - Need to improve complexity
 
