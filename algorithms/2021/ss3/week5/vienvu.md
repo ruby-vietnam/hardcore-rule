@@ -41,3 +41,34 @@ func convertToTitle(columnNumber int) string {
 	return result
 }
 ```
+
+## Easy: climbing-stairs
+
+<https://leetcode.com/problems/climbing-stairs>
+
+### Submission details
+
+```
+45 / 45 test cases passed.
+Status: Accepted
+Runtime: 0 ms
+Memory Usage: 1.9 MB
+```
+
+### Implement
+
+```Go
+func climbStairs(n int) int {
+	pre := 1
+	curr := 1
+	temp := 0
+	for i := 1; i < n; i++ {
+		temp = curr
+		curr = pre + curr
+		pre = temp
+	}
+
+	return curr
+}
+```
+
