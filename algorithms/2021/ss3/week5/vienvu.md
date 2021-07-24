@@ -112,12 +112,12 @@ func Max(x, y int) int {
 <https://leetcode.com/problems/house-robber-ii/>
 
 ### Submission details
+
+```
 74 / 74 test cases passed.
 Status: Accepted
 Runtime: 0 ms
 Memory Usage: 2 MB
-```
-
 ```
 
 ### Implement
