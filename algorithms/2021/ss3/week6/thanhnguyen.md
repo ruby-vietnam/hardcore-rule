@@ -1,23 +1,82 @@
 # 1. (Easy) [141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
-## Approach 1:
+## Approach 1: Hash Table
 ### 1.1 Solution
--
+- Use a set to save as hash table
+- Go through the linked list, add value to the set
+- If the next value exists in the set then it is linked list cycle
+- If not, return False as final
 ---
-- Time Complexity:
-- Space Complexity:
+- Time Complexity: O(n)
+- Space Complexity: O(n)
 ### 1.2 Code
 ```
- /  test cases passed.
+20 / 20 test cases passed.
 Status: Accepted
-Runtime:  ms
-Memory Usage:  MB
+Runtime: 56 ms
+Memory Usage: 18.1 MB
 ```
 
 ```python
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        node_visited = set()
+
+        while head is not None:
+            if head in node_visited:
+                return True
+
+            node_visited.add(head)
+            head = head.next
+
+        return False
+```
+
+## Approach 2: Floyd's Cycle Finding Algorithm
+### 1.1 Solution
+- Use 2 pointer: slow pointer(step is 1), fast pointer(step is 2)
+- If linked list cycle, then the fast pointer and slow pointer will meet together
+- If not linked list then the fast pointer will reach the end first
+---
+- Time Complexity: O(n)
+- Space Complexity: O(1)
+### 1.2 Code
+```
+20 / 20 test cases passed.
+Status: Accepted
+Runtime: 52 ms
+Memory Usage: 17.1 MB
+```
+
+```python
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+
+        # case []
+        if head is None:
+            return False
+
+        # 2 pointer
+        slow = head
+        fast = head.next
+
+        # 2 pointer not meet together
+        while slow != fast:
+            # reach the end
+            if fast is None or fast.next is None:
+                return False
+
+            # go ahead with its step
+            slow = slow.next
+            fast = fast.next.next
+
+        # 2 pointer not meet together
+        # cycle
+        # slow == head
+        return True
 ```
 
 # 2. (Easy) [160. Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)
-## Approach 1:
+## Approach 1: An order list and retrieve value by index
 ### 1.1 Solution
 -
 
