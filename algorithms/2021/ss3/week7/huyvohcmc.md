@@ -1,4 +1,4 @@
-# Easy: Majority Element
+# Easy 1: Majority Element
 
 https://leetcode.com/problems/majority-element/
 
@@ -43,7 +43,41 @@ Runtime: 572 ms
 Memory Usage: 12.7 MB
 ```
 
-# Medium : 3Sum
+# Easy 2: Sort Array By Parity
+
+https://leetcode.com/problems/sort-array-by-parity/
+
+
+### Code
+
+```go
+func sortArrayByParity(A []int) []int {
+	i, j := 0, len(A)-1
+	for i < j {
+		if A[i] % 2 > A[j] % 2 {
+			A[i], A[j] = A[j], A[i]
+		}
+		if A[i] % 2 == 0 {
+			i++
+		}
+		if A[j] % 2 == 1 {
+			j--
+		}
+	}
+	return A
+}
+```
+
+### Submission Detail
+
+```
+285 / 285 test cases passed.
+Status: Accepted
+Runtime: 8 ms
+Memory Usage: 4.8 MB
+```
+
+# Medium: 3Sum
 
 https://leetcode.com/problems/3sum/
 
