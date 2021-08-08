@@ -35,7 +35,14 @@ func GetPullRequests(p params) ([]*github.PullRequest, error) {
 		},
 	})
 
-	return pullRequests, err
+	filteredPullRequets := make([]*github.PullRequest, 0)
+	for _, pr := range pullRequests {
+		if isAlgorithmPR(*pr.Body) {
+			filteredPullRequets = append(filteredPullRequets, pr)
+		}
+	}
+
+	return filteredPullRequets, err
 }
 
 // CommentPR adds a comment in PR
