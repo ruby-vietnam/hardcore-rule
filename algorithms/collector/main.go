@@ -84,7 +84,10 @@ func main() {
 		result[displayName] = userScore
 
 		if !p.IsDisableMerge() {
-			actions.MergePR(p, pr)
+			err := actions.MergePR(p, pr)
+			if err != nil {
+				log.WithField("action", "Merge PR: failed. Please merge it manually").Error(err)
+			}
 		}
 	}
 
