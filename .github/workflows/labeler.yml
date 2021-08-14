@@ -1,11 +1,14 @@
-name: "Pull Request Labeler"
-on:
-- pull_request
-
-jobs:
-  triage:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/labeler@v3
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+# Label doesn't support from fork repos
+# https://github.com/actions/labeler/issues/12
+#
+# name: "Pull Request Labeler"
+# on:
+# - pull_request
+# 
+# jobs:
+#   triage:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/labeler@v3
+#       with:
+#         repo-token: "${{ secrets.GITHUB_TOKEN }}"
