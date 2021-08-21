@@ -36,6 +36,18 @@ Memory Usage: 3.7 MB
 
 https://leetcode.com/problems/array-with-elements-not-equal-to-average-of-neighbors/
 
+### Approach
+
+- Sort the array of nums in ascending order, this could be done in O(nlogn) time complexity.
+- Re-arrange the array by inserting numbers into the array but skipping its index each time:
+
+```
+nums: [6, 2, 0, 9, 7]
+sorted nums: [0, 2, 6, 7, 9]
+reinsert sorted nums, skip index each time: [0, _, 2, _, 6]
+now we have [7, 9] -> insert them to the empty position: [0, 7, 2, 9, 6]
+```
+
 ### Code
 
 ```go
