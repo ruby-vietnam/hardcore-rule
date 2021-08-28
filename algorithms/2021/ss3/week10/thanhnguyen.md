@@ -22,14 +22,31 @@ class Solution:
         return int(n_binary_str, 2)
 ```
 
-# 2. (Medium) [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
-## Approach: Brute Force (TLE)
+# 2. (Medium) [191. Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits)
+## Approach:
 ### 2.1 Solution
+
+
+### 2.2 Code
+```python
+class Solution(object):
+    def hammingWeight(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        return "{0:b}".format(n).count("1")
+```
+
+
+# 3. (Medium) [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
+## Approach: Brute Force (TLE)
+### 3.1 Solution
 - Check all pair, calculate the area then compare to get the max
 - The area of (x1, x2) and (y1, y2) with x is the value on x-axis and y is the value on the y-axis is:
     area = (x2 - x1) * min(y2, y1)
 
-### 2.2 Code
+### 3.2 Code
 ```python
 class Solution(object):
     def maxArea(self, height):
@@ -46,7 +63,7 @@ class Solution(object):
 ```
 
 ## Approach: Two Pointer
-### 2.1 Solution
+### 3.1 Solution
 - The area of (x1, x2) and (y1, y2) with x is the value on x-axis and y is the value on the y-axis is:
     area = (x2 - x1) * min(y2, y1)
 - So, to get the biggest area, we need to find the biggest of (x2 - x1) alternative with the min(y2, y1) also get the biggest value
@@ -54,7 +71,7 @@ class Solution(object):
   - Since the x order increase already the to get the biggest of (x2 - x1), mean we need to get the smallest on the left and the biggest on the right. Then init value of the left is 0 and the right is the last value of the list
   - To find the the biggest of the min of y2, y1 then we could ignore the smaller y and move the left pointer to the right, or the right pointer to the left, until we go all item in the list(l >= r)
 
-### 2.2 Code
+### 3.2 Code
 ```python
 class Solution(object):
     def maxArea(self, height):
