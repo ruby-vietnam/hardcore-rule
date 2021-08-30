@@ -18,4 +18,4 @@
 | REPO          | <empty> | Required. Github repository name |
 | ACCESS_TOKEN  | <empty> | Github developmer ACCESS TOKEN to give tool permission to access Github API |
 | PR_PREFIX     | <empty> | Pull request prefix name condition in querying to calculate score |
-| DISABLE_MERGE | false   | NOT IMPLEMENTED YET |
+| REAL_MODE | false   | Allow to run real mode by merging, comment score and summary comment |
