@@ -57,18 +57,12 @@ func main() {
 		if err != nil {
 			err := actions.CommentPR(p, pr, err.Error())
 			if err != nil {
-				log.WithFields(log.Fields{
-					"pr_user": pr.GetUser().GetLogin(),
-					"action":  "Reject PR: missing problems in description",
-				}).Error(err)
+				log.WithFields(log.Fields{"pr_user": pr.GetUser().GetLogin(), "action": "Reject PR: missing problems in description"}).Error(err)
 			}
 			continue
 		}
 
-		log.WithFields(log.Fields{
-			"pr_user": pr.GetUser().GetLogin(),
-			"score":   userScore,
-		}).Info("   Processed")
+		log.WithFields(log.Fields{"pr_user": pr.GetUser().GetLogin(), "score": userScore}).Info("   Processed")
 
 		displayName := *pr.User.Login
 		slackAccount, exist := userMapping[*pr.User.Login]
@@ -83,21 +77,18 @@ func main() {
 		}
 		result[displayName] = userScore
 
-		if !p.IsDisableMerge() {
-			err := actions.MergePR(p, pr)
-			if err != nil {
-				log.WithField("action", "Merge PR: failed. Please merge it manually").Error(err)
-			}
+		err = actions.MergePR(p, pr)
+		if err != nil {
+			log.WithField("action", "Merge PR: failed. Please merge it manually").Error(err)
 		}
 	}
 
-	log.WithFields(log.Fields{
-		"total_user_report": len(result),
-	}).Info("Final report")
+	log.WithFields(log.Fields{"total_user_report": len(result)}).Info("Final report")
 
 	if len(result) == 0 {
 		return
 	}
+
 	err = actions.ReportWeeklyResult(p, reportIssueNumber, result)
 	if err != nil {
 		log.WithField("action", "Report").Error(err)

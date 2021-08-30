@@ -5,11 +5,18 @@ import (
 	"sort"
 	"strings"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // ReportWeeklyResult build report content and add a comment to algorithm issue
 func ReportWeeklyResult(p params, issueNumber int, result map[string]int) error {
-	return addIssueComment(p, issueNumber, buildWeeklyReportContent(result))
+	reportContent := buildWeeklyReportContent(result)
+	if !p.IsRealMode() {
+		log.WithField("content", reportContent).Info("[Fake] Comment summary")
+		return nil
+	}
+	return addIssueComment(p, issueNumber, reportContent)
 }
 
 type resultItem struct {

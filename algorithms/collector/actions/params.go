@@ -7,19 +7,19 @@ import (
 )
 
 const (
-	envOwner        = "OWNER"
-	envRepo         = "REPO"
-	envAccessToken  = "ACCESS_TOKEN"
-	envPRPrefix     = "PR_PREFIX"
-	envDisableMerge = "DISABLE_MERGE"
+	envOwner       = "OWNER"
+	envRepo        = "REPO"
+	envAccessToken = "ACCESS_TOKEN"
+	envPRPrefix    = "PR_PREFIX"
+	envRealMode    = "REAL_MODE"
 )
 
 type params struct {
-	owner        string
-	repo         string
-	accessToken  string
-	prPrefix     string
-	disableMerge bool
+	owner       string
+	repo        string
+	accessToken string
+	prPrefix    string
+	realMode    bool
 }
 
 func GetParams() (params, error) {
@@ -35,14 +35,14 @@ func GetParams() (params, error) {
 		return params{}, errors.New("missing ACCESS_TOKEN parameter")
 	}
 
-	disableMerge, _ := strconv.ParseBool(os.Getenv(envDisableMerge))
+	realMode, _ := strconv.ParseBool(os.Getenv(envRealMode))
 
 	return params{
-		owner:        os.Getenv(envOwner),
-		repo:         os.Getenv(envRepo),
-		accessToken:  os.Getenv(envAccessToken),
-		prPrefix:     os.Getenv(envPRPrefix),
-		disableMerge: disableMerge,
+		owner:       os.Getenv(envOwner),
+		repo:        os.Getenv(envRepo),
+		accessToken: os.Getenv(envAccessToken),
+		prPrefix:    os.Getenv(envPRPrefix),
+		realMode:    realMode,
 	}, nil
 }
 
@@ -50,6 +50,12 @@ func (p params) GetPRPrefix() string {
 	return p.prPrefix
 }
 
-func (p params) IsDisableMerge() bool {
-	return p.disableMerge
+/* IsRealMode supports:
+- Add a comment each PR
+- Merge PR
+- Delete branch
+- Comment a score summary issue of algorithm
+*/
+func (p params) IsRealMode() bool {
+	return p.realMode
 }

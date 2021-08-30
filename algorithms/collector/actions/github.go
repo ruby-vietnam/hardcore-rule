@@ -2,8 +2,10 @@ package actions
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/google/go-github/v37/github"
+	log "github.com/sirupsen/logrus"
 	"golang.org/x/oauth2"
 )
 
@@ -40,6 +42,11 @@ func GetPullRequests(p params) ([]*github.PullRequest, error) {
 
 // CommentPR adds a comment in PR
 func CommentPR(p params, pr *github.PullRequest, message string) error {
+	if !p.IsRealMode() {
+		log.WithField("content", message).Info("   [Fake] Comment PR")
+		return nil
+	}
+
 	client := getGithubClient(p.accessToken)
 	review, _, err := client.PullRequests.CreateReview(context.Background(), p.owner, p.repo, pr.GetNumber(), &github.PullRequestReviewRequest{
 		Body: ptrStr(message),
@@ -55,6 +62,10 @@ func CommentPR(p params, pr *github.PullRequest, message string) error {
 
 // MergePR merge PR
 func MergePR(p params, pr *github.PullRequest) error {
+	if !p.IsRealMode() {
+		log.WithField("content", fmt.Sprintf("Owner: %v, Repo: %v, PR number: %v", p.owner, p.repo, pr.GetNumber())).Info("   [Fake] merge PR")
+		return nil
+	}
 	client := getGithubClient(p.accessToken)
 	_, _, err := client.PullRequests.Merge(context.Background(), p.owner, p.repo, pr.GetNumber(), "", &github.PullRequestOptions{})
 	return err
