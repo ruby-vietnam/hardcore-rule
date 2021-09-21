@@ -45,3 +45,4 @@
 - trongbq  - @tb
 - huyvohcmc - @FULLCLEARONSTAGE
 - andaden - @andaden
+- duysmile - @duy nguyen
