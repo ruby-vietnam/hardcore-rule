@@ -45,4 +45,5 @@
 - trongbq  - @tb
 - huyvohcmc - @FULLCLEARONSTAGE
 - andaden - @andaden
+- tonthanhhung - @hungton
 - duysmile - @duy nguyen
