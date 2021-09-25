@@ -48,3 +48,4 @@
 - nhuantdbk - @mergecode
 - tonthanhhung - @hungton
 - duysmile - @duy nguyen
+- ygoldendarkness -@huytq
