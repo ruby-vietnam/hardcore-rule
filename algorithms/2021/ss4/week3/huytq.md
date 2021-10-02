@@ -34,6 +34,9 @@ function levelOrder(root: TreeNode | null): number[][] {
 
 # Find Duplicate Subtrees
 
+## Summary
+- Save the tree as postorder or preorder. Dont save as inorder
+
 ``` typescript
 /**
  * Definition for a binary tree node.
