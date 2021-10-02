@@ -1,3 +1,32 @@
+# N-ary Tree Postorder Traversal
+
+``` typescript
+/**
+ * Definition for node.
+ * class Node {
+ *     val: number
+ *     children: Node[]
+ *     constructor(val?: number) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.children = []
+ *     }
+ * }
+ */
+
+function postorder(root: Node | null): number[] {
+    let result = []
+    let dfs = (current) => {
+        if(!current) return
+        for(let child of current.children) {
+            dfs(child)
+        }
+        result.push(current.val)
+    }
+    dfs(root)
+    return result
+};
+```
+
 # Binary Tree Level Order Traversal
 
 ``` typescript
