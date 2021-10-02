@@ -27,6 +27,35 @@ function postorder(root: Node | null): number[] {
 };
 ```
 
+#  N-ary Tree Preorder Traversal
+
+``` typescript
+/**
+ * Definition for node.
+ * class Node {
+ *     val: number
+ *     children: Node[]
+ *     constructor(val?: number) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.children = []
+ *     }
+ * }
+ */
+
+function preorder(root: Node | null): number[] {
+    let result = []
+    let dfs = (current) => {
+        if(!current) return
+        result.push(current.val)
+        for(let child of current.children) {
+            dfs(child)
+        }
+    }
+    dfs(root)
+    return result
+};
+```
+
 # Binary Tree Level Order Traversal
 
 ``` typescript
