@@ -31,3 +31,25 @@ function twoSum(nums: number[], target: number): number[] {
     return []
 };
 ```
+
+# Merge Intervals
+
+## Summary
+
+``` typescript
+function merge(intervals: number[][]): number[][] {
+    intervals.sort((a,b) => a[0] - b[0] || a[1] - b[1])
+    let result = []
+    for(let interval of intervals) {
+        if(result.length && interval[0] <= result[result.length - 1][1]) {
+            result[result.length - 1][1] = Math.max(result[result.length - 1][1], interval[1])
+            continue
+        } else {
+            result.push(interval)
+        }
+    }
+    return result
+};
+```
+
+
