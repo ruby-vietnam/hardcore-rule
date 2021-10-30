@@ -34,3 +34,41 @@ var findJudge = function (n, trust) {
     return -1;
 };
 ```
+
+## 2. [1046] Last Stone Weight
+
+https://leetcode.com/problems/find-the-town-judge/description/
+
+### 2.1 Approach
+
+- Sort the stones DESC, remove 2 first item, insert back the result of substraction (if the result >0) via `insertValueToDESCSortedArray`
+
+### 2.2 Code
+
+```js
+/**
+ * @param {number[]} stones
+ * @return {number}
+ */
+var lastStoneWeight = function(stones) {
+    stones.sort((b,a)=>a-b)
+    // console.log(stones)
+    while(stones.length > 1) {
+        const d = stones[0] - stones[1];
+        stones.splice(0, 2);
+        if (d > 0){
+            insertValueToDESCSortedArray(stones, d);
+        }
+    }
+    return stones.length === 0 ? 0 : stones[0];
+};
+
+function insertValueToDESCSortedArray(arr, val) {
+    let i = 0;
+    while (i < arr.length && arr[i] > val) {
+        i++;
+    }
+    arr.splice(i, 0, val);
+}
+```
+
