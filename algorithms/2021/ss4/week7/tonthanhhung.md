@@ -41,7 +41,7 @@ https://leetcode.com/problems/find-the-town-judge/description/
 
 ### 2.1 Approach
 
-- hdySort the stones DESC, remove 2 first item, insert back the result of substraction (if the result >0) via `insertValueToDESCSortedArray`
+- Sort the stones DESC, remove 2 first item, insert back the result of substraction (if the result >0) via `insertValueToDESCSortedArray`
 
 ### 2.2 Code
 
@@ -99,4 +99,26 @@ function countNodeOfBinaryTree(root) {
     return left + right + 1;
 }
 ```
+
+## 4. [347] Top K Frequent Elements
+
+https://leetcode.com/problems/top-k-frequent-elements/description/
+
+### 4.1 Approach
+
+- Using HashTable, sort by frequency, return k element
+
+### 4.2 Code
+
+```js
+var topKFrequent = function (nums, k) {
+    const h = {};
+    for (let i = 0; i < nums.length; i++) {
+        h[nums[i]] = h[nums[i]] ? h[nums[i]] + 1 : 1;
+    }
+    return Object.keys(h).sort((a, b) => h[b] - h[a]).slice(0, k);
+}
+```
+
+
 
