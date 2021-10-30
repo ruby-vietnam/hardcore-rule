@@ -41,7 +41,7 @@ https://leetcode.com/problems/find-the-town-judge/description/
 
 ### 2.1 Approach
 
-- Sort the stones DESC, remove 2 first item, insert back the result of substraction (if the result >0) via `insertValueToDESCSortedArray`
+- hdySort the stones DESC, remove 2 first item, insert back the result of substraction (if the result >0) via `insertValueToDESCSortedArray`
 
 ### 2.2 Code
 
@@ -69,6 +69,34 @@ function insertValueToDESCSortedArray(arr, val) {
         i++;
     }
     arr.splice(i, 0, val);
+}
+```
+
+## 3. [222] Count Complete Tree Nodes
+
+https://leetcode.com/problems/count-complete-tree-nodes/description/
+
+### 3.1 Approach
+
+- Straightforward travel througt the tree
+
+### 3.2 Code
+
+```js
+var countNodes = function(root) {
+    return countNodeOfBinaryTree(root);
+};
+
+// Powered by Github Copilot
+function countNodeOfBinaryTree(root) {
+    if (root === null) {
+        return 0;
+    }
+
+    let left = countNodeOfBinaryTree(root.left);
+    let right = countNodeOfBinaryTree(root.right);
+
+    return left + right + 1;
 }
 ```
 
