@@ -161,3 +161,34 @@ class MinHeap<T> {
 }
 ```
 
+# Scramble String
+
+``` typescript
+function isScramble(s1: string, s2: string): boolean {
+    const cache = new Map()
+    let dfs = (str1, str2) => {
+        if(str1 === str2) return true
+        const key = `${str1},${str2}`
+        if(cache.has(key)) return cache.get(key)
+        for(let i = 1; i < str1.length; i++) {
+            let left1 = str1.slice(0, i)
+            let right1 = str1.slice(i)
+            let left2 = str2.slice(0, i)
+            let right2 = str2.slice(i)
+            if(dfs(left1, left2) && dfs(right1, right2)) {
+                cache.set(key, true)
+                return true
+            }
+            let swapLeft2 = str2.slice(0, right1.length)
+            let swapRight2 = str2.slice(right1.length)
+            if(dfs(left1, swapRight2) && dfs(right1, swapLeft2)) {
+                cache.set(key, true)
+                return true
+            }
+        }
+        cache.set(key, false)
+        return false
+    }
+    return dfs(s1, s2)
+};
+```
